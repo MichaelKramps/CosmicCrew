@@ -42,6 +42,8 @@ public class ClashAnimation
                 return ClashAnimationType.Wait;
             case "d":
                 return ClashAnimationType.DrawCard;
+            case "end":
+                return ClashAnimationType.EndFight;
             default:
                 return ClashAnimationType.None;
         }
@@ -57,5 +59,15 @@ public class ClashAnimation
         {
             return 0;
         }
+    }
+
+    public ClashAnimationType getAnimationType()
+    {
+        return animationType;
+    }
+
+    public ActingPlayer getActingPlayer()
+    {
+        return actingPlayer;
     }
 }

@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1187326034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da4fbcc44bb43477d86005c46ce4291f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ad4c778e94d148e1be6e79e30c49ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   crewCardPrefab: {fileID: 2973926970413659528, guid: 3b85fbaa1295c48d6b531fe5fe573fe7, type: 3}

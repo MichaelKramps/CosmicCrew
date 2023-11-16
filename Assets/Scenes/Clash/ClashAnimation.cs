@@ -40,7 +40,7 @@ public class ClashAnimation
         {
             case "w":
                 return ClashAnimationType.Wait;
-            case "d":
+            case "dws":
                 return ClashAnimationType.DrawCard;
             case "end":
                 return ClashAnimationType.EndFight;

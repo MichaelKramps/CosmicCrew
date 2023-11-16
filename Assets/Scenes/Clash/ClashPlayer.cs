@@ -1,21 +1,26 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 using System.Collections.Generic;
 
 public class ClashPlayer
 {
     List<int> startingDeckIds = new List<int>();
-    List<GameObject> deck;
+
+    List<GameObject> deck = new List<GameObject>();
+    List<GameObject> team = new List<GameObject> { null, null, null, null, null, null };
+    List<GameObject> discard = new List<GameObject>();
+
+    private GameObject activeCard = null;
 
     public ClashPlayer(String deckString)
     {
         string[] allIdStrings = deckString.Split(",");
-        for (int index = 0; index < allIdStrings.Length; index++)
+        foreach (string idString in allIdStrings)
         {
-            string thisIdString = allIdStrings[index];
             try
             {
-                startingDeckIds.Add(Int32.Parse(thisIdString));
+                startingDeckIds.Add(Int32.Parse(idString));
             }
             catch
             {
@@ -24,8 +29,25 @@ public class ClashPlayer
         }
     }
 
-    public void createDeck(List<CrewCard> allCrewCards)
+    public List<int> getStartingDeckIds()
     {
+        return this.startingDeckIds;
+    }
 
+    public void addToDeck(GameObject cardToAdd)
+    {
+        deck.Add(cardToAdd);
+    }
+
+    public GameObject getTopCardInDeck()
+    {
+        return deck[0];
+    }
+
+    public void drawCard()
+    {
+        activeCard = this.getTopCardInDeck();
+        activeCard.GetComponent<SortingGroup>().sortingOrder = 0;
+        deck.Remove(this.getTopCardInDeck());
     }
 }

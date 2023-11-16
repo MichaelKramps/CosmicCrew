@@ -3,7 +3,8 @@ guid: 5ad4c778e94d148e1be6e79e30c49ce7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - crewCardPrefab: {fileID: 2973926970413659528, guid: 3b85fbaa1295c48d6b531fe5fe573fe7, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

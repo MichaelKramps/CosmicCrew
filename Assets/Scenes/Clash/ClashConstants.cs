@@ -1,27 +1,52 @@
 ﻿using System;
+using UnityEngine;
+
 public class ClashConstants
 {
-    public static float defaultCardScale = 0.5f;
+    public static float defaultCardScale = 0.45f;
 
-    static float cardXDistanceApart = 2.8f;
-    static float cardXStartingPoint = -7f;
-    public static float cardX1 = cardXStartingPoint;
-    public static float cardX2 = cardXStartingPoint + cardXDistanceApart;
-    public static float cardX3 = cardXStartingPoint + (cardXDistanceApart * 2);
-    public static float cardX4 = cardXStartingPoint + (cardXDistanceApart * 3);
-    public static float cardX5 = cardXStartingPoint + (cardXDistanceApart * 4);
-    public static float cardX6 = cardXStartingPoint + (cardXDistanceApart * 5);
+    static float cardXDistanceApart = 2.3f;
+    static float cardXStartingPoint = -5.75f;
 
     public static float player1CardY = -2.25f;
     public static float player2CardY = 2.25f;
 
-    public static float player1DeckY = -2.5f;
-    public static float player2DeckY = 2.5f;
-    public static float deckX = cardXStartingPoint + (cardXDistanceApart * 6) + 0.2f;
-    public static float discardX = cardXStartingPoint - cardXDistanceApart - 0.2f;
+    public static float player1DeckY = -3f;
+    public static float player2DeckY = 3f;
+    public static float deckX = cardXStartingPoint + (cardXDistanceApart * 6) + 0.35f;
+    public static float discardX = cardXStartingPoint - cardXDistanceApart - 0.35f;
 
-    public static float viewCardX = deckX - 0.5f;
+    public static float viewCardX = deckX - 1.5f;
     public static float viewCardScaleSize = 0.6f;
+    public static float fightCardX = 0f;
+    public static float fightCardScale = 0.6f;
     public static float viewCardAnimationTime = 750f;
 
+    public static Vector3 player1Deck = new Vector3(ClashConstants.deckX, ClashConstants.player1DeckY);
+    public static Vector3 player2Deck = new Vector3(ClashConstants.deckX, ClashConstants.player2DeckY);
+    public static Vector3 player1Discard = new Vector3(ClashConstants.discardX, ClashConstants.player1DeckY);
+    public static Vector3 player2Discard = new Vector3(ClashConstants.discardX, ClashConstants.player2DeckY);
+    public static Vector3 player1ViewCard = new Vector3(ClashConstants.viewCardX, ClashConstants.player1CardY);
+    public static Vector3 player2ViewCard = new Vector3(ClashConstants.viewCardX, ClashConstants.player2CardY);
+    public static Vector3 player1FightDestination = new Vector3(ClashConstants.fightCardX, ClashConstants.player1DeckY);
+    public static Vector3 player2FightDestination = new Vector3(ClashConstants.fightCardX, ClashConstants.player2DeckY);
+
+    public static float getPlayCardX(int cardSlot)
+    {
+        return cardXStartingPoint + (cardXDistanceApart * (cardSlot - 1));
+    }
+
+    public static Vector3 getPlayer1CardLocation(int cardSlot)
+    {
+        return new Vector3(ClashConstants.getPlayCardX(cardSlot), ClashConstants.player1CardY);
+    }
+
+    public static Vector3 getPlayer2CardLocation(int cardSlot)
+    {
+        return new Vector3(ClashConstants.getPlayCardX(cardSlot), ClashConstants.player2CardY);
+    }
+
+    public static float dieX = 0f;
+    public static float player1DieY = -2f;
+    public static float player2DieY = 2f;
 }

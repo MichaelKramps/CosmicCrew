@@ -39,6 +39,35 @@ public class ClashPlayer
         deck.Add(cardToAdd);
     }
 
+    public void addToDiscard(GameObject cardToAdd)
+    {
+        discard.Add(cardToAdd);
+    }
+
+    public int numberOfCardsInDiscard()
+    {
+        return discard.Count;
+    }
+
+    public void selectFighter(int slotOfFighter)
+    {
+
+        activeCard = fighterFromRoll(slotOfFighter);
+        team[fighterNumberFromRoll(slotOfFighter) - 1] = null;
+    }
+
+    public void winsFight()
+    {
+        addToDeck(activeCard);
+        activeCard = null;
+    }
+
+    public void losesFight()
+    {
+        addToDiscard(activeCard);
+        activeCard = null;
+    }
+
     public GameObject getTopCardInDeck()
     {
         return deck[0];
@@ -49,5 +78,40 @@ public class ClashPlayer
         activeCard = this.getTopCardInDeck();
         activeCard.GetComponent<SortingGroup>().sortingOrder = 0;
         deck.Remove(this.getTopCardInDeck());
+    }
+
+    public void playCard(int slotToPlayCardIn)
+    {
+        team[slotToPlayCardIn - 1] = activeCard;
+        activeCard = null;
+    }
+
+    public GameObject fighterInSlot(int slotNumber)
+    {
+        return team[slotNumber - 1];
+    }
+
+    public GameObject fighterFromRoll(int rolledNumber)
+    {
+        return team[fighterNumberFromRoll(rolledNumber) - 1];
+    }
+
+    public int fighterNumberFromRoll(int rolledNumber)
+    {
+        if (team[rolledNumber - 1] != null)
+        {
+            return rolledNumber;
+        }
+        else
+        {
+            if (rolledNumber == 6)
+            {
+                return fighterNumberFromRoll(1);
+            }
+            else
+            {
+                return fighterNumberFromRoll(rolledNumber + 1);
+            }
+        }
     }
 }

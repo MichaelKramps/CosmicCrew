@@ -2,6 +2,7 @@
 public enum ClashAnimationType
 {
     Wait,
+    GetTopCard,
     DrawCard,
     DisplayCard,
     PlayCard,
@@ -9,6 +10,7 @@ public enum ClashAnimationType
     ShowDice,
     RollDice,
     HideDice,
+    SelectFighters,
     FighterOneWins,
     FighterTwoWins,
     FightersTie,

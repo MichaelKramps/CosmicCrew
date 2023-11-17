@@ -7,19 +7,49 @@ public class ClashAnimationQueue
 
     public ClashAnimationQueue(string animationString)
     {
-        animationQueue = createAnimationQueue(animationString);
+        animationQueue = new Queue<ClashAnimation>();
+        addAnimationsToQueue(animationString);
     }
 
-    private Queue<ClashAnimation> createAnimationQueue(string animationString)
+    private void addAnimationsToQueue(string animationString)
     {
-        Queue<ClashAnimation> newAnimationQueue = new Queue<ClashAnimation>();
-
         string[] animationStrings = animationString.Split("*");
         foreach (string thisAnimationString in animationStrings)
         {
-            newAnimationQueue.Enqueue(new ClashAnimation(thisAnimationString));
+            addAnimationsFromCode(thisAnimationString);
         }
-        return newAnimationQueue;
+    }
+
+    private void addAnimationsFromCode(string animationCodeString)
+    {
+        string[] animationCodes = animationCodeString.Split(",");
+        ClashAnimation thisAnimation = new ClashAnimation(animationCodeString);
+
+        switch (thisAnimation.getAnimationType())
+        {
+            case ClashAnimationType.DrawCard:
+                animationQueue.Enqueue(new ClashAnimation(animationCodes[0] + ",gtc,0,0"));
+                animationQueue.Enqueue(thisAnimation);
+                break;
+            case ClashAnimationType.RollDice:
+                animationQueue.Enqueue(new ClashAnimation("b,sd,0,0"));
+                animationQueue.Enqueue(new ClashAnimation("b,w,500,0"));
+                animationQueue.Enqueue(thisAnimation);
+                animationQueue.Enqueue(new ClashAnimation("b,w,750,0"));
+                animationQueue.Enqueue(new ClashAnimation("b,hd,0,0"));
+                animationQueue.Enqueue(new ClashAnimation("b,sf," + animationCodes[2] + "," + animationCodes[3]));
+                animationQueue.Enqueue(new ClashAnimation("b,w,750,0"));
+                break;
+            case ClashAnimationType.FighterOneWins:
+            case ClashAnimationType.FighterTwoWins:
+            case ClashAnimationType.FightersTie:
+                animationQueue.Enqueue(thisAnimation);
+                animationQueue.Enqueue(new ClashAnimation("b,w,500,0"));
+                break;
+            default:
+                animationQueue.Enqueue(thisAnimation);
+                break;
+        }
     }
 
     public ClashAnimation getCurrentAnimation()

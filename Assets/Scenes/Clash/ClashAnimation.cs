@@ -42,6 +42,24 @@ public class ClashAnimation
                 return ClashAnimationType.Wait;
             case "dws":
                 return ClashAnimationType.DrawCard;
+            case "gtc":
+                return ClashAnimationType.GetTopCard;
+            case "p":
+                return ClashAnimationType.PlayCard;
+            case "r":
+                return ClashAnimationType.RollDice;
+            case "sd":
+                return ClashAnimationType.ShowDice;
+            case "hd":
+                return ClashAnimationType.HideDice;
+            case "sf":
+                return ClashAnimationType.SelectFighters;
+            case "g1":
+                return ClashAnimationType.FighterOneWins;
+            case "g2":
+                return ClashAnimationType.FighterTwoWins;
+            case "gt":
+                return ClashAnimationType.FightersTie;
             case "end":
                 return ClashAnimationType.EndFight;
             default:
@@ -69,5 +87,15 @@ public class ClashAnimation
     public ActingPlayer getActingPlayer()
     {
         return actingPlayer;
+    }
+
+    public int getPrimaryInteger()
+    {
+        return primaryInteger;
+    }
+
+    public int getSecondaryInteger()
+    {
+        return secondaryInteger;
     }
 }

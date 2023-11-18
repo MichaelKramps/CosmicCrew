@@ -39,6 +39,11 @@ public class ClashPlayer
         deck.Add(cardToAdd);
     }
 
+    public int numberOfCardsInDeck()
+    {
+        return deck.Count;
+    }
+
     public void addToDiscard(GameObject cardToAdd)
     {
         discard.Add(cardToAdd);

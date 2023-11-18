@@ -60,6 +60,10 @@ public class ClashAnimation
                 return ClashAnimationType.FighterTwoWins;
             case "gt":
                 return ClashAnimationType.FightersTie;
+            case "ppo":
+                return ClashAnimationType.PreparePowerCounter;
+            case "pow":
+                return ClashAnimationType.PowerCounter;
             case "end":
                 return ClashAnimationType.EndFight;
             default:

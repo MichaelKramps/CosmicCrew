@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using TMPro;
 
 public class ClashScript : MonoBehaviour
 {
@@ -27,11 +29,11 @@ public class ClashScript : MonoBehaviour
     void Start()
     {
         // set player1 and player2
-        player1 = new ClashPlayer("2,1,2,1,0,0,0");
-        player2 = new ClashPlayer("1,2,0,0,2,1,0");
+        player1 = new ClashPlayer("2,1,0,1,3,2,3");
+        player2 = new ClashPlayer("0,2,1,4,1,2,3");
         // set animationQueue
         // clashAnimationQueue = new ClashAnimationQueue("");
-        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*p,dws,1,0*p,p,3,0*s,dws,1,0*s,p,3,0*p,dws,1,0*p,p,4,0*s,dws,1,0*s,p,4,0*p,dws,1,0*p,p,5,0*s,dws,1,0*s,p,5,0*p,dws,1,0*p,p,6,0*s,dws,1,0*s,p,6,0*b,r,3,2*b,gt,3,2*b,r,3,2*b,g1,3,2*p,dws,1,0*p,p,4,0*b,r,4,5*b,g2,4,5*s,dws,1,0*s,p,5,0*b,r,2,1*b,gt,2,1*b,r,4,3*b,gt,4,3*b,r,4,3*b,gt,4,3*b,r,6,6*b,g1,6,6*p,dws,1,0*p,p,1,0*p,1w,0,0");
+        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*p,dws,1,0*p,p,3,0*s,dws,1,0*s,p,3,0*p,dws,1,0*p,p,4,0*s,dws,1,0*s,p,4,0*s,pow,2,4*p,dws,1,0*p,p,5,0*p,pow,1,5*s,dws,1,0*s,p,5,0*p,dws,1,0*p,p,6,0*s,dws,1,0*s,p,6,0*b,r,1,5*b,g1,1,5*p,dws,1,0*p,p,1,0*p,pow,1,1*b,r,2,2*b,g2,2,2*s,dws,1,0*s,p,2,0*s,pow,1,2*b,r,4,3*b,gt,4,3*b,r,5,6*b,g1,5,6*p,dws,1,0*p,p,5,0*b,r,2,6*b,gt,2,6*b,r,5,3*b,g2,5,3*s,dws,1,0*s,p,4,0*b,r,5,5*b,g2,5,5*s,dws,1,0*s,p,2,0*s,pow,2,2*b,r,3,5*b,gt,3,5*s,2w,0,0");
         //b,g1,2,5*b,r,2,2*b,g2,2,2*b,r,4,3*b,g1,4,3*p,dws,1,0*p,p,4,0*b,r,2,4*b,g2,2,4*s,dws,1,0*s,p,4,0*b,r,5,1*b,g2,5,1*s,dws,1,0*s,p,1,0*b,r,2,5*b,g1,2,5*p,dws,1,0*p,p,6,0*b,r,5,2*b,g1,5,2*p,dws,1,0*p,p,6,0*b,r,6,1*b,gt,6,1*p,1w,0,0
 
         //create player 1 deck
@@ -94,6 +96,12 @@ public class ClashScript : MonoBehaviour
                 break;
             case ClashAnimationType.FightersTie:
                 FightersTieAnimation();
+                break;
+            case ClashAnimationType.PreparePowerCounter:
+                PreparePowerCounterAnimation();
+                break;
+            case ClashAnimationType.PowerCounter:
+                PowerCounterAnimation();
                 break;
             default:
                 NextAnimation();
@@ -216,8 +224,8 @@ public class ClashScript : MonoBehaviour
         if (waitTimeInMilliseconds < 1000)
         {
             waitTimeInMilliseconds += Time.deltaTime * 1000f;
-            int randomRollableNumber1 = Random.Range(1, 6);
-            int randomRollableNumber2 = Random.Range(1, 6);
+            int randomRollableNumber1 = UnityEngine.Random.Range(1, 6);
+            int randomRollableNumber2 = UnityEngine.Random.Range(1, 6);
             die1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("die-" + randomRollableNumber1.ToString());
             die2.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("die-" + randomRollableNumber2.ToString());
         } else
@@ -292,6 +300,8 @@ public class ClashScript : MonoBehaviour
         }
         else
         {
+            resetPower(activeCard1);
+            resetPower(activeCard2);
             activeCard1.GetComponent<SortingGroup>().sortingLayerName = "Cards";
             activeCard2.GetComponent<SortingGroup>().sortingLayerName = "Cards";
             player1.winsFight();
@@ -314,6 +324,8 @@ public class ClashScript : MonoBehaviour
         }
         else
         {
+            resetPower(activeCard1);
+            resetPower(activeCard2);
             activeCard1.GetComponent<SortingGroup>().sortingLayerName = "Cards";
             activeCard2.GetComponent<SortingGroup>().sortingLayerName = "Cards";
             player1.losesFight();
@@ -336,6 +348,8 @@ public class ClashScript : MonoBehaviour
         }
         else
         {
+            resetPower(activeCard1);
+            resetPower(activeCard2);
             activeCard1.GetComponent<SortingGroup>().sortingLayerName = "Cards";
             activeCard2.GetComponent<SortingGroup>().sortingLayerName = "Cards";
             player1.losesFight();
@@ -344,9 +358,96 @@ public class ClashScript : MonoBehaviour
         }
     }
 
+    void PreparePowerCounterAnimation()
+    {
+        int fighterSlot = clashAnimationQueue.getCurrentAnimation().getSecondaryInteger();
+        switch (clashAnimationQueue.getCurrentActingPlayer())
+        {
+            case ActingPlayer.Primary:
+                activeCard1 = player1.fighterFromRoll(fighterSlot);
+                GameObject powerCountersObject1 = activeCard1.transform.Find("Power Counters").gameObject;
+                SpriteRenderer powerCountersSprite1 = powerCountersObject1.GetComponent<SpriteRenderer>();
+                powerCountersSprite1.sortingOrder = 3;
+                powerCountersSprite1.transform.position = ClashConstants.getPowerCounterStartingPoint(activeCard1);
+                powerCountersObject1.transform.Find("Number Counters").gameObject.GetComponent<SortingGroup>().sortingOrder = 3;
+                break;
+            case ActingPlayer.Secondary:
+                activeCard2 = player2.fighterFromRoll(fighterSlot);
+                GameObject powerCountersObject2 = activeCard2.transform.Find("Power Counters").gameObject;
+                SpriteRenderer powerCountersSprite2 = powerCountersObject2.GetComponent<SpriteRenderer>();
+                powerCountersSprite2.sortingOrder = 3;
+                powerCountersSprite2.transform.position = ClashConstants.getPowerCounterStartingPoint(activeCard2);
+                powerCountersObject2.transform.Find("Number Counters").gameObject.GetComponent<SortingGroup>().sortingOrder = 3;
+                break;
+        }
+        NextAnimation();
+    }
+
+    void PowerCounterAnimation()
+    {
+        int numberPowerCounters = clashAnimationQueue.getCurrentAnimation().getPrimaryInteger();
+        switch (clashAnimationQueue.getCurrentActingPlayer())
+        {
+            case ActingPlayer.Primary:
+                GameObject activeObject1 = activeCard1.transform.Find("Power Counters").gameObject;
+                if (animationHelper.NotYetReachedDestination(ClashConstants.getPowerCounterEndingPoint(activeCard1), activeObject1))
+                {
+                    animationHelper.MoveTowardsPoint(ClashConstants.getPowerCounterEndingPoint(activeCard1), ClashConstants.getPowerCounterStartingPoint(activeCard1), ClashConstants.powerCounterAnimationTime, activeObject1);
+                }
+                else
+                {
+                    GameObject numberCountersObject1 = activeCard1.transform.Find("Power Counters").Find("Number Counters").gameObject;
+                    int currentPowerCounters1 = Int32.Parse(numberCountersObject1.GetComponent<TextMeshPro>().text);
+                    int newPowerCounters1 = currentPowerCounters1 + numberPowerCounters;
+                    numberCountersObject1.GetComponent<TextMeshPro>().text = newPowerCounters1.ToString();
+                    GameObject powerObject1 = activeCard1.transform.Find("Power").gameObject;
+                    int currentPower1 = Int32.Parse(powerObject1.GetComponent<TextMeshPro>().text);
+                    int newPower1 = currentPower1 + numberPowerCounters;
+                    powerObject1.GetComponent<TextMeshPro>().text = newPower1.ToString();
+                    NextAnimation();
+                }
+                break;
+            case ActingPlayer.Secondary:
+                GameObject activeObject2 = activeCard2.transform.Find("Power Counters").gameObject;
+                if (animationHelper.NotYetReachedDestination(ClashConstants.getPowerCounterEndingPoint(activeCard2), activeObject2))
+                {
+                    animationHelper.MoveTowardsPoint(ClashConstants.getPowerCounterEndingPoint(activeCard2), ClashConstants.getPowerCounterStartingPoint(activeCard2), ClashConstants.powerCounterAnimationTime, activeObject2);
+                }
+                else
+                {
+                    GameObject numberCountersObject2 = activeCard2.transform.Find("Power Counters").Find("Number Counters").gameObject;
+                    int currentPowerCounters2 = Int32.Parse(numberCountersObject2.GetComponent<TextMeshPro>().text);
+                    int newPowerCounters2 = currentPowerCounters2 + numberPowerCounters;
+                    numberCountersObject2.GetComponent<TextMeshPro>().text = newPowerCounters2.ToString();
+                    GameObject powerObject2 = activeCard2.transform.Find("Power").gameObject;
+                    int currentPower2 = Int32.Parse(powerObject2.GetComponent<TextMeshPro>().text);
+                    int newPower2 = currentPower2 + numberPowerCounters;
+                    powerObject2.GetComponent<TextMeshPro>().text = newPower2.ToString();
+                    NextAnimation();
+                }
+                break;
+        }
+    }
+
+    void resetPower(GameObject card)
+    {
+        GameObject powerCountersObject = card.transform.Find("Power Counters").gameObject;
+        powerCountersObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
+        GameObject numberCountersObject = powerCountersObject.transform.Find("Number Counters").gameObject;
+        numberCountersObject.GetComponent<SortingGroup>().sortingOrder = 0;
+        int numberPowerCounters = Int32.Parse(numberCountersObject.GetComponent<TextMeshPro>().text);
+        numberCountersObject.GetComponent<TextMeshPro>().text = "0";
+        GameObject powerObject = card.transform.Find("Power").gameObject;
+        int currentPower = Int32.Parse(powerObject.GetComponent<TextMeshPro>().text);
+        int newPower = currentPower - numberPowerCounters;
+        powerObject.GetComponent<TextMeshPro>().text = newPower.ToString();
+    }
+
     void updateDeckNumbers()
     {
-
+        //make deck numbers correct
+        GameObject.Find("Deck1/NumberCards").GetComponent<TextMeshPro>().text = player1.numberOfCardsInDeck().ToString();
+        GameObject.Find("Deck2/NumberCards").GetComponent<TextMeshPro>().text = player2.numberOfCardsInDeck().ToString();
     }
 
     void NextAnimation()

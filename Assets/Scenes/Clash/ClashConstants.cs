@@ -49,4 +49,18 @@ public class ClashConstants
     public static float dieX = 0f;
     public static float player1DieY = -2f;
     public static float player2DieY = 2f;
+
+    public static float powerCounterStart = 1f * ClashConstants.defaultCardScale;
+    public static float powerCounterEnd = -2.25f * ClashConstants.defaultCardScale;
+    public static float powerCounterAnimationTime = 750f;
+
+    public static Vector3 getPowerCounterStartingPoint(GameObject activeCard)
+    {
+        return new Vector3(activeCard.transform.position.x, activeCard.transform.position.y + ClashConstants.powerCounterStart);
+    }
+
+    public static Vector3 getPowerCounterEndingPoint(GameObject activeCard)
+    {
+        return new Vector3(activeCard.transform.position.x, activeCard.transform.position.y + ClashConstants.powerCounterEnd);
+    }
 }

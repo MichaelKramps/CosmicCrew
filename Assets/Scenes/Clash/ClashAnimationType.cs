@@ -14,6 +14,7 @@ public enum ClashAnimationType
     FighterOneWins,
     FighterTwoWins,
     FightersTie,
+    PreparePowerCounter,
     PowerCounter,
     EndFight,
     None,

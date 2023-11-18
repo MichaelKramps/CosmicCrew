@@ -46,6 +46,10 @@ public class ClashAnimationQueue
                 animationQueue.Enqueue(thisAnimation);
                 animationQueue.Enqueue(new ClashAnimation("b,w,500,0"));
                 break;
+            case ClashAnimationType.PowerCounter:
+                animationQueue.Enqueue(new ClashAnimation(animationCodes[0] + ",ppo," + animationCodes[2] + "," + animationCodes[3]));
+                animationQueue.Enqueue(thisAnimation);
+                break;
             default:
                 animationQueue.Enqueue(thisAnimation);
                 break;

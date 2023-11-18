@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Athyr Biker
   cardText: 'Initialize: Cycle 1 card'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 8ea29907a561e4610bf534f858da183e, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 7a608602b47794a5c96c74428801424c, type: 3}
   power: 3
   powerCounters: 0

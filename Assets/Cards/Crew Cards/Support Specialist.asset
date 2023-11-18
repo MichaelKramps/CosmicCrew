@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Support Specialist
   cardText: 'Initialize: Give all friendly clashers a Power Counter'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 189706f557f684e0595dbe5bcda1c3cf, type: 3}
   backgroundTexture: {fileID: 21300000, guid: c52ebdaafb72e4b72a4f39ca524ba126, type: 3}
   power: 1
   powerCounters: 0

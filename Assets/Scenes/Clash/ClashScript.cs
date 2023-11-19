@@ -29,12 +29,12 @@ public class ClashScript : MonoBehaviour
     void Start()
     {
         // set player1 and player2
-        player1 = new ClashPlayer("2,1,0,1,3,2,3");
-        player2 = new ClashPlayer("0,2,1,4,1,2,3");
+        player1 = new ClashPlayer("7,6,8");
+        player2 = new ClashPlayer("4,3,5");
         // set animationQueue
         // clashAnimationQueue = new ClashAnimationQueue("");
-        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*p,dws,1,0*p,p,3,0*s,dws,1,0*s,p,3,0*p,dws,1,0*p,p,4,0*s,dws,1,0*s,p,4,0*s,pow,2,4*p,dws,1,0*p,p,5,0*p,pow,1,5*s,dws,1,0*s,p,5,0*p,dws,1,0*p,p,6,0*s,dws,1,0*s,p,6,0*b,r,1,5*b,g1,1,5*p,dws,1,0*p,p,1,0*p,pow,1,1*b,r,2,2*b,g2,2,2*s,dws,1,0*s,p,2,0*s,pow,1,2*b,r,4,3*b,gt,4,3*b,r,5,6*b,g1,5,6*p,dws,1,0*p,p,5,0*b,r,2,6*b,gt,2,6*b,r,5,3*b,g2,5,3*s,dws,1,0*s,p,4,0*b,r,5,5*b,g2,5,5*s,dws,1,0*s,p,2,0*s,pow,2,2*b,r,3,5*b,gt,3,5*s,2w,0,0");
-        //b,g1,2,5*b,r,2,2*b,g2,2,2*b,r,4,3*b,g1,4,3*p,dws,1,0*p,p,4,0*b,r,2,4*b,g2,2,4*s,dws,1,0*s,p,4,0*b,r,5,1*b,g2,5,1*s,dws,1,0*s,p,1,0*b,r,2,5*b,g1,2,5*p,dws,1,0*p,p,6,0*b,r,5,2*b,g1,5,2*p,dws,1,0*p,p,6,0*b,r,6,1*b,gt,6,1*p,1w,0,0
+        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*s,pow,3,1*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*s,pow,2,2*p,dws,1,0*p,p,3,0*s,dws,1,0*s,p,3,0*s,pow,1,3*b,r,6,2*b,g2,6,2*b,r,1,6*b,g2,1,6*s,dws,1,0*s,p,1,0*s,pow,2,1*b,r,1,1*b,g2,1,1*s,dws,1,0*s,p,1,0*s,pow,3,1*s,2w,0,0*p,dws,1,0*p,p,1,0*p,dws,1,0*p,uns,1,0*s,dws,1,0*s,p,1,0*s,pow,2,1*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*s,pow,1,2*p,dws,1,0*p,pow,1,2*p,p,3,0*p,pow,1,1*p,pow,1,2*p,pow,1,3*s,dws,1,0*s,p,3,0*s,pow,3,3*b,r,3,6*b,g2,3,6*b,r,4,5*b,g2,4,5*s,dws,1,0*s,p,2,0*s,pow,2,2*b,r,6,2*b,g2,6,2*s,dws,1,0*s,p,2,0*s,pow,1,2*s,2w,0,0");
+        //
 
         //create player 1 deck
         foreach (int cardId in player1.getStartingDeckIds())
@@ -72,6 +72,12 @@ public class ClashScript : MonoBehaviour
                 break;
             case ClashAnimationType.DrawCard:
                 DrawCardAnimation();
+                break;
+            case ClashAnimationType.CycleCard:
+                CycleCardAnimation();
+                break;
+            case ClashAnimationType.ResetActiveCard:
+                ResetActiveCardAnimation();
                 break;
             case ClashAnimationType.PlayCard:
                 PlayCardAnimation();
@@ -161,6 +167,20 @@ public class ClashScript : MonoBehaviour
                 NextAnimation();
                 break;
         }
+    }
+
+    void ResetActiveCardAnimation()
+    {
+        switch (clashAnimationQueue.getCurrentActingPlayer())
+        {
+            case ActingPlayer.Primary:
+                activeCard1 = player1.getActiveCard();
+                break;
+            case ActingPlayer.Secondary:
+                activeCard2 = player2.getActiveCard();
+                break;
+        }
+        NextAnimation();
     }
 
     void PlayCardAnimation()
@@ -404,6 +424,8 @@ public class ClashScript : MonoBehaviour
                     int currentPower1 = Int32.Parse(powerObject1.GetComponent<TextMeshPro>().text);
                     int newPower1 = currentPower1 + numberPowerCounters;
                     powerObject1.GetComponent<TextMeshPro>().text = newPower1.ToString();
+                    powerObject1.GetComponent<TextMeshPro>().fontStyle = FontStyles.Bold;
+                    powerObject1.GetComponent<TextMeshPro>().color = new Color32(0, 90, 0, 255);
                     NextAnimation();
                 }
                 break;
@@ -423,8 +445,50 @@ public class ClashScript : MonoBehaviour
                     int currentPower2 = Int32.Parse(powerObject2.GetComponent<TextMeshPro>().text);
                     int newPower2 = currentPower2 + numberPowerCounters;
                     powerObject2.GetComponent<TextMeshPro>().text = newPower2.ToString();
+                    powerObject2.GetComponent<TextMeshPro>().fontStyle = FontStyles.Bold;
+                    powerObject2.GetComponent<TextMeshPro>().color = new Color32(0, 90, 0, 255);
                     NextAnimation();
                 }
+                break;
+        }
+    }
+    void CycleCardAnimation()
+    {
+        switch (clashAnimationQueue.getCurrentActingPlayer())
+        {
+            case ActingPlayer.Primary:
+                
+                if (animationHelper.NotYetReachedDestination(ClashConstants.player1Deck, activeCard1) ||
+                    animationHelper.NotYetReachedScale(ClashConstants.defaultCardScale, activeCard1))
+                {
+                    animationHelper.ScaleTowardsSize(ClashConstants.defaultCardScale, ClashConstants.viewCardScaleSize, ClashConstants.viewCardAnimationTime, activeCard1);
+
+                    animationHelper.MoveTowardsPoint(ClashConstants.player1Deck, ClashConstants.player1ViewCard,ClashConstants.viewCardAnimationTime, activeCard1);
+                }
+                else
+                {
+                    player1.putCardOnBottomOfDeck();
+                    activeCard1.GetComponent<SortingGroup>().sortingLayerName = "Cards";
+                    NextAnimation();
+                }
+                break;
+            case ActingPlayer.Secondary:
+                if (animationHelper.NotYetReachedDestination(ClashConstants.player2Deck, activeCard2) ||
+                    animationHelper.NotYetReachedScale(ClashConstants.defaultCardScale, activeCard2))
+                {
+                    animationHelper.ScaleTowardsSize(ClashConstants.defaultCardScale, ClashConstants.viewCardScaleSize, ClashConstants.viewCardAnimationTime, activeCard2);
+
+                    animationHelper.MoveTowardsPoint(ClashConstants.player2Deck, ClashConstants.player2ViewCard, ClashConstants.viewCardAnimationTime, activeCard2);
+                }
+                else
+                {
+                    player2.putCardOnBottomOfDeck();
+                    activeCard2.GetComponent<SortingGroup>().sortingLayerName = "Cards";
+                    NextAnimation();
+                }
+                break;
+            default:
+                NextAnimation();
                 break;
         }
     }
@@ -441,6 +505,8 @@ public class ClashScript : MonoBehaviour
         int currentPower = Int32.Parse(powerObject.GetComponent<TextMeshPro>().text);
         int newPower = currentPower - numberPowerCounters;
         powerObject.GetComponent<TextMeshPro>().text = newPower.ToString();
+        powerObject.GetComponent<TextMeshPro>().fontStyle = FontStyles.Normal;
+        powerObject.GetComponent<TextMeshPro>().color = Color.black;
     }
 
     void updateDeckNumbers()

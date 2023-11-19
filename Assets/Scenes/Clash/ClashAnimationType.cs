@@ -4,7 +4,8 @@ public enum ClashAnimationType
     Wait,
     GetTopCard,
     DrawCard,
-    DisplayCard,
+    CycleCard,
+    ResetActiveCard,
     PlayCard,
     DeckCard, //put card on bottom of crew deck
     ShowDice,

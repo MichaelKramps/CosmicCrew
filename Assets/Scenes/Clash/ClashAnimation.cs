@@ -42,8 +42,12 @@ public class ClashAnimation
                 return ClashAnimationType.Wait;
             case "dws":
                 return ClashAnimationType.DrawCard;
+            case "uns":
+                return ClashAnimationType.CycleCard;
             case "gtc":
                 return ClashAnimationType.GetTopCard;
+            case "rac":
+                return ClashAnimationType.ResetActiveCard;
             case "p":
                 return ClashAnimationType.PlayCard;
             case "r":

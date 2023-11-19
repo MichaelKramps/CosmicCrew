@@ -85,6 +85,17 @@ public class ClashPlayer
         deck.Remove(this.getTopCardInDeck());
     }
 
+    public GameObject getActiveCard()
+    {
+        return activeCard;
+    }
+
+    public void putCardOnBottomOfDeck()
+    {
+        deck.Add(activeCard);
+        activeCard = null;
+    }
+
     public void playCard(int slotToPlayCardIn)
     {
         team[slotToPlayCardIn - 1] = activeCard;

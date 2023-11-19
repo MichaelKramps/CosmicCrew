@@ -19,6 +19,8 @@ public class ClashConstants
     public static float viewCardX = deckX - 1.5f;
     public static float viewCardScaleSize = 0.6f;
     public static float fightCardX = 0f;
+    public static float fightCardY1 = -2.5f;
+    public static float fightCardY2 = 2.5f;
     public static float fightCardScale = 0.6f;
     public static float viewCardAnimationTime = 750f;
 
@@ -28,8 +30,8 @@ public class ClashConstants
     public static Vector3 player2Discard = new Vector3(ClashConstants.discardX, ClashConstants.player2DeckY);
     public static Vector3 player1ViewCard = new Vector3(ClashConstants.viewCardX, ClashConstants.player1CardY);
     public static Vector3 player2ViewCard = new Vector3(ClashConstants.viewCardX, ClashConstants.player2CardY);
-    public static Vector3 player1FightDestination = new Vector3(ClashConstants.fightCardX, ClashConstants.player1DeckY);
-    public static Vector3 player2FightDestination = new Vector3(ClashConstants.fightCardX, ClashConstants.player2DeckY);
+    public static Vector3 player1FightDestination = new Vector3(ClashConstants.fightCardX, ClashConstants.fightCardY1);
+    public static Vector3 player2FightDestination = new Vector3(ClashConstants.fightCardX, ClashConstants.fightCardY2);
 
     public static float getPlayCardX(int cardSlot)
     {

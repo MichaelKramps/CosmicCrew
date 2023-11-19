@@ -31,6 +31,11 @@ public class ClashAnimationQueue
                 animationQueue.Enqueue(new ClashAnimation(animationCodes[0] + ",gtc,0,0"));
                 animationQueue.Enqueue(thisAnimation);
                 break;
+            case ClashAnimationType.PlayCard:
+            case ClashAnimationType.CycleCard:
+                animationQueue.Enqueue(new ClashAnimation(animationCodes[0] + ",rac,0,0"));
+                animationQueue.Enqueue(thisAnimation);
+                break;
             case ClashAnimationType.RollDice:
                 animationQueue.Enqueue(new ClashAnimation("b,sd,0,0"));
                 animationQueue.Enqueue(new ClashAnimation("b,w,500,0"));

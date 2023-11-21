@@ -16,6 +16,6 @@ MonoBehaviour:
   cardText: When you draw a card, put a Power Counter on this
   image: {fileID: 21300000, guid: 4ff2c7266b94147cc992e37e453b40df, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 7a608602b47794a5c96c74428801424c, type: 3}
-  power: 0
+  power: 1
   powerCounters: 0
   civilizationType: 0

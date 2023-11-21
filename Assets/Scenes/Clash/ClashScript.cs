@@ -29,11 +29,11 @@ public class ClashScript : MonoBehaviour
     void Start()
     {
         // set player1 and player2
-        player1 = new ClashPlayer("7,6,8");
-        player2 = new ClashPlayer("4,3,5");
+        player1 = new ClashPlayer("10,7,7,7,10,7,10,7");
+        player2 = new ClashPlayer("8,0,4,3,7,5,2,1,6");
         // set animationQueue
         // clashAnimationQueue = new ClashAnimationQueue("");
-        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*s,pow,3,1*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*s,pow,2,2*p,dws,1,0*p,p,3,0*s,dws,1,0*s,p,3,0*s,pow,1,3*b,r,6,2*b,g2,6,2*b,r,1,6*b,g2,1,6*s,dws,1,0*s,p,1,0*s,pow,2,1*b,r,1,1*b,g2,1,1*s,dws,1,0*s,p,1,0*s,pow,3,1*s,2w,0,0*p,dws,1,0*p,p,1,0*p,dws,1,0*p,uns,1,0*s,dws,1,0*s,p,1,0*s,pow,2,1*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*s,pow,1,2*p,dws,1,0*p,pow,1,2*p,p,3,0*p,pow,1,1*p,pow,1,2*p,pow,1,3*s,dws,1,0*s,p,3,0*s,pow,3,3*b,r,3,6*b,g2,3,6*b,r,4,5*b,g2,4,5*s,dws,1,0*s,p,2,0*s,pow,2,2*b,r,6,2*b,g2,6,2*s,dws,1,0*s,p,2,0*s,pow,1,2*s,2w,0,0");
+        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*p,dws,1,0*p,p,2,0*p,dws,1,0*p,uns,1,0*s,dws,1,0*s,pow,1,1*s,p,2,0*p,dws,1,0*p,p,3,0*p,dws,1,0*p,p,4,0*s,dws,1,0*s,pow,1,1*s,p,3,0*s,pow,2,3*p,dws,1,0*p,p,5,0*p,dws,1,0*p,p,6,0*s,dws,1,0*s,pow,1,1*s,p,4,0*s,pow,1,4*s,dws,1,0*s,pow,1,1*s,p,5,0*s,dws,1,0*s,pow,1,1*s,uns,1,0*s,dws,1,0*s,pow,1,1*s,p,6,0*b,r,1,3*b,g1,1,3*p,dws,1,0*p,p,1,0*p,dws,1,0*p,uns,1,0*b,r,2,4*b,g2,2,4*s,dws,1,0*s,pow,1,1*s,p,4,0*b,r,4,6*b,g1,4,6*p,dws,1,0*p,p,4,0*b,r,2,4*b,g1,2,4*p,dws,1,0*p,p,3,0*p,dws,1,0*p,p,2,0*b,r,4,2*b,g1,4,2*p,dws,1,0*p,p,4,0*p,dws,1,0*p,uns,1,0*b,r,4,2*b,gt,4,2*b,r,6,1*b,g2,6,1*s,dws,1,0*s,p,1,0*s,pow,1,1*b,r,1,2*b,g1,1,2*p,dws,1,0*p,p,1,0*p,1w,0,0");
         //
 
         //create player 1 deck

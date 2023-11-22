@@ -29,13 +29,13 @@ public class ClashScript : MonoBehaviour
     void Start()
     {
         // set player1 and player2
-        player1 = new ClashPlayer("0,8,9,11,13,12,12,8,7");
-        player2 = new ClashPlayer("6,13,7,8,5,4,1,9,2,11,12,3,0,10");
+        player1 = new ClashPlayer("10,7,9,14,12,14,13,12,10");
+        player2 = new ClashPlayer("10,1,2,13,7,8,14,11,4,6,12,3,0,9,5");
         // set animationQueue
         // clashAnimationQueue = new ClashAnimationQueue("");
-        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*s,pow,1,1*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*s,pow,1,2*p,dws,1,0*p,pow,1,2*p,p,3,0*s,dws,1,0*s,p,3,0*s,dws,1,0*s,uns,1,0*p,dws,1,0*p,pow,1,2*p,pow,1,1*p,p,4,0*s,dws,1,0*s,p,4,0*s,pow,3,4*p,dws,1,0*p,pow,1,2*p,pow,1,1*p,p,5,0*p,pow,1,2*p,pow,1,3*p,pow,1,4*p,pow,1,5*s,dws,1,0*s,p,5,0*s,pow,2,5*p,dws,1,0*p,pow,1,2*p,pow,1,1*p,p,6,0*s,dws,1,0*s,p,6,0*b,r,5,1*b,g1,5,1*p,dws,1,0*p,pow,1,2*p,pow,1,1*p,p,5,0*b,r,1,2*b,g1,1,2*p,dws,1,0*p,pow,1,2*p,pow,1,2*p,pow,1,2*p,pow,1,3*p,pow,1,4*p,pow,1,5*p,pow,1,6*p,p,1,0*b,r,6,4*b,g2,6,4*p,dws,1,0*p,pow,1,1*p,pow,1,2*p,pow,1,1*p,uns,1,0*p,dws,1,0*p,pow,1,1*p,pow,1,2*p,pow,1,1*p,uns,1,0*p,dws,1,0*p,pow,1,1*p,pow,1,2*p,pow,1,1*p,pow,1,1*p,pow,1,2*p,pow,1,3*p,pow,1,4*p,pow,1,5*p,pow,1,6*p,uns,1,0*s,dws,1,0*s,p,4,0*b,r,6,5*b,g1,6,5*p,dws,1,0*p,pow,1,2*p,pow,1,2*p,p,1,0*p,dws,1,0*p,pow,1,2*p,pow,1,1*p,uns,1,0*b,r,2,1*b,g1,2,1*p,dws,1,0*p,pow,1,1*p,pow,1,1*p,pow,1,3*p,pow,1,4*p,pow,1,5*p,p,2,0*b,r,2,5*b,g2,2,5*s,dws,1,0*s,pow,1,4*s,p,6,0*b,r,3,2*b,g1,3,2*p,dws,1,0*p,pow,1,1*p,pow,1,4*p,pow,1,5*p,p,3,0*b,r,5,2*b,g1,5,2*p,dws,1,0*p,pow,1,3*p,p,5,0*p,pow,1,1*p,pow,1,3*p,pow,1,4*p,pow,1,5*p,1w,0,0");
+        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*p,dws,1,0*p,p,2,0*p,dws,1,0*p,uns,1,0*s,dws,1,0*s,p,2,0*p,dws,1,0*p,p,3,0*s,dws,1,0*s,p,3,0*p,dws,1,0*p,p,4,0*s,dws,1,0*s,p,4,0*s,pow,1,1*s,pow,1,4*p,dws,1,0*p,p,5,0*s,dws,1,0*s,p,5,0*s,dws,1,0*s,uns,1,0*p,dws,1,0*p,p,6,0*p,pow,1,1*p,pow,1,2*p,pow,1,3*p,pow,1,4*p,pow,1,5*p,pow,1,6*s,dws,1,0*s,p,6,0*s,pow,-1,1*b,r,4,4*b,g1,4,4*p,dws,1,0*p,p,4,0*b,r,4,2*b,g1,4,2*p,dws,1,0*p,p,4,0*b,r,3,6*b,g1,3,6*p,dws,1,0*p,p,3,0*b,r,6,3*b,gt,6,3*b,r,2,1*b,g2,2,1*s,dws,1,0*s,p,1,0*b,r,6,2*b,g1,6,2*p,dws,1,0*p,pow,1,3*p,p,1,0*b,r,3,6*b,g2,3,6*s,dws,1,0*s,p,1,0*s,pow,2,1*b,r,5,4*b,g1,5,4*p,dws,1,0*p,p,5,0*p,1w,0,0");
         //
-
+        
         //create player 1 deck
         foreach (int cardId in player1.getStartingDeckIds())
         {
@@ -418,14 +418,26 @@ public class ClashScript : MonoBehaviour
                 {
                     GameObject numberCountersObject1 = activeCard1.transform.Find("Power Counters").Find("Number Counters").gameObject;
                     int currentPowerCounters1 = Int32.Parse(numberCountersObject1.GetComponent<TextMeshPro>().text);
-                    int newPowerCounters1 = currentPowerCounters1 + numberPowerCounters;
+                    int newPowerCounters1 = currentPowerCounters1 + numberPowerCounters >= 0 ? currentPowerCounters1 + numberPowerCounters : 0;
                     numberCountersObject1.GetComponent<TextMeshPro>().text = newPowerCounters1.ToString();
                     GameObject powerObject1 = activeCard1.transform.Find("Power").gameObject;
                     int currentPower1 = Int32.Parse(powerObject1.GetComponent<TextMeshPro>().text);
                     int newPower1 = currentPower1 + numberPowerCounters;
                     powerObject1.GetComponent<TextMeshPro>().text = newPower1.ToString();
-                    powerObject1.GetComponent<TextMeshPro>().fontStyle = FontStyles.Bold;
-                    powerObject1.GetComponent<TextMeshPro>().color = new Color32(0, 90, 0, 255);
+                    if (newPowerCounters1 > 0)
+                    {
+                        powerObject1.GetComponent<TextMeshPro>().fontStyle = FontStyles.Bold;
+                        powerObject1.GetComponent<TextMeshPro>().color = new Color32(0, 90, 0, 255);
+                    } else
+                    {
+                        GameObject powerCountersObject1 = activeCard1.transform.Find("Power Counters").gameObject;
+                        SpriteRenderer powerCountersSprite1 = powerCountersObject1.GetComponent<SpriteRenderer>();
+                        powerCountersSprite1.sortingOrder = 0;
+                        powerCountersObject1.transform.Find("Number Counters").gameObject.GetComponent<SortingGroup>().sortingOrder = 0;
+                        powerObject1.GetComponent<TextMeshPro>().fontStyle = FontStyles.Normal;
+                        powerObject1.GetComponent<TextMeshPro>().color = new Color32(0, 0, 0, 255);
+                    }
+                    
                     NextAnimation();
                 }
                 break;
@@ -439,14 +451,26 @@ public class ClashScript : MonoBehaviour
                 {
                     GameObject numberCountersObject2 = activeCard2.transform.Find("Power Counters").Find("Number Counters").gameObject;
                     int currentPowerCounters2 = Int32.Parse(numberCountersObject2.GetComponent<TextMeshPro>().text);
-                    int newPowerCounters2 = currentPowerCounters2 + numberPowerCounters;
+                    int newPowerCounters2 = currentPowerCounters2 + numberPowerCounters >= 0 ? currentPowerCounters2 + numberPowerCounters : 0;
                     numberCountersObject2.GetComponent<TextMeshPro>().text = newPowerCounters2.ToString();
                     GameObject powerObject2 = activeCard2.transform.Find("Power").gameObject;
                     int currentPower2 = Int32.Parse(powerObject2.GetComponent<TextMeshPro>().text);
                     int newPower2 = currentPower2 + numberPowerCounters;
                     powerObject2.GetComponent<TextMeshPro>().text = newPower2.ToString();
-                    powerObject2.GetComponent<TextMeshPro>().fontStyle = FontStyles.Bold;
-                    powerObject2.GetComponent<TextMeshPro>().color = new Color32(0, 90, 0, 255);
+                    if (newPowerCounters2 > 0)
+                    {
+                        powerObject2.GetComponent<TextMeshPro>().fontStyle = FontStyles.Bold;
+                        powerObject2.GetComponent<TextMeshPro>().color = new Color32(0, 90, 0, 255);
+                    }
+                    else
+                    {
+                        GameObject powerCountersObject2 = activeCard2.transform.Find("Power Counters").gameObject;
+                        SpriteRenderer powerCountersSprite2 = powerCountersObject2.GetComponent<SpriteRenderer>();
+                        powerCountersSprite2.sortingOrder = 0;
+                        powerCountersObject2.transform.Find("Number Counters").gameObject.GetComponent<SortingGroup>().sortingOrder = 0;
+                        powerObject2.GetComponent<TextMeshPro>().fontStyle = FontStyles.Normal;
+                        powerObject2.GetComponent<TextMeshPro>().color = new Color32(0, 0, 0, 255);
+                    }
                     NextAnimation();
                 }
                 break;

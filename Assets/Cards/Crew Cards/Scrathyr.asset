@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86986a1d4080344608ad451d93f31b63, type: 3}
-  m_Name: Body Snatcher
+  m_Name: Scrathyr
   m_EditorClassIdentifier: 
-  cardName: Body Snatcher
-  cardText: 'Initialize: Cycle a card, gain Power counters equal to its power'
-  image: {fileID: 21300000, guid: 668c9563baf2740fbb1503036a148c39, type: 3}
+  cardName: Scrathyr
+  cardText: 'Signing Bonus: Scrap 3'
+  image: {fileID: 21300000, guid: 59abae4ffa6ea40f49fb1fa57f7e3a15, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 7a608602b47794a5c96c74428801424c, type: 3}
   power: 2
   powerCounters: 0

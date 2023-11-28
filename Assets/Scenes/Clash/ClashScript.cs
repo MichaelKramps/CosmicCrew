@@ -29,11 +29,11 @@ public class ClashScript : MonoBehaviour
     void Start()
     {
         // set player1 and player2
-        player1 = new ClashPlayer("18,10,13,9,17,12,15,14,16");
-        player2 = new ClashPlayer("18,3,11,10,0,15,1,15,12,2,5,4,13,16,14,17,8,9,6,7");
+        player1 = new ClashPlayer("18,9,13,15,16,17,14,12,19");
+        player2 = new ClashPlayer("17,10,18,19,3,7,15,16,15,5,4,14,12,0,11,6,1,8,13,9,2");
         // set animationQueue
         // clashAnimationQueue = new ClashAnimationQueue("");
-        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*s,pow,1,2*p,dws,1,0*p,p,3,0*p,pow,1,1*p,pow,1,2*p,pow,1,3*s,dws,1,0*s,p,3,0*p,dws,1,0*p,p,4,0*s,dws,1,0*s,p,4,0*p,dws,1,0*p,pow,1,1*p,p,5,0*s,dws,1,0*s,pow,1,1*s,pow,1,2*s,pow,1,3*s,pow,1,4*s,p,5,0*p,dws,1,0*p,pow,1,1*p,p,6,0*s,dws,1,0*s,p,6,0*s,dws,1,0*s,pow,2,6*s,uns,1,0*b,r,2,3*b,g1,2,3*p,dws,1,0*p,pow,1,1*p,uns,1,0*p,dws,1,0*p,pow,1,1*p,p,2,0*p,pow,-1,1*s,dws,1,0*s,uns,1,0*b,r,2,2*b,g1,2,2*p,dws,1,0*p,pow,1,1*p,uns,1,0*p,dws,1,0*p,pow,1,1*p,p,2,0*s,dws,1,0*s,uns,1,0*b,r,6,4*b,g2,6,4*p,dws,1,0*p,pow,1,1*p,uns,1,0*p,dws,1,0*p,pow,1,1*p,uns,1,0*p,dws,1,0*p,pow,1,1*p,uns,1,0*p,dws,1,0*p,pow,1,1*p,uns,1,0*s,dws,1,0*s,uns,1,0*s,dws,1,0*s,p,4,0*s,pow,3,4*b,r,6,6*b,g1,6,6*p,dws,1,0*p,pow,1,2*p,p,1,0*p,pow,-1,2*s,dws,1,0*s,uns,1,0*b,r,6,5*b,g1,6,5*p,dws,1,0*p,pow,1,2*p,p,1,0*s,dws,1,0*s,uns,1,0*b,r,6,6*b,g1,6,6*p,dws,1,0*p,pow,1,2*p,p,1,0*p,dws,1,0*p,pow,2,1*p,pow,1,1*p,uns,1,0*b,r,4,6*b,g2,4,6*s,dws,1,0*s,p,4,0*b,r,2,4*b,g1,2,4*p,dws,1,0*p,p,2,0*p,pow,-1,1*p,1w,0,0");
+        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*p,dws,1,0*p,pow,1,1*p,p,3,0*p,pow,1,1*p,pow,1,2*p,pow,1,3*s,dws,1,0*s,p,3,0*p,dws,1,0*p,pow,1,1*p,p,4,0*p,dws,1,0*p,pow,1,1*p,pow,4,4*p,uns,1,0*s,dws,1,0*s,p,4,0*s,dws,1,0*s,uns,1,0*p,dws,1,0*p,pow,1,1*p,uns,1,0*p,dws,1,0*p,pow,1,1*p,p,5,0*p,pow,-1,1*s,dws,1,0*s,p,5,0*s,dws,1,0*s,uns,1,0*p,dws,1,0*p,pow,1,1*p,p,6,0*s,dws,1,0*s,p,6,0*b,r,3,4*b,g2,3,4*p,dws,1,0*p,pow,1,1*p,uns,1,0*s,dws,1,0*s,uns,1,0*s,dws,1,0*s,p,4,0*s,pow,3,4*b,r,1,2*b,g1,1,2*p,dws,1,0*p,pow,1,2*p,p,1,0*s,dws,1,0*s,uns,1,0*b,r,2,2*b,g1,2,2*p,dws,1,0*p,p,2,0*b,r,3,3*b,g1,3,3*p,dws,1,0*p,p,4,0*p,dws,1,0*p,uns,1,0*s,dws,1,0*s,uns,1,0*b,r,5,5*b,g1,5,5*p,dws,1,0*p,p,5,0*b,r,2,4*b,g2,2,4*s,dws,1,0*s,p,6,0*b,r,6,6*b,gt,6,6*p,dws,1,0*p,pow,1,1*p,uns,1,0*p,dws,1,0*p,pow,1,1*p,uns,1,0*p,dws,1,0*p,pow,1,1*p,uns,1,0*s,dws,1,0*s,uns,1,0*s,dws,1,0*s,uns,1,0*s,dws,1,0*s,uns,1,0*b,r,5,6*b,g2,5,6*s,dws,1,0*s,p,1,0*b,r,1,2*b,g1,1,2*p,dws,1,0*p,p,1,0*p,dws,1,0*p,pow,2,1*p,uns,1,0*p,1w,0,0");
         //
         
         //create player 1 deck

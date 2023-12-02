@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Leanor Hype Man
   cardText: 'Initialize: Put 2 Power counters on a random friendly Leanor gunner'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: cea580c8f1fb146608703827ab1a4b1b, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 46c78d565906f4e25883d441053d2d03, type: 3}
   power: 3
   powerCounters: 0

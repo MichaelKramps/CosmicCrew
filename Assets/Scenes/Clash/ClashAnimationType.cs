@@ -17,6 +17,7 @@ public enum ClashAnimationType
     FightersTie,
     PreparePowerCounter,
     PowerCounter,
+    DestroyCard,
     EndFight,
     None,
 }

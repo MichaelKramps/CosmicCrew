@@ -73,6 +73,13 @@ public class ClashPlayer
         activeCard = null;
     }
 
+    public void destroyFighter(int slotOfFighter)
+    {
+        GameObject fighterToDestroy = fighterInSlot(slotOfFighter);
+        team[slotOfFighter - 1] = null;
+        addToDiscard(fighterToDestroy);
+    }
+
     public GameObject getTopCardInDeck()
     {
         return deck[0];

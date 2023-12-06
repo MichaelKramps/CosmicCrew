@@ -65,13 +65,13 @@ public class ClashPlayer
 
     public void winsFight()
     {
-        addToDeck(activeCard);
+        addToDeck(currentFighter);
         activeCard = null;
     }
 
     public void losesFight()
     {
-        addToDiscard(activeCard);
+        addToDiscard(currentFighter);
         activeCard = null;
     }
 

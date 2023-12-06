@@ -187,6 +187,11 @@ public class ClashScript : MonoBehaviour
     {
         activeCard1 = player1.getCurrentFighter();
         activeCard2 = player2.getCurrentFighter();
+        //float transparency = 1.0f;
+        //Color col1 = activeCard1.GetComponent<Renderer>().material.color;
+        //col1.a = transparency;
+        //Color col2 = activeCard2.GetComponent<Renderer>().material.color;
+        //col2.a = transparency;
         NextAnimation();
     }
 
@@ -306,6 +311,11 @@ public class ClashScript : MonoBehaviour
         {
             player1.selectFighter(clashAnimationQueue.getCurrentAnimation().getPrimaryInteger());
             player2.selectFighter(clashAnimationQueue.getCurrentAnimation().getSecondaryInteger());
+            //float transparency = 0.5f;
+            //Color col1 = activeCard1.GetComponent<Renderer>().material.color;
+            //col1.a = transparency;
+            //Color col2 = activeCard2.GetComponent<Renderer>().material.color;
+            //col2.a = transparency;
             //need to do this now before cards move again
             activeCard1.GetComponent<SortingGroup>().sortingOrder = player1.numberOfCardsInDiscard();
             activeCard2.GetComponent<SortingGroup>().sortingOrder = player2.numberOfCardsInDiscard();

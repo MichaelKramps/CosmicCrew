@@ -68,6 +68,8 @@ public class ClashAnimation
                 return ClashAnimationType.PowerCounter;
             case "des":
                 return ClashAnimationType.DestroyCard;
+            case "pfd":
+                return ClashAnimationType.PlayFromDiscard;
             case "end":
                 return ClashAnimationType.EndFight;
             default:

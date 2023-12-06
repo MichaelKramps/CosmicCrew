@@ -92,6 +92,19 @@ public class ClashPlayer
         return currentFighter;
     }
 
+    public GameObject fighterFromDiscard(int indexOfFighter)
+    {
+        return discard[indexOfFighter];
+    }
+
+    public void playFromDiscard(int teamSlot, int indexInDiscard)
+    {
+        GameObject newFighter = discard[indexInDiscard];
+        discard.RemoveAt(indexInDiscard);
+        team[teamSlot - 1] = newFighter;
+        Debug.Log(team[teamSlot - 1]);
+    }
+
     public void drawCard()
     {
         activeCard = this.getTopCardInDeck();
@@ -128,6 +141,7 @@ public class ClashPlayer
 
     public int fighterNumberFromRoll(int rolledNumber)
     {
+        Debug.Log(rolledNumber);
         if (team[rolledNumber - 1] != null)
         {
             return rolledNumber;

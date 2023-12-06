@@ -29,11 +29,11 @@ public class ClashScript : MonoBehaviour
     void Start()
     {
         // set player1 and player2
-        player1 = new ClashPlayer("21,23,22,23,22,23,24,18,21");
-        player2 = new ClashPlayer("15,21,2,1,20,23,16,22,18,0,19,24,17,20");
+        player1 = new ClashPlayer("30,24,23,27,29,30,25,26,28");
+        player2 = new ClashPlayer("17,1,20,28,0,29,19,27,20,15,21,26,22,25,23,18,2,30,16,24");
         // set animationQueue
         // clashAnimationQueue = new ClashAnimationQueue("");
-        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*s,dws,1,0*s,pow,3,1*s,uns,1,0*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*p,dws,1,0*p,p,3,0*p,pow,2,2*s,dws,1,0*s,p,3,0*p,dws,1,0*p,p,4,0*s,dws,1,0*s,p,4,0*p,dws,1,0*s,pow,1,1*s,pow,1,4*p,p,5,0*p,pow,2,1*s,dws,1,0*s,p,5,0*p,dws,1,0*s,pow,1,1*s,pow,1,5*p,p,6,0*s,dws,1,0*s,p,6,0*b,r,1,6*p,dws,1,0*s,pow,1,1*s,pow,1,5*p,p,1,0*b,gd,0,1*b,r,1,1*p,dws,1,0*s,pow,1,2*s,pow,1,5*p,p,1,0*b,gd,0,1*b,r,1,2*s,dws,1,0*s,p,2,0*s,pow,2,5*b,gd,1,0*b,r,5,4*s,dws,1,0*s,p,4,0*b,gd,1,0*b,r,1,2*p,dws,1,0*p,p,2,0*p,pow,4,2*s,dws,1,0*s,uns,1,0*b,gd,0,1*b,r,4,4*b,gd,1,1*b,r,2,1*p,dws,1,0*p,p,2,0*b,gd,0,1*b,r,3,4*s,dws,1,0*s,p,5,0*s,dws,1,0*s,uns,1,0*p,dws,1,0*p,uns,1,0*b,gd,1,0*b,r,4,4*s,dws,1,0*s,p,5,0*b,gd,1,0*b,r,4,6*p,dws,1,0*p,p,2,0*p,pow,2,2*b,gd,0,1*p,1w,0,0");
+        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*p,dws,1,0*p,p,3,0*s,dws,1,0*s,p,3,0*p,dws,1,0*s,pow,1,1*s,pow,1,3*p,p,4,0*s,dws,1,0*s,p,4,0*p,dws,1,0*s,pow,1,1*s,pow,1,4*p,p,5,0*s,dws,1,0*s,p,5,0*p,dws,1,0*s,pow,1,1*s,pow,1,5*p,p,6,0*s,dws,1,0*s,p,6,0*b,r,4,6*p,dws,1,0*s,pow,1,1*s,pow,1,5*p,p,4,0*b,gd,0,1*b,r,5,1*s,dws,1,0*s,p,1,0*s,dws,1,0*s,uns,1,0*p,dws,1,0*s,pow,1,1*s,pow,1,5*p,uns,1,0*p,pow,1,4*b,gd,1,0*b,r,2,5*p,dws,1,0*s,pow,1,1*s,pow,1,4*p,p,2,0*b,gd,0,1*b,r,1,5*p,pfd,0,1*s,dws,1,0*s,p,1,0*b,gd,1,0*b,r,2,1*s,dws,1,0*s,p,1,0*s,dws,1,0*s,pow,3,1*s,uns,1,0*p,pow,1,4*p,pow,1,1*b,gd,1,0*b,r,1,1*s,dws,1,0*s,p,1,0*b,gd,1,0*b,r,3,5*s,dws,1,0*s,p,1,0*s,pow,2,4*p,pow,1,4*b,gd,1,0*b,r,3,3*p,dws,1,0*p,p,4,0*b,gd,0,1*b,r,6,2*p,dws,1,0*p,p,6,0*b,gd,0,1*b,r,5,1*b,gd,1,1*b,r,2,1*b,gd,0,1*b,ft,0,0");
         //
         
         //create player 1 deck
@@ -108,6 +108,9 @@ public class ClashScript : MonoBehaviour
                 break;
             case ClashAnimationType.DestroyCard:
                 DestroyCardAnimation();
+                break;
+            case ClashAnimationType.PlayFromDiscard:
+                PlayFromDiscardAnimation();
                 break;
             default:
                 NextAnimation();
@@ -363,53 +366,37 @@ public class ClashScript : MonoBehaviour
         }
     }
 
-    //void FighterTwoWinsAnimation()
-    //{
-    //    if (animationHelper.NotYetReachedDestination(ClashConstants.player1Discard, activeCard1) ||
-    //        animationHelper.NotYetReachedDestination(ClashConstants.player2Deck, activeCard2) ||
-    //                animationHelper.NotYetReachedScale(ClashConstants.defaultCardScale, activeCard1))
-    //    {
-    //        animationHelper.ScaleTowardsSize(ClashConstants.defaultCardScale, ClashConstants.fightCardScale, ClashConstants.viewCardAnimationTime, activeCard1);
-    //        animationHelper.ScaleTowardsSize(ClashConstants.defaultCardScale, ClashConstants.fightCardScale, ClashConstants.viewCardAnimationTime, activeCard2);
-
-    //        animationHelper.MoveTowardsPoint(ClashConstants.player1Discard, ClashConstants.player1FightDestination, ClashConstants.viewCardAnimationTime, activeCard1);
-    //        animationHelper.MoveTowardsPoint(ClashConstants.player2Deck, ClashConstants.player2FightDestination, ClashConstants.viewCardAnimationTime, activeCard2);
-    //    }
-    //    else
-    //    {
-    //        resetPower(activeCard1);
-    //        resetPower(activeCard2);
-    //        activeCard1.GetComponent<SortingGroup>().sortingLayerName = "Cards";
-    //        activeCard2.GetComponent<SortingGroup>().sortingLayerName = "Cards";
-    //        player1.losesFight();
-    //        player2.winsFight();
-    //        NextAnimation();
-    //    }
-    //}
-
-    //void FightersTieAnimation()
-    //{
-    //    if (animationHelper.NotYetReachedDestination(ClashConstants.player1Discard, activeCard1) ||
-    //        animationHelper.NotYetReachedDestination(ClashConstants.player2Discard, activeCard2) ||
-    //                animationHelper.NotYetReachedScale(ClashConstants.defaultCardScale, activeCard1))
-    //    {
-    //        animationHelper.ScaleTowardsSize(ClashConstants.defaultCardScale, ClashConstants.fightCardScale, ClashConstants.viewCardAnimationTime, activeCard1);
-    //        animationHelper.ScaleTowardsSize(ClashConstants.defaultCardScale, ClashConstants.fightCardScale, ClashConstants.viewCardAnimationTime, activeCard2);
-
-    //        animationHelper.MoveTowardsPoint(ClashConstants.player1Discard, ClashConstants.player1FightDestination, ClashConstants.viewCardAnimationTime, activeCard1);
-    //        animationHelper.MoveTowardsPoint(ClashConstants.player2Discard, ClashConstants.player2FightDestination, ClashConstants.viewCardAnimationTime, activeCard2);
-    //    }
-    //    else
-    //    {
-    //        resetPower(activeCard1);
-    //        resetPower(activeCard2);
-    //        activeCard1.GetComponent<SortingGroup>().sortingLayerName = "Cards";
-    //        activeCard2.GetComponent<SortingGroup>().sortingLayerName = "Cards";
-    //        player1.losesFight();
-    //        player2.losesFight();
-    //        NextAnimation();
-    //    }
-    //}
+    void PlayFromDiscardAnimation()
+    {
+        switch (clashAnimationQueue.getCurrentActingPlayer())
+        {
+            case ActingPlayer.Primary:
+                activeCard1 = player1.fighterFromDiscard(clashAnimationQueue.getCurrentAnimation().getPrimaryInteger());
+                Vector3 fighter1Destination = ClashConstants.getPlayer1CardLocation(clashAnimationQueue.getCurrentAnimation().getSecondaryInteger());
+                if (animationHelper.NotYetReachedDestination(fighter1Destination, activeCard1))
+                {
+                    animationHelper.MoveTowardsPoint(fighter1Destination, ClashConstants.player1Discard, ClashConstants.viewCardAnimationTime, activeCard1);
+                } else
+                {
+                    player1.playFromDiscard(clashAnimationQueue.getCurrentAnimation().getSecondaryInteger(), clashAnimationQueue.getCurrentAnimation().getPrimaryInteger());
+                    NextAnimation();
+                }
+                break;
+            case ActingPlayer.Secondary:
+                activeCard2 = player2.fighterFromDiscard(clashAnimationQueue.getCurrentAnimation().getPrimaryInteger());
+                Vector3 fighter2Destination = ClashConstants.getPlayer2CardLocation(clashAnimationQueue.getCurrentAnimation().getSecondaryInteger());
+                if (animationHelper.NotYetReachedDestination(fighter2Destination, activeCard2))
+                {
+                    animationHelper.MoveTowardsPoint(fighter2Destination, ClashConstants.player2Discard, ClashConstants.viewCardAnimationTime, activeCard2);
+                }
+                else
+                {
+                    player2.playFromDiscard(clashAnimationQueue.getCurrentAnimation().getSecondaryInteger(), clashAnimationQueue.getCurrentAnimation().getPrimaryInteger());
+                    NextAnimation();
+                }
+                break;
+        }
+    }
 
     void PreparePowerCounterAnimation()
     {

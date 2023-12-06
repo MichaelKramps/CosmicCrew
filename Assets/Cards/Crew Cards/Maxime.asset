@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86986a1d4080344608ad451d93f31b63, type: 3}
-  m_Name: Supercharged Brawler
+  m_Name: Maxime
   m_EditorClassIdentifier: 
-  cardName: Supercharged Brawler
-  cardText: If this gunner has 10 or more power, destroy it
-  image: {fileID: 21300000, guid: 207302758e1db411c8ec63f234d9cf0e, type: 3}
+  cardName: Maxime, The Gifter
+  cardText: 'Loser: Put this on the bottom of your deck instead of the discard pile'
+  image: {fileID: 21300000, guid: b8099a7cfe0634b29b20cebed230bea7, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 46c78d565906f4e25883d441053d2d03, type: 3}
-  power: 9
+  power: 6
   powerCounters: 0
   civilizationType: 1

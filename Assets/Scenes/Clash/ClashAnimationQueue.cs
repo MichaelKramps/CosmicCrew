@@ -45,9 +45,8 @@ public class ClashAnimationQueue
                 animationQueue.Enqueue(new ClashAnimation("b,sf," + animationCodes[2] + "," + animationCodes[3]));
                 animationQueue.Enqueue(new ClashAnimation("b,w,750,0"));
                 break;
-            case ClashAnimationType.FighterOneWins:
-            case ClashAnimationType.FighterTwoWins:
-            case ClashAnimationType.FightersTie:
+            case ClashAnimationType.GunnerDestinations:
+                animationQueue.Enqueue(new ClashAnimation(animationCodes[0] + ",raf,0,0"));
                 animationQueue.Enqueue(thisAnimation);
                 animationQueue.Enqueue(new ClashAnimation("b,w,500,0"));
                 break;

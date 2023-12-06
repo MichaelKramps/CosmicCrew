@@ -48,6 +48,8 @@ public class ClashAnimation
                 return ClashAnimationType.GetTopCard;
             case "rac":
                 return ClashAnimationType.ResetActiveCard;
+            case "raf":
+                return ClashAnimationType.ResetActiveToFighters;
             case "p":
                 return ClashAnimationType.PlayCard;
             case "r":
@@ -58,12 +60,8 @@ public class ClashAnimation
                 return ClashAnimationType.HideDice;
             case "sf":
                 return ClashAnimationType.SelectFighters;
-            case "g1":
-                return ClashAnimationType.FighterOneWins;
-            case "g2":
-                return ClashAnimationType.FighterTwoWins;
-            case "gt":
-                return ClashAnimationType.FightersTie;
+            case "gd":
+                return ClashAnimationType.GunnerDestinations;
             case "ppo":
                 return ClashAnimationType.PreparePowerCounter;
             case "pow":

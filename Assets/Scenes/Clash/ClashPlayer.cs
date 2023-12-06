@@ -12,6 +12,7 @@ public class ClashPlayer
     List<GameObject> discard = new List<GameObject>();
 
     private GameObject activeCard = null;
+    private GameObject currentFighter = null;
 
     public ClashPlayer(String deckString)
     {
@@ -58,6 +59,7 @@ public class ClashPlayer
     {
 
         activeCard = fighterFromRoll(slotOfFighter);
+        currentFighter = fighterFromRoll(slotOfFighter);
         team[fighterNumberFromRoll(slotOfFighter) - 1] = null;
     }
 
@@ -83,6 +85,11 @@ public class ClashPlayer
     public GameObject getTopCardInDeck()
     {
         return deck[0];
+    }
+
+    public GameObject getCurrentFighter()
+    {
+        return currentFighter;
     }
 
     public void drawCard()

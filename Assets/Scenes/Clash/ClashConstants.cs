@@ -19,8 +19,8 @@ public class ClashConstants
     public static float viewCardX = deckX - 1.5f;
     public static float viewCardScaleSize = 0.6f;
     public static float fightCardX = 0f;
-    public static float fightCardY1 = -2.5f;
-    public static float fightCardY2 = 2.5f;
+    public static float fightCardY1 = -1.75f;
+    public static float fightCardY2 = 1.75f;
     public static float fightCardScale = 0.6f;
     public static float viewCardAnimationTime = 750f;
 
@@ -38,14 +38,50 @@ public class ClashConstants
         return cardXStartingPoint + (cardXDistanceApart * (cardSlot - 1));
     }
 
+    public static float getPlayer1CardY(int cardSlot)
+    {
+        switch (cardSlot)
+        {
+            case 1:
+            case 6:
+                return -1.75f;
+            case 2:
+            case 5:
+                return -2.75f;
+            case 3:
+            case 4:
+                return -3.4f;
+            default:
+                return -1.75f;
+        }
+    }
+
+    public static float getPlayer2CardY(int cardSlot)
+    {
+        switch (cardSlot)
+        {
+            case 1:
+            case 6:
+                return 1.75f;
+            case 2:
+            case 5:
+                return 2.75f;
+            case 3:
+            case 4:
+                return 3.4f;
+            default:
+                return 1.75f;
+        }
+    }
+
     public static Vector3 getPlayer1CardLocation(int cardSlot)
     {
-        return new Vector3(ClashConstants.getPlayCardX(cardSlot), ClashConstants.player1CardY);
+        return new Vector3(ClashConstants.getPlayCardX(cardSlot), ClashConstants.getPlayer1CardY(cardSlot));
     }
 
     public static Vector3 getPlayer2CardLocation(int cardSlot)
     {
-        return new Vector3(ClashConstants.getPlayCardX(cardSlot), ClashConstants.player2CardY);
+        return new Vector3(ClashConstants.getPlayCardX(cardSlot), ClashConstants.getPlayer2CardY(cardSlot));
     }
 
     public static float dieX = 0f;

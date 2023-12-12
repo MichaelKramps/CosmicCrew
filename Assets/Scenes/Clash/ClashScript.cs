@@ -200,11 +200,10 @@ public class ClashScript : MonoBehaviour
 
     void PlayCardAnimation()
     {
-        float cardX = ClashConstants.getPlayCardX(clashAnimationQueue.getCurrentAnimation().getPrimaryInteger());
         switch (clashAnimationQueue.getCurrentActingPlayer())
         {
             case ActingPlayer.Primary:
-                Vector3 cardDestination1 = new Vector3(cardX, ClashConstants.player1CardY);
+                Vector3 cardDestination1 = ClashConstants.getPlayer1CardLocation(clashAnimationQueue.getCurrentAnimation().getPrimaryInteger());
                 if (animationHelper.NotYetReachedDestination(cardDestination1, activeCard1) ||
                     animationHelper.NotYetReachedScale(ClashConstants.defaultCardScale, activeCard1))
                 {
@@ -220,7 +219,7 @@ public class ClashScript : MonoBehaviour
                 }
                 break;
             case ActingPlayer.Secondary:
-                Vector3 cardDestination2 = new Vector3(cardX, ClashConstants.player2CardY);
+                Vector3 cardDestination2 = ClashConstants.getPlayer2CardLocation(clashAnimationQueue.getCurrentAnimation().getPrimaryInteger());
                 if (animationHelper.NotYetReachedDestination(cardDestination2, activeCard2) ||
                     animationHelper.NotYetReachedScale(ClashConstants.defaultCardScale, activeCard2))
                 {
@@ -301,12 +300,8 @@ public class ClashScript : MonoBehaviour
         activeCard2.GetComponent<SortingGroup>().sortingLayerName = "Featured";
 
         if (animationHelper.NotYetReachedDestination(ClashConstants.player1FightDestination, activeCard1) ||
-            animationHelper.NotYetReachedDestination(ClashConstants.player2FightDestination, activeCard2) ||
-                    animationHelper.NotYetReachedScale(ClashConstants.fightCardScale, activeCard1))
+            animationHelper.NotYetReachedDestination(ClashConstants.player2FightDestination, activeCard2))
         {
-            animationHelper.ScaleTowardsSize(ClashConstants.fightCardScale, ClashConstants.defaultCardScale, ClashConstants.viewCardAnimationTime, activeCard1);
-            animationHelper.ScaleTowardsSize(ClashConstants.fightCardScale, ClashConstants.defaultCardScale, ClashConstants.viewCardAnimationTime, activeCard2);
-
             animationHelper.MoveTowardsPoint(ClashConstants.player1FightDestination, ClashConstants.getPlayer1CardLocation(fighterNumber1), ClashConstants.viewCardAnimationTime, activeCard1);
             animationHelper.MoveTowardsPoint(ClashConstants.player2FightDestination, ClashConstants.getPlayer2CardLocation(fighterNumber2), ClashConstants.viewCardAnimationTime, activeCard2);
         }
@@ -332,12 +327,8 @@ public class ClashScript : MonoBehaviour
         Vector3 fighter2Destination = clashAnimationQueue.getCurrentAnimation().getSecondaryInteger() == 0 ? ClashConstants.player2Deck : ClashConstants.player2Discard;
 
         if (animationHelper.NotYetReachedDestination(fighter1Destination, activeCard1) ||
-            animationHelper.NotYetReachedDestination(fighter2Destination, activeCard2) ||
-                    animationHelper.NotYetReachedScale(ClashConstants.defaultCardScale, activeCard1))
+            animationHelper.NotYetReachedDestination(fighter2Destination, activeCard2))
         {
-            animationHelper.ScaleTowardsSize(ClashConstants.defaultCardScale, ClashConstants.fightCardScale, ClashConstants.viewCardAnimationTime, activeCard1);
-            animationHelper.ScaleTowardsSize(ClashConstants.defaultCardScale, ClashConstants.fightCardScale, ClashConstants.viewCardAnimationTime, activeCard2);
-
             animationHelper.MoveTowardsPoint(fighter1Destination, ClashConstants.player1FightDestination, ClashConstants.viewCardAnimationTime, activeCard1);
             animationHelper.MoveTowardsPoint(fighter2Destination, ClashConstants.player2FightDestination, ClashConstants.viewCardAnimationTime, activeCard2);
         }

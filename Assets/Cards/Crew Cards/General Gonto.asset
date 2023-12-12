@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: General Gonto
   cardText: Whenever another friendly Leanor gunner gets one or more Power counters,
     put a Power counter on this
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 563d1bad5318f415a9d214ef46952ed4, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 46c78d565906f4e25883d441053d2d03, type: 3}
   power: 1
   powerCounters: 0

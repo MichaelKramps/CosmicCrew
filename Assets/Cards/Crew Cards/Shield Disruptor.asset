@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86986a1d4080344608ad451d93f31b63, type: 3}
-  m_Name: Shak Shyarov
+  m_Name: Shield Disruptor
   m_EditorClassIdentifier: 
-  cardName: Shak Shyarov
-  cardText: After a friendly Leanor gunner wins or loses, put a Power counter on
-    your Leanor gunners
-  image: {fileID: 21300000, guid: 4a85be0602a714cb5972a892c24554e7, type: 3}
+  cardName: Shield Disruptor
+  cardText: 'Initialize: Remove all Power counters from friendly gunners'
+  image: {fileID: 21300000, guid: 4050c262e19564455874c391d64ef007, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 46c78d565906f4e25883d441053d2d03, type: 3}
-  power: 1
+  power: 10
   powerCounters: 0
   civilizationType: 1

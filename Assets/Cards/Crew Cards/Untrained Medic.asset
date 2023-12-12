@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Untrained Medic
   cardText: 'Loser: Replace this gunner with the lowest power gunner in your discard
     pile'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 2abfab1fdeb304d55a612f3338fa7a3c, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 46c78d565906f4e25883d441053d2d03, type: 3}
   power: 3
   powerCounters: 0

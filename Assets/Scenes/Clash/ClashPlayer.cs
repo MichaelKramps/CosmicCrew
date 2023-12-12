@@ -94,6 +94,7 @@ public class ClashPlayer
 
     public GameObject fighterFromDiscard(int indexOfFighter)
     {
+        Debug.Log(indexOfFighter);
         return discard[indexOfFighter];
     }
 
@@ -102,6 +103,7 @@ public class ClashPlayer
         GameObject newFighter = discard[indexInDiscard];
         discard.RemoveAt(indexInDiscard);
         team[teamSlot - 1] = newFighter;
+        Debug.Log("playing from discard");
         Debug.Log(team[teamSlot - 1]);
     }
 
@@ -141,7 +143,6 @@ public class ClashPlayer
 
     public int fighterNumberFromRoll(int rolledNumber)
     {
-        Debug.Log(rolledNumber);
         if (team[rolledNumber - 1] != null)
         {
             return rolledNumber;

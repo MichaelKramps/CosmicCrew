@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86986a1d4080344608ad451d93f31b63, type: 3}
+  m_Name: Wheel Whacker
+  m_EditorClassIdentifier: 
+  cardName: Wheel Whacker
+  cardText: 'Loser: Replace this gunner and and put a Power counter on the new gunner'
+  image: {fileID: 0}
+  backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
+  power: 2
+  powerCounters: 0
+  civilizationType: 2

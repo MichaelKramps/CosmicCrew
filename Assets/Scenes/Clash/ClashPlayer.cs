@@ -103,8 +103,6 @@ public class ClashPlayer
         GameObject newFighter = discard[indexInDiscard];
         discard.RemoveAt(indexInDiscard);
         team[teamSlot - 1] = newFighter;
-        Debug.Log("playing from discard");
-        Debug.Log(team[teamSlot - 1]);
     }
 
     public void drawCard()
@@ -129,6 +127,13 @@ public class ClashPlayer
     {
         team[slotToPlayCardIn - 1] = activeCard;
         activeCard = null;
+    }
+
+    public GameObject removeFighterInSlot(int cardSlot)
+    {
+        GameObject cardToRemove = team[cardSlot - 1];
+        team[cardSlot - 1] = null;
+        return cardToRemove;
     }
 
     public GameObject fighterInSlot(int slotNumber)

@@ -17,6 +17,7 @@ public enum ClashAnimationType
     PreparePowerCounter,
     PowerCounter,
     DestroyCard,
+    FighterToBottomOfDeck,
     PlayFromDiscard,
     EndFight,
     None,

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Hapthor
   m_EditorClassIdentifier: 
   cardName: Hapthor, Everlasting
-  cardText: When a friendly gunner loses, replace it, then replace this
+  cardText: When a friendly gunner loses, replace it. If this gunner has 1 or more
+    Power, destroy it.
   image: {fileID: 0}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
-  power: 2
+  power: 0
   powerCounters: 0
   civilizationType: 2

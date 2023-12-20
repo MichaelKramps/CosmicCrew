@@ -29,11 +29,11 @@ public class ClashScript : MonoBehaviour
     void Start()
     {
         // set player1 and player2
-        player1 = new ClashPlayer("41,45,43,44,42,42,41,44,45,43");
-        player2 = new ClashPlayer("4,3,3,4,3,30,3,5,5,3");
+        player1 = new ClashPlayer("41,41,43,45,44,42,43,44,45,42");
+        player2 = new ClashPlayer("3,3,3,3,4,30,5,4,3,5");
         // set animationQueue
         // clashAnimationQueue = new ClashAnimationQueue("");
-        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*s,pow,2,1*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*s,pow,1,2*p,dws,1,0*p,p,3,0*s,dws,1,0*s,p,3,0*s,pow,1,3*p,dws,1,0*p,p,4,0*s,dws,1,0*s,p,4,0*s,pow,2,4*p,dws,1,0*p,p,5,0*s,dws,1,0*s,p,5,0*s,pow,1,5*p,dws,1,0*p,p,6,0*s,dws,1,0*s,p,6,0*b,r,5,6*s,dws,1,0*s,p,6,0*s,pow,1,6*p,dws,1,0*p,p,5,0*p,fbd,6,0*p,dws,1,0*p,p,6,0*b,gd,1,0*b,r,3,6*s,dws,1,0*s,p,6,0*s,pow,3,6*p,dws,1,0*p,p,3,0*p,pow,1,3*b,gd,1,0*b,r,3,4*s,dws,1,0*s,p,4,0*s,pow,3,4*s,des,0,6*b,gd,1,0*b,r,2,2*s,dws,1,0*s,p,2,0*s,pow,1,2*s,des,0,1*b,gd,1,0*b,r,2,6*s,dws,1,0*s,p,2,0*p,pow,6,1*b,gd,1,0*b,r,2,1*p,pow,6,1*b,gd,1,1*b,r,2,1*s,dws,1,0*s,p,3,0*s,pow,1,3*p,pow,6,1*b,gd,1,0*b,r,4,2*p,dws,1,0*p,p,1,0*b,gd,0,1*b,r,6,4*s,dws,1,0*s,p,4,0*s,pow,2,4*p,dws,1,0*p,p,1,0*p,pow,1,1*b,gd,1,0*b,r,2,3*s,dws,1,0*s,p,4,0*s,pow,1,4*b,gd,1,0*s,2w,0,0");
+        clashAnimationQueue = new ClashAnimationQueue("p,dws,1,0*p,p,1,0*s,dws,1,0*s,p,1,0*s,pow,1,1*p,dws,1,0*p,p,2,0*s,dws,1,0*s,p,2,0*s,pow,1,2*p,dws,1,0*p,p,3,0*s,dws,1,0*s,p,3,0*s,pow,1,3*p,dws,1,0*p,p,4,0*s,dws,1,0*s,p,4,0*s,pow,1,4*p,dws,1,0*p,p,5,0*s,dws,1,0*s,p,5,0*s,pow,2,5*p,dws,1,0*p,p,6,0*s,dws,1,0*s,p,6,0*b,r,2,4*s,dws,1,0*s,p,4,0*s,pow,3,4*p,dws,1,0*p,p,2,0*b,gd,1,0*b,r,5,6*s,dws,1,0*s,p,6,0*s,pow,2,6*p,dws,1,0*p,p,5,0*p,pow,6,4*b,gd,1,0*b,r,1,5*s,dws,1,0*s,p,5,0*s,pow,1,5*p,dws,1,0*p,p,1,0*p,pow,6,4*b,gd,1,0*b,r,6,1*s,dws,1,0*s,p,1,0*s,pow,3,1*b,gd,1,0*b,r,3,1*s,dws,1,0*s,p,1,0*s,pow,1,1*p,dws,1,0*p,p,3,0*p,pow,1,3*p,des,0,3*b,gd,1,0*b,r,2,4*s,dws,1,0*s,p,4,0*p,ded,0,0*b,gd,1,0*b,r,3,6*s,pow,1,2*b,gd,0,1*b,r,5,1*s,dws,1,0*s,p,1,0*s,pow,2,1*p,pow,6,1*b,gd,1,0*b,r,3,3*p,dws,1,0*p,p,1,0*s,pow,1,5*b,gd,0,1*b,r,3,6*s,dws,1,0*s,p,1,0*s,pow,1,1*s,des,0,2*b,gd,1,0*s,2w,0,0");
         //
 
         //create player 1 deck

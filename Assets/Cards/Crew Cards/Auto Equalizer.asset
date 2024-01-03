@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Auto Equalizer
   cardText: 'Loser: Give a random friendly gunner 6 power counters'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 5ca4e9c3cb667425b8ee31351cf13a83, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 1
   powerCounters: 0

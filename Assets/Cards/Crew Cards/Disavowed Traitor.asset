@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Disavowed Traitor
   cardText: 'Loser: Replace this card'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 089a05d4581c64ffa8fa13d05d427d8e, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 3
   powerCounters: 0

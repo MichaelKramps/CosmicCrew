@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Wheel Whacker
   cardText: 'Loser: Replace this gunner and and put a Power counter on the new gunner'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 4fda2431f231440008688af7a99a24ce, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 2
   powerCounters: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Weapon Grifter
   cardText: 'Loser: Replace this gunner, then remove all power counters from your
     gunners'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 2235003fde4bf48ecadcb4096af25953, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 8
   powerCounters: 0

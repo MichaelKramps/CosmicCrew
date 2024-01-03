@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Mechoward
   cardText: 'Loser: Replace this gunner and put 2 Power counters on the new gunner'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 1bb7b2d7ad2ff4ec782f2ca4e5e8ee87, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 1
   powerCounters: 0

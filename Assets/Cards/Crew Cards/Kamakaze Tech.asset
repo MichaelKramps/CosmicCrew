@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Kamakaze Tech
   cardText: 'Loser: If your enemy has more gunners than you, destroy a random enemy
     gunner'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: dea6f9d392bb14e5a8793fbff0ba06cd, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 0
   powerCounters: 0

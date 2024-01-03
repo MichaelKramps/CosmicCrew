@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Minion Upgrader
   cardText: After a friendly gunner loses, put 2 Power countes on your leftmost and
     rightmost gunners
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: bd35f73c7608b4c07a3c34ded1ee66ac, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 3
   powerCounters: 0

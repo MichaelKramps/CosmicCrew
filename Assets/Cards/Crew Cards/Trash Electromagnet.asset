@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Trash Electromagnet
   cardText: 'Winner: Put 3 Power counters on the gunner that replaces this'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 845631b40bdc04e2da24fb3953a29f82, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 3
   powerCounters: 0

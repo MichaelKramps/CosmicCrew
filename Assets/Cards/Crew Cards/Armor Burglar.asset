@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Armor Burglar
   cardText: After a friendly gunner loses, give a random friendly gunner 4 power
     counters
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 95a464ce3930d463f9b9112ea9d000c7, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 4
   powerCounters: 0

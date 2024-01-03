@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Shaw, the Helpful
   cardText: 'Loser: Give your rightmost gunner 6 Power counters'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 4596d04d4e96740f4aa517de49162198, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 6
   powerCounters: 0

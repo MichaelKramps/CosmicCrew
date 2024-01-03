@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Explosive Ally
   cardText: 'Loser: Put 2 Power counters on your leftmost gunner, then put 2 on Power
     counters on your rightmost gunner'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: d9e4e8b3c9e354f5a92806d5a736aa0f, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 4
   powerCounters: 0

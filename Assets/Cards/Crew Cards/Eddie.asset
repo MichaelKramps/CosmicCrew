@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Eddie, the Boxer
   cardText: When a friendly gunner loses, give all friendly fighters a Power counter
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 7c309cc4471ee4f189fd0f7e19479f41, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 3
   powerCounters: 0

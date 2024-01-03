@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Big Z Cannon
   cardText: After a friendly gunner loses put 3 Power counters on this
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 44d0eb0aa4bf849208867a6885fbedc1, type: 3}
   backgroundTexture: {fileID: 21300000, guid: 253e3e30ff8fd4836b960b27db11ccea, type: 3}
   power: 2
   powerCounters: 0

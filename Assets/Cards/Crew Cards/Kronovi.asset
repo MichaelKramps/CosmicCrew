@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Kronovi, the Original
   cardText: Cannot receive Power Counters
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 20d8540901a184179a4cc3db87fa5f27, type: 3}
   backgroundTexture: {fileID: 21300000, guid: c52ebdaafb72e4b72a4f39ca524ba126, type: 3}
   power: 10
   powerCounters: 0

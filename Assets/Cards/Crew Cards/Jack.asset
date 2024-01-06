@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Jack, the Dueler
   cardText: This always ties a fight
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: c838ee18135824a7d9d107e6fd5465ca, type: 3}
   backgroundTexture: {fileID: 21300000, guid: c52ebdaafb72e4b72a4f39ca524ba126, type: 3}
   power: 1
   powerCounters: 0

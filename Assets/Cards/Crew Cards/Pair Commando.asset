@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86986a1d4080344608ad451d93f31b63, type: 3}
-  m_Name: Arms Dealer
+  m_Name: Pair Commando
   m_EditorClassIdentifier: 
-  cardName: Arms Dealer
-  cardText: When a friendly gunner is played, give it a Power counter
-  image: {fileID: 21300000, guid: 77ae3d966154b41018b39b74506d6934, type: 3}
+  cardName: Pair Commando
+  cardText: 'Signing Bonus: You may search your draft deck for another Pair Commando
+    and add it to your battle deck'
+  image: {fileID: 21300000, guid: 08783acb0f4444141b9f1bc4f6f9e17f, type: 3}
   backgroundTexture: {fileID: 21300000, guid: c52ebdaafb72e4b72a4f39ca524ba126, type: 3}
-  power: 2
+  power: 3
   powerCounters: 0
   civilizationType: 3

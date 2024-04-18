@@ -20,30 +20,10 @@ public class CrewCardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cardName.text = crewCard.cardName;
-        customText.text = crewCard.cardText;
         power.text = crewCard.power.ToString();
         powerCounters.text = "0";
 
         artwork.sprite = crewCard.image;
-        backgroundTexture.sprite = crewCard.backgroundTexture;
-
-        switch (crewCard.civilizationType)
-        {
-            case CivilizationType.Athyr:
-                civilizationType.text = "Athyr";
-                break;
-            case CivilizationType.Leanor:
-                civilizationType.text = "Leanor";
-                break;
-            case CivilizationType.Rance:
-                civilizationType.text = "Rance";
-                break;
-            default:
-                // no type
-                civilizationType.text = "Mercenary";
-                break;
-        }
     }
 
     // Update is called once per frame

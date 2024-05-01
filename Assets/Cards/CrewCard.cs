@@ -11,6 +11,8 @@ public class CrewCard : ScriptableObject
 
     public int power;
     public int powerCounters;
+    public int numberAllowedInDeck;
+    public int cardId;
 
     public CivilizationType civilizationType;
 }

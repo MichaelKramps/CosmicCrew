@@ -20,7 +20,6 @@ public class CardFinder
     {
         String crewCardPath = "CrewCards/" + cardDictionary[id];
         CrewCard crewCardWithId = Resources.Load<CrewCard>(crewCardPath);
-        Debug.Log(crewCardWithId.cardName);
         return crewCardWithId;
     }
 

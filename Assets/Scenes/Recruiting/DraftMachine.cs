@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class DraftMachine
 {
@@ -23,9 +22,7 @@ public class DraftMachine
 
     public List<CrewCard> newRecruitingHand()
     {
-        Debug.Log(draftPool.Count);
         shuffleDraftPool();
-        Debug.Log(draftPool.Count);
 
         List<CrewCard> recruitingHand = new List<CrewCard>();
         recruitingHand.Add(draftPool[0]);

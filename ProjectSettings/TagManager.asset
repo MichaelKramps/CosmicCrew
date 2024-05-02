@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - RecruitCardOne
+  - RecruitCardTwo
+  - RecruitCardThree
+  - Refresh
+  - Place
+  - Dismiss
+  - Invest
   layers:
   - Default
   - TransparentFX

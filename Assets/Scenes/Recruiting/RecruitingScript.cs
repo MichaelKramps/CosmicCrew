@@ -34,6 +34,22 @@ public class RecruitingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Check for mouse click 
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.down);
+            if (hit.collider != null)
+            {
+                HandleClick(hit.transform.gameObject);
+            }
+        }
+    }
+
+    private void HandleClick(GameObject gameObject)
+    {
+        Debug.Log(gameObject.tag);
+        //if (gameObject.tag == "something")
+        //{
+        //}
     }
 }

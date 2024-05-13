@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardFinder
 {
-    private Dictionary<int, String> cardDictionary;
+    private static Dictionary<int, String> cardDictionary;
 
     public CardFinder()
     {
@@ -16,7 +16,7 @@ public class CardFinder
         };
     }
 
-    public CrewCard getCrewCardFromId(int id)
+    public static CrewCard getCrewCardFromId(int id)
     {
         String crewCardPath = "CrewCards/" + cardDictionary[id];
         CrewCard crewCardWithId = Resources.Load<CrewCard>(crewCardPath);

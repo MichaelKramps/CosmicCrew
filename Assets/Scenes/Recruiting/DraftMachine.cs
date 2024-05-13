@@ -6,6 +6,9 @@ public class DraftMachine
 {
     private CardFinder cardFinder;
     private List<CrewCard> draftPool;
+    private List<CrewCard> recruitingHand;
+    private FandomForgePlayer player;
+
     private System.Random random;
 
     public DraftMachine()
@@ -15,20 +18,40 @@ public class DraftMachine
         random = new System.Random();
     }
 
-    private void shuffleDraftPool()
+    public void draftCard(int cardIndex)
     {
-        draftPool = cardFinder.getStartingDraftPool().OrderBy(x => random.Next()).ToList();
+        
     }
 
-    public List<CrewCard> newRecruitingHand()
+    public void refresh()
+    {
+
+        newRecruitingHand();
+    }
+
+    private void shuffleDraftPool()
+    {
+        draftPool = this.draftPool.OrderBy(x => random.Next()).ToList();
+    }
+
+    public void newRecruitingHand()
     {
         shuffleDraftPool();
 
-        List<CrewCard> recruitingHand = new List<CrewCard>();
+        recruitingHand = new List<CrewCard>();
         recruitingHand.Add(draftPool[0]);
         recruitingHand.Add(draftPool[1]);
         recruitingHand.Add(draftPool[2]);
+    }
 
+    public List<CrewCard> currentRecruitingHand()
+    {
         return recruitingHand;
+    }
+
+    public void recruitCard (int whichCard)
+    {
+        //remove card from recruitingHand
+        recruitingHand[whichCard - 1] = null;
     }
 }

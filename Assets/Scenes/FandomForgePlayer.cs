@@ -29,7 +29,6 @@ public class FandomForgePlayer
 
     public void invest()
     {
-        unspentRecruitingTokens -= 3;
         addTokens(1);
     }
 
@@ -83,5 +82,20 @@ public class FandomForgePlayer
     public Dictionary<CrewCard, int> getFaceOffDeckSummary()
     {
         return faceOffDeckSummary;
+    }
+
+    public bool dismissCard(CrewCard cardToDismiss)
+    {
+        for(int cardIndex = 0; cardIndex < faceOffDeck.Count; cardIndex++)
+        {
+            CrewCard thisCard = faceOffDeck[cardIndex];
+            if (thisCard.cardId == cardToDismiss.cardId)
+            {
+                faceOffDeck.RemoveAt(cardIndex);
+                summarizeFaceOffDeck();
+                return true;
+            }
+        }
+        return false;
     }
 }

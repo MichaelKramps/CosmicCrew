@@ -11,6 +11,9 @@ TagManager:
   - Place
   - Dismiss
   - Invest
+  - CardSummaryBox
+  - Card
+  - Back
   layers:
   - Default
   - TransparentFX

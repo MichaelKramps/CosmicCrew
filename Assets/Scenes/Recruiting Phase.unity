@@ -1491,7 +1491,7 @@ GameObject:
   - component: {fileID: 1848527110}
   - component: {fileID: 1848527112}
   m_Layer: 0
-  m_Name: place-button
+  m_Name: artifact-button
   m_TagString: Place
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1538,7 +1538,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: cf18bd410ff3e430bbeda63a3db04c1b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0fd4506cb47044c9c87ef1f38d2adce4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

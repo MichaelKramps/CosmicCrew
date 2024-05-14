@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5609065949059253816}
   - component: {fileID: 203722252218327619}
-  - component: {fileID: 6689584308372737147}
   - component: {fileID: 961191219881662275}
+  - component: {fileID: 2161752201644996575}
   m_Layer: 0
   m_Name: MinimizedCardPrefab
   m_TagString: CardSummaryBox
@@ -88,19 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6689584308372737147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1230296001930693517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b7c51f8b53c74e4ab7d0f31acb8856e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crewCard: {fileID: 0}
 --- !u!61 &961191219881662275
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,6 +133,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.2, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2161752201644996575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230296001930693517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6582a8c95f83840d98478125cbb07685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewCard: {fileID: 0}
 --- !u!1 &7243154534053929609
 GameObject:
   m_ObjectHideFlags: 0

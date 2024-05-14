@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class FandomForge
 {
     private static DraftMachine draftMachine = new DraftMachine();
     private static FandomForgePlayer player = new FandomForgePlayer();
+    public static CurrentRecruitingAction currentRecruitingAction;
+    public static CrewCard selectedCrewCard;
 
     public static bool recruitCard(int whichCard)
     {
@@ -57,17 +60,32 @@ public static class FandomForge
 
     public static bool invest()
     {
-        return true;
+        int investCost = 3;
+        if (player.canAffordToPay(investCost))
+        {
+            player.pay(investCost);
+            player.invest();
+            return true;
+        }
+        return false;
     }
 
-    public static bool payToDismiss()
+    public static bool dismissScreen()
     {
-        return true;
+        int dismissCost = 3;
+        if (player.canAffordToPay(dismissCost))
+        {
+            FandomForge.currentRecruitingAction = CurrentRecruitingAction.Dismiss;
+            return true;
+        }
+        return false;
     }
 
-    public static bool dismiss()
+    public static bool dismissCard(CrewCard cardToDismiss)
     {
-        return true;
+        int dismissCost = 3;
+        player.pay(dismissCost);
+        return player.dismissCard(cardToDismiss);
     }
 
     public static DraftMachine getDraftMachine()

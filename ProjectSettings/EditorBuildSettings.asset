@@ -8,5 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Clash.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Recruiting Phase.unity
+    guid: 4390123f07e8442459e29d8cb1c029c9
+  - enabled: 1
+    path: Assets/Scenes/Cards In Deck.unity
+    guid: 6366597fceaed4b278abb37f403fec2c
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: b967901ae50414ad8be2aae5b5afd2b8, type: 2}

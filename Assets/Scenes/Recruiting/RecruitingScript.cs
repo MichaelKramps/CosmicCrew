@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class RecruitingScript : MonoBehaviour
 {
@@ -17,10 +18,20 @@ public class RecruitingScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FandomForge.newRecruitingHand();
+        if (FandomForge.currentRecruitingAction != CurrentRecruitingAction.Recruiting)
+        {
+            if (FandomForge.currentRecruitingAction == CurrentRecruitingAction.Dismiss && FandomForge.selectedCrewCard != null)
+            {
+                completeCardDismiss();
+            }
+            FandomForge.selectedCrewCard = null;
+            FandomForge.currentRecruitingAction = CurrentRecruitingAction.Recruiting;
+        } else
+        {
+            FandomForge.newRecruitingHand();
+        }
         showRecruitingHand();
         updatePlayerInformation();
-
     }
 
     // Update is called once per frame
@@ -56,9 +67,6 @@ public class RecruitingScript : MonoBehaviour
         Debug.Log(gameObject.tag);
         switch (gameObject.tag)
         {
-            case "Refresh":
-                refresh();
-                break;
             case "RecruitCardOne":
                 recruitCard(1);
                 break;
@@ -67,6 +75,18 @@ public class RecruitingScript : MonoBehaviour
                 break;
             case "RecruitCardThree":
                 recruitCard(3);
+                break;
+            case "Refresh":
+                refresh();
+                break;
+            case "Place":
+                place();
+                break;
+            case "Dismiss":
+                dismiss();
+                break;
+            case "Invest":
+                invest();
                 break;
             default:
                 break;
@@ -89,6 +109,26 @@ public class RecruitingScript : MonoBehaviour
         {
             showRecruitingHand();
         }
+    }
+
+    private void place()
+    {
+        
+    }
+
+    private void dismiss()
+    {
+        bool succeeded = FandomForge.dismissScreen();
+        if (succeeded)
+        {
+            Debug.Log("Changing Scenes");
+            SceneManager.LoadScene("Cards In Deck");
+        }
+    }
+
+    private void invest()
+    {
+        bool succeeded = FandomForge.invest();
     }
 
     private void removeCard(int whichCard)
@@ -183,5 +223,10 @@ public class RecruitingScript : MonoBehaviour
                     new Vector3(6.5f, 0f, transform.position.z),
                     transform.rotation);
         shownCardFromSummary.GetComponent<Transform>().localScale = new Vector3(0.75f, 0.75f);
+    }
+
+    private void completeCardDismiss()
+    {
+        FandomForge.dismissCard(FandomForge.selectedCrewCard);
     }
 }

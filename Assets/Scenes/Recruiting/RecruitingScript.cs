@@ -88,9 +88,13 @@ public class RecruitingScript : MonoBehaviour
             case "Invest":
                 invest();
                 break;
+            case "FaceOff":
+                SceneManager.LoadScene("FaceOff");
+                break;
             default:
                 break;
         }
+        //updatePlayerInformation();
     }
 
     private void recruitCard(int whichCard)
@@ -183,9 +187,10 @@ public class RecruitingScript : MonoBehaviour
     {
         //update recruiting coins
         GameObject.Find("token-counter/remaining-tokens").GetComponent<TextMeshPro>().text = FandomForge.currentRecruitingTokens().ToString();
+        GameObject.Find("token-counter/tokens-generated").GetComponent<TextMeshPro>().text = "$" + FandomForge.currentTokensGenerated().ToString() + " dividend";
 
         //delete old deck
-        foreach(GameObject summaryGameObject in faceOffDeckSummaries)
+        foreach (GameObject summaryGameObject in faceOffDeckSummaries)
         {
             Destroy(summaryGameObject);
         }

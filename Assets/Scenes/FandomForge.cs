@@ -6,8 +6,10 @@ public static class FandomForge
 {
     private static DraftMachine draftMachine = new DraftMachine();
     private static FandomForgePlayer player = new FandomForgePlayer();
+    private static EnemyGenerator enemyGenerator = new EnemyGenerator();
     public static CurrentRecruitingAction currentRecruitingAction;
     public static CrewCard selectedCrewCard;
+    public static int currentLevel;
 
     public static bool recruitCard(int whichCard)
     {
@@ -106,6 +108,11 @@ public static class FandomForge
     public static int currentRecruitingTokens()
     {
         return player.currentRecruitingTokens();
+    }
+
+    public static int currentTokensGenerated()
+    {
+        return player.currentTokensGenerated();
     }
 
     public static Dictionary<CrewCard, int> getFaceOffDeckSummary()

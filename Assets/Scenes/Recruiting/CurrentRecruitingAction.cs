@@ -3,5 +3,6 @@ public enum CurrentRecruitingAction
 {
     Recruiting,
     Dismiss,
-    Place
+    Place,
+    FaceOff
 }

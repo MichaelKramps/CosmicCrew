@@ -1061,6 +1061,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &804408404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 804408406}
+  - component: {fileID: 804408405}
+  m_Layer: 0
+  m_Name: FaceOffScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &804408405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804408404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c60cdbebcd7b40fc88d425e9a5a3f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewCardPrefab: {fileID: 2973926970413659528, guid: 3b85fbaa1295c48d6b531fe5fe573fe7, type: 3}
+--- !u!4 &804408406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804408404}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &851757593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1767,56 +1812,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1187326034
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1187326036}
-  - component: {fileID: 1187326035}
-  m_Layer: 0
-  m_Name: ClashScript
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1187326035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187326034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad4c778e94d148e1be6e79e30c49ce7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crewCardPrefab: {fileID: 2973926970413659528, guid: 3b85fbaa1295c48d6b531fe5fe573fe7, type: 3}
-  diePrefab: {fileID: 4037736690064833765, guid: 83ff82c5046954ee683a0d24034e74a3, type: 3}
-  crewCardList:
-  - {fileID: 11400000, guid: c0f85243a60f240008b9c8738afcdc15, type: 2}
-  - {fileID: 11400000, guid: 069fb31fccdf14254889f75e952fc98d, type: 2}
-  - {fileID: 11400000, guid: 88673c3edc8d142719a541b7bc908976, type: 2}
---- !u!4 &1187326036
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187326034}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1245528744
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,7 +2915,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1187326036}
   - {fileID: 1844035153}
   - {fileID: 252222763}
   - {fileID: 159799376}
@@ -2936,3 +2930,4 @@ SceneRoots:
   - {fileID: 952203775}
   - {fileID: 1763007962}
   - {fileID: 662571715}
+  - {fileID: 804408406}

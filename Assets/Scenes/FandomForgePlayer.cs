@@ -7,8 +7,8 @@ public class FandomForgePlayer
 {
     private List<CrewCard> faceOffDeck;
     private Dictionary<CrewCard, int> faceOffDeckSummary;
-    private int totalRecruitingTokens;
     private int unspentRecruitingTokens;
+    private int tokensGenerated;
 
     public FandomForgePlayer()
     {
@@ -21,15 +21,15 @@ public class FandomForgePlayer
             CardFinder.getCrewCardFromId(2),
         };
 
-        totalRecruitingTokens = 2;
-        unspentRecruitingTokens = 5;
+        unspentRecruitingTokens = 3;
+        tokensGenerated = 2;
 
         summarizeFaceOffDeck();
     }
 
     public void invest()
     {
-        addTokens(1);
+        tokensGenerated += 1;
     }
 
     public void pay(int cost)
@@ -39,7 +39,6 @@ public class FandomForgePlayer
 
     public void addTokens(int tokens)
     {
-        totalRecruitingTokens += tokens;
         unspentRecruitingTokens += tokens;
     }
 
@@ -57,6 +56,11 @@ public class FandomForgePlayer
     public int currentRecruitingTokens()
     {
         return unspentRecruitingTokens;
+    }
+
+    public int currentTokensGenerated()
+    {
+        return tokensGenerated;
     }
 
     private void summarizeFaceOffDeck()

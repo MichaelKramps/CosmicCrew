@@ -11,6 +11,16 @@ public static class FandomForge
     public static CrewCard selectedCrewCard;
     public static int currentLevel;
 
+    public static FandomForgePlayer getPlayer()
+    {
+        return FandomForge.player;
+    }
+
+    public static EnemyGenerator getEnemyGenerator()
+    {
+        return FandomForge.enemyGenerator;
+    }
+
     public static bool recruitCard(int whichCard)
     {
         int recruitmentCost = 2;

@@ -12,8 +12,11 @@ public class EnemyGenerator
         return new List<CrewCard> {
             CardFinder.getCrewCardFromId(0),
             CardFinder.getCrewCardFromId(0),
+            CardFinder.getCrewCardFromId(0),
             CardFinder.getCrewCardFromId(1),
             CardFinder.getCrewCardFromId(1),
+            CardFinder.getCrewCardFromId(1),
+            CardFinder.getCrewCardFromId(2),
             CardFinder.getCrewCardFromId(2),
             CardFinder.getCrewCardFromId(2),};
     }

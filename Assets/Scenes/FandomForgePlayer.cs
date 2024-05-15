@@ -27,6 +27,11 @@ public class FandomForgePlayer
         summarizeFaceOffDeck();
     }
 
+    public List<CrewCard> getPlayerDeck()
+    {
+        return this.faceOffDeck;
+    }
+
     public void invest()
     {
         tokensGenerated += 1;

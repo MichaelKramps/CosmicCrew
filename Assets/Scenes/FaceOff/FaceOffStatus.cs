@@ -1,4 +1,7 @@
 ﻿using System;
-public enum NewEnumeration
+public enum FaceOffStatus
 {
+    Start,
+    WaitingToPlayCard,
+    Animating,
 }

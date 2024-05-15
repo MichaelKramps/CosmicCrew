@@ -14,5 +14,5 @@ public class CrewCard : ScriptableObject
     public int numberAllowedInDeck;
     public int cardId;
 
-    public CivilizationType civilizationType;
+    public FandomType fandomType;
 }

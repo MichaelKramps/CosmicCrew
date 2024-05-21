@@ -6,43 +6,39 @@ using UnityEngine.Rendering;
 
 public class FaceOffPlayer
 {
-    private List<GameObject> deck;
-    private List<GameObject> hand;
-    private List<GameObject> team;
-    private List<GameObject> discard;
+    private List<FaceOffCard> deck;
+    private List<FaceOffCard> hand;
+    private List<FaceOffCard> team;
+    private List<FaceOffCard> discard;
     private int startingHandSize = 6;
     private System.Random random = new System.Random();
 
-    private float teamY;
-    private float handY;
+    
 
-    public FaceOffPlayer(List<GameObject> deck, FaceOffPlayerPosition position)
+    public FaceOffPlayer(List<FaceOffCard> deck, FaceOffPlayerPosition position)
     {
         this.deck = deck;
-        this.hand = new List<GameObject>();
-        this.team = new List<GameObject>();
-        this.discard = new List<GameObject>();
-
-        this.teamY = position == FaceOffPlayerPosition.Top ? 1.5f : -1.5f;
-        this.handY = position == FaceOffPlayerPosition.Top ? 4.3f : -4.3f;
+        this.hand = new List<FaceOffCard>();
+        this.team = new List<FaceOffCard>();
+        this.discard = new List<FaceOffCard>();
     }
 
-    public List<GameObject> getDeck()
+    public List<FaceOffCard> getDeck()
     {
         return this.deck;
     }
 
-    public List<GameObject> getHand()
+    public List<FaceOffCard> getHand()
     {
         return this.hand;
     }
 
-    public List<GameObject> getTeam()
+    public List<FaceOffCard> getTeam()
     {
         return this.team;
     }
 
-    public List<GameObject> getDiscard()
+    public List<FaceOffCard> getDiscard()
     {
         return this.discard;
     }
@@ -73,46 +69,119 @@ public class FaceOffPlayer
         }
     }
 
-    public void playCardFromHand(GameObject cardToPlay)
+    public void playRandomCardFromHand()
+    {
+        this.playCardFromHand(this.hand[random.Next(this.hand.Count)]);
+    }
+
+    public void playCardFromHand(FaceOffCard cardToPlay)
     {
         if (this.hand.Contains(cardToPlay))
         {
-            this.hand.RemoveAt(this.hand.IndexOf(cardToPlay));
             this.team.Add(cardToPlay);
+            this.hand.Remove(cardToPlay);
             this.repositionTeam();
             this.repositionHand();
         }
+    }
+
+    public void playGameObjectCardFromHand(GameObject cardToPlay)
+    {
+        int indexOfCardToPlay = this.findIndexOfGameObjectInHand(cardToPlay);
+        if (indexOfCardToPlay > -1)
+        {
+            this.team.Add(this.hand[indexOfCardToPlay]);
+            this.hand.RemoveAt(indexOfCardToPlay);
+            this.repositionTeam();
+            this.repositionHand();
+        }
+    }
+
+    public int findIndexOfGameObjectInHand(GameObject cardGameObjectToFind)
+    {
+        foreach(FaceOffCard card in this.hand)
+        {
+            if (card.getCardsGameObject() == cardGameObjectToFind)
+            {
+                return this.hand.IndexOf(card);
+            }
+        }
+        return -1;
+    }
+
+    public FaceOffCard selectRandomFanaticFromTeam()
+    {
+        Debug.Assert(this.team.Count > 0);
+        return this.team[random.Next(this.team.Count)];
     }
 
     public void repositionCards()
     {
         this.repositionHand();
         this.repositionTeam();
+        this.repositionDiscard();
+        this.repositionDeck();
     }
 
     private void repositionTeam()
     {
-        int cardIndex = 0;
-        foreach(GameObject teamCard in this.team)
+        int positionInTeam = 0;
+        foreach(FaceOffCard teamCard in this.team)
         {
-
-            float xCoordinate = (float)-this.team.Count + 1f + (cardIndex * 2f);
-            teamCard.GetComponent<Transform>().position = new Vector3(xCoordinate, teamY);
-            teamCard.GetComponent<SortingGroup>().sortingLayerName = "Cards";
-            cardIndex++;
+            teamCard.repositionCardInTeam(this.team.Count, positionInTeam);
+            positionInTeam++;
         }
     }
 
     private void repositionHand()
     {
-        int cardNumber = 0;
-        foreach (GameObject handCard in this.hand)
+        int positionInHand = 0;
+        foreach (FaceOffCard handCard in this.hand)
         {
-            float xCoordinate = (float)-this.hand.Count + 2f + (cardNumber * 1.5f);
-            handCard.GetComponent<Transform>().position = new Vector3(xCoordinate, handY);
-            handCard.GetComponent<SortingGroup>().sortingLayerName = "Over Cards";
-            handCard.GetComponent<SortingGroup>().sortingOrder = -cardNumber;
-            cardNumber++;
+            handCard.repositionCardInHand(this.hand.Count, positionInHand);
+            positionInHand++;
         }
+    }
+
+    private void repositionDiscard()
+    {
+        int positionInDiscard = 0;
+        foreach (FaceOffCard discardCard in this.discard)
+        {
+            discardCard.repositionCardInDiscard(positionInDiscard);
+            positionInDiscard++;
+        }
+    }
+
+    private void repositionDeck()
+    {
+        int positionInDeck = 0;
+        foreach (FaceOffCard deckCard in this.deck)
+        {
+            deckCard.repositionCardInDeck(positionInDeck);
+            positionInDeck++;
+        }
+    }
+
+    public void handleDuelResult(FaceOffCard postDuelCard)
+    {
+        Debug.Log(postDuelCard.getDuelResult());
+        switch (postDuelCard.getDuelResult())
+        {
+            case DuelResult.Won:
+                this.team.Remove(postDuelCard);
+                this.drawXCards(1);
+                this.deck.Add(postDuelCard);
+                break;
+            case DuelResult.Lost:
+            case DuelResult.Tied:
+                this.team.Remove(postDuelCard);
+                this.discard.Add(postDuelCard);
+                break;
+            default:
+                break;
+        }
+
+        postDuelCard.setDuelResult(DuelResult.None);
     }
 }

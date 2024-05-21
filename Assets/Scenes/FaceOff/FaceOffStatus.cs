@@ -2,6 +2,14 @@
 public enum FaceOffStatus
 {
     Start,
-    WaitingToPlayCard,
+    WaitingForPlayerToPlayCard,
+    WaitingForEnemyToPlayCard,
+    CheckForCardsToPlay,
+    DetermineNextStep,
+    ChooseDuelCards,
+    Duel,
+    AfterDuel,
+    Waiting,
     Animating,
+    End
 }

@@ -2,62 +2,90 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class FaceOffScript : MonoBehaviour
 {
     public GameObject crewCardPrefab;
 
-    private FaceOffStatus faceOffStatus;
     private FaceOffGenerator faceOffGenerator;
 
     private GameObject selectedCard;
+    private WaitTracker waitTracker = new WaitTracker();
 
     // Start is called before the first frame update
     void Start()
     {
         faceOffGenerator = new FaceOffGenerator(
-            setupDeck(FandomForge.getPlayer().getPlayerDeck(), -3f),
-            setupDeck(FandomForge.getEnemyGenerator().generateEnemyFaceOffDeck(FandomForge.currentLevel), 3f));
+            setupDeck(FandomForge.getPlayer().getPlayerDeck(), FaceOffPlayerPosition.Bottom),
+            setupDeck(FandomForge.getEnemyGenerator().generateEnemyFaceOffDeck(FandomForge.currentLevel), FaceOffPlayerPosition.Top));
         //deal top 6 cards of face off deck
         faceOffGenerator.shuffleDecks();
-        List<GameObject> playerStartingHand = faceOffGenerator.drawPlayerStartingHand();
-        List<GameObject> enemyStartingHand = faceOffGenerator.drawEnemyStartingHand();
+        List<FaceOffCard> playerStartingHand = faceOffGenerator.drawPlayerStartingHand();
+        List<FaceOffCard> enemyStartingHand = faceOffGenerator.drawEnemyStartingHand();
 
 
 
         faceOffGenerator.repositionCards();
 
-        faceOffStatus = FaceOffStatus.WaitingToPlayCard;
+        faceOffGenerator.checkForCardsToPlay();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (faceOffStatus)
+        if (this.waitTracker.isWaiting())
         {
-            case FaceOffStatus.WaitingToPlayCard:
-                waitingToPlayCard();
-                break;
-            default:
-                break;
+            this.waitTracker.updateTime(Time.deltaTime);
+        } else
+        {
+            switch (this.faceOffGenerator.currentStatus())
+            {
+                case FaceOffStatus.WaitingForPlayerToPlayCard:
+                    waitingForPlayerToPlayCard();
+                    break;
+                case FaceOffStatus.WaitingForEnemyToPlayCard:
+                    waitingForEnemyToPlayCard();
+                    break;
+                case FaceOffStatus.CheckForCardsToPlay:
+                    faceOffGenerator.checkForCardsToPlay();
+                    break;
+                case FaceOffStatus.ChooseDuelCards:
+                    selectCardsForDuel();
+                    break;
+                case FaceOffStatus.Duel:
+                    duel();
+                    break;
+                case FaceOffStatus.AfterDuel:
+                    afterDuel();
+                    break;
+                case FaceOffStatus.End:
+                    faceOffGenerator.endFaceOff();
+                    SceneManager.LoadScene("Recruiting Phase");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
-    private List<GameObject> setupDeck(List<CrewCard> deck, float yValue)
+    private List<FaceOffCard> setupDeck(List<CrewCard> deck, FaceOffPlayerPosition faceOffPlayerPosition)
     {
-        List<GameObject> instantiatedDeck = new List<GameObject>();
+        List<FaceOffCard> instantiatedDeck = new List<FaceOffCard>();
         foreach(CrewCard card in deck)
         {
+            float yValue = faceOffPlayerPosition == FaceOffPlayerPosition.Top ? 3f : -3f;
             crewCardPrefab.GetComponent<CrewCardScript>().crewCard = card;
-            instantiatedDeck.Add(Instantiate(
+            GameObject cardGameObject = Instantiate(
                 crewCardPrefab,
                 new Vector3(9.1f, yValue, transform.position.z),
-                transform.rotation));
+                transform.rotation);
+            instantiatedDeck.Add(new FaceOffCard(cardGameObject, faceOffPlayerPosition));
         }
         return instantiatedDeck;
     }
 
-    private void waitingToPlayCard()
+    private void waitingForPlayerToPlayCard()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
@@ -105,6 +133,38 @@ public class FaceOffScript : MonoBehaviour
 
     private void playSelectedCardFromHand()
     {
-        faceOffGenerator.playCardFromHand(selectedCard);
+        faceOffGenerator.playGameObjectCardFromHand(selectedCard);
+        unselectSelectedCard();
+        wait(1000);
+    }
+
+    private void waitingForEnemyToPlayCard()
+    {
+        faceOffGenerator.playRandomCardFromEnemyHand();
+        faceOffGenerator.checkForCardsToPlay();
+    }
+
+    private void selectCardsForDuel()
+    {
+        faceOffGenerator.selectCardsForDuel();
+        wait(1000);
+    }
+
+    private void duel()
+    {
+        faceOffGenerator.duel();
+        faceOffGenerator.repositionCards();
+        wait(750);
+    }
+
+    private void afterDuel()
+    {
+        //figure out if card(s) need to be played
+        faceOffGenerator.afterDuel();
+    }
+
+    private void wait(int milliseconds)
+    {
+        this.waitTracker.wait(milliseconds);
     }
 }

@@ -61,6 +61,8 @@
     <Compile Include="Assets/Animations/AnimationHelper.cs" />
     <Compile Include="Assets/Scenes/Recruiting/RecruitingScript.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" />
+    <Compile Include="Assets/Scenes/FaceOff/DuelResult.cs" />
+    <Compile Include="Assets/Scenes/WaitTracker.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeA.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_ExampleScript_01.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMPro_InstructionOverlay.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Assets/Scenes/Clash/ClashScript.cs" />
     <Compile Include="Assets/Scenes/Clash/ClashAnimationQueue.cs" />
     <Compile Include="Assets/Scenes/Clash/ClashAnimation.cs" />
+    <Compile Include="Assets/Scenes/FaceOff/FaceOffDuel.cs" />
     <Compile Include="Assets/MinimizedCardScript.cs" />
     <Compile Include="Assets/Cards/CrewCard.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_A.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_DigitValidator.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextConsoleSimulator.cs" />
+    <Compile Include="Assets/Scenes/FaceOff/FaceOffCard.cs" />
     <Compile Include="Assets/Cards/CardFinder.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />

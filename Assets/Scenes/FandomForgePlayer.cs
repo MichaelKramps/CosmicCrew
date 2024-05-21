@@ -32,6 +32,11 @@ public class FandomForgePlayer
         return this.faceOffDeck;
     }
 
+    public void payoutDividends()
+    {
+        this.unspentRecruitingTokens += tokensGenerated;
+    }
+
     public void invest()
     {
         tokensGenerated += 1;

@@ -129,4 +129,14 @@ public static class FandomForge
     {
         return player.getFaceOffDeckSummary();
     }
+
+    public static void increaseLevel()
+    {
+        FandomForge.currentLevel += 1;
+    }
+
+    public static void payoutDividends()
+    {
+        player.payoutDividends();
+    }
 }

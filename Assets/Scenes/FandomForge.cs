@@ -11,6 +11,17 @@ public static class FandomForge
     public static CrewCard selectedCrewCard;
     public static int currentLevel;
 
+    public static void resetForge()
+    {
+        //reset stuff
+        FandomForge.draftMachine = new DraftMachine();
+        FandomForge.player = new FandomForgePlayer();
+        FandomForge.enemyGenerator = new EnemyGenerator();
+        FandomForge.currentRecruitingAction = CurrentRecruitingAction.Recruiting;
+        FandomForge.selectedCrewCard = null;
+        FandomForge.currentLevel = 0;
+    }
+
     public static FandomForgePlayer getPlayer()
     {
         return FandomForge.player;

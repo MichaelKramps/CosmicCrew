@@ -15,6 +15,7 @@ TagManager:
   - Card
   - Back
   - FaceOff
+  - FandomForge
   layers:
   - Default
   - TransparentFX

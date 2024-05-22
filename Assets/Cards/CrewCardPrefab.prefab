@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 1058246244815228142}
   - component: {fileID: 4995817052730788995}
   - component: {fileID: 5236258672582127388}
+  - component: {fileID: 5151898843791477175}
   m_Layer: 0
   m_Name: CrewCardPrefab
   m_TagString: Card
@@ -199,6 +200,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.2, y: 7.2}
   m_EdgeRadius: 0
+--- !u!114 &5151898843791477175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2973926970413659528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da56a5301a544eeea7a915690d5a814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4058914936436956055
 GameObject:
   m_ObjectHideFlags: 0

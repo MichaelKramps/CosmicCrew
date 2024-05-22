@@ -165,7 +165,6 @@ public class FaceOffPlayer
 
     public void handleDuelResult(FaceOffCard postDuelCard)
     {
-        Debug.Log(postDuelCard.getDuelResult());
         switch (postDuelCard.getDuelResult())
         {
             case DuelResult.Won:

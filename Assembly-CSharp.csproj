@@ -77,6 +77,7 @@
     <Compile Include="Assets/Scenes/FaceOff/FaceOffDuel.cs" />
     <Compile Include="Assets/MinimizedCardScript.cs" />
     <Compile Include="Assets/Cards/CrewCard.cs" />
+    <Compile Include="Assets/Scenes/Animate.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_A.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01_UGUI.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SimpleScript.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Assets/Cards/CrewCardScript.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark03.cs" />
     <Compile Include="Assets/Scenes/Recruiting/CurrentRecruitingAction.cs" />
+    <Compile Include="Assets/Cards/CrewCardBehavior.cs" />
     <Compile Include="Assets/Scenes/FandomForgePlayer.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets/Scenes/Recruiting/ChooseCardScript.cs" />

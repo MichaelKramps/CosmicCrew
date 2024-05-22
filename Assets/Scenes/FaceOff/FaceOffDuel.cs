@@ -16,8 +16,6 @@ public class FaceOffDuel
     {
         this.activateGoesToDuelEffects();
 
-        Debug.Log("player: " + playerFanatic.getTotalPower());
-        Debug.Log("enemy: " + enemyFanatic.getTotalPower());
         //determine winner and loser
         if (playerFanatic.getTotalPower() > enemyFanatic.getTotalPower())
         {

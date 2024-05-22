@@ -34,14 +34,14 @@ public class FaceOffCard
     public void repositionCardInTeam(int teamCount, int positionInTeam)
     {
         float xCoordinate = (float)-teamCount + 1f + (positionInTeam * 2f);
-        this.cardsGameObject.GetComponent<Transform>().position = new Vector3(xCoordinate, teamY);
+        this.cardsGameObject.GetComponent<CrewCardBehavior>().moveTo(new Vector3(xCoordinate, teamY), Animate.cardMovementTime);
         this.cardsGameObject.GetComponent<SortingGroup>().sortingLayerName = "Cards";
     }
 
     public void repositionCardInHand(int handCount, int positionInHand)
     {
         float xCoordinate = (float)-handCount + 2f + (positionInHand * 1.5f);
-        this.cardsGameObject.GetComponent<Transform>().position = new Vector3(xCoordinate, handY);
+        this.cardsGameObject.GetComponent<CrewCardBehavior>().moveTo(new Vector3(xCoordinate, handY), Animate.cardMovementTime);
         this.cardsGameObject.GetComponent<SortingGroup>().sortingLayerName = "Over Cards";
         this.cardsGameObject.GetComponent<SortingGroup>().sortingOrder = -positionInHand;
     }
@@ -49,7 +49,7 @@ public class FaceOffCard
     public void repositionCardInDiscard(int positionInDiscard)
     {
         float xCoordinate = -9f;
-        this.cardsGameObject.GetComponent<Transform>().position = new Vector3(xCoordinate, deckDiscardY);
+        this.cardsGameObject.GetComponent<CrewCardBehavior>().moveTo(new Vector3(xCoordinate, deckDiscardY), Animate.cardMovementTime);
         this.cardsGameObject.GetComponent<SortingGroup>().sortingLayerName = "Cards";
         this.cardsGameObject.GetComponent<SortingGroup>().sortingOrder = positionInDiscard;
     }
@@ -57,7 +57,7 @@ public class FaceOffCard
     public void repositionCardInDeck(int positionInDeck)
     {
         float xCoordinate = 9f;
-        this.cardsGameObject.GetComponent<Transform>().position = new Vector3(xCoordinate, deckDiscardY);
+        this.cardsGameObject.GetComponent<CrewCardBehavior>().moveTo(new Vector3(xCoordinate, deckDiscardY), Animate.cardMovementTime);
         this.cardsGameObject.GetComponent<SortingGroup>().sortingLayerName = "Cards";
         this.cardsGameObject.GetComponent<SortingGroup>().sortingOrder = -positionInDeck;
     }

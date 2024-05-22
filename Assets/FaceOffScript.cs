@@ -135,26 +135,27 @@ public class FaceOffScript : MonoBehaviour
     {
         faceOffGenerator.playGameObjectCardFromHand(selectedCard);
         unselectSelectedCard();
-        wait(1000);
+        wait(Animate.cardMovementTime * 2);
     }
 
     private void waitingForEnemyToPlayCard()
     {
         faceOffGenerator.playRandomCardFromEnemyHand();
         faceOffGenerator.checkForCardsToPlay();
+        wait(Animate.cardMovementTime * 2);
     }
 
     private void selectCardsForDuel()
     {
         faceOffGenerator.selectCardsForDuel();
-        wait(1000);
+        wait(Animate.cardMovementTime * 2);
     }
 
     private void duel()
     {
         faceOffGenerator.duel();
         faceOffGenerator.repositionCards();
-        wait(750);
+        wait(Animate.cardMovementTime * 2);
     }
 
     private void afterDuel()

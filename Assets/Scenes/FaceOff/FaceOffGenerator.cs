@@ -122,7 +122,6 @@ public class FaceOffGenerator
         new FaceOffDuel(playerDuelCard, enemyDuelCard).duel();
 
         this.player.handleDuelResult(playerDuelCard);
-        Debug.Log("enemy handle result");
         this.enemy.handleDuelResult(enemyDuelCard);
 
         this.faceOffStatus = FaceOffStatus.AfterDuel;

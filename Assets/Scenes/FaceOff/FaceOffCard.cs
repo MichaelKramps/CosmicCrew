@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -7,6 +8,8 @@ public class FaceOffCard
     private GameObject cardsGameObject;
     private CrewCard crewCard;
     private FaceOffPlayerPosition cardOwner;
+
+    private List<FaceOffCardEffect> cardEffects;
 
     private float teamY;
     private float handY;
@@ -19,6 +22,7 @@ public class FaceOffCard
     {
         this.cardsGameObject = cardsGameObject;
         this.crewCard = cardsGameObject.GetComponent<CrewCardScript>().crewCard;
+        this.cardEffects = CardFinder.getCardEffectsFromName(this.crewCard.cardName);
         this.teamY = cardOwner == FaceOffPlayerPosition.Top ? 1.5f : -1.5f;
         this.handY = cardOwner == FaceOffPlayerPosition.Top ? 4.3f : -4.3f;
         this.deckDiscardY = cardOwner == FaceOffPlayerPosition.Top ? 3f : -3f;

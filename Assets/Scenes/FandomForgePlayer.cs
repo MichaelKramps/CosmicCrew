@@ -76,20 +76,19 @@ public class FandomForgePlayer
     private void summarizeFaceOffDeck()
     {
         faceOffDeckSummary = new Dictionary<CrewCard, int>();
-        faceOffDeck.OrderBy(card => card.cardId).ToList();
 
 
-        int currentId = -1;
+        List<int> foundIds = new List<int>();
         foreach(CrewCard card in faceOffDeck)
         {
-            if (card.cardId == currentId)
+            if (foundIds.Contains(card.cardId))
             {
                 faceOffDeckSummary[card] = faceOffDeckSummary[card] + 1;
             } else
             {
                 faceOffDeckSummary.Add(card, 1);
-                currentId = card.cardId;
-            }
+                foundIds.Add(card.cardId)
+;            }
         }
     }
 

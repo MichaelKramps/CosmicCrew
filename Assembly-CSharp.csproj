@@ -62,6 +62,7 @@
     <Compile Include="Assets/Scenes/Recruiting/RecruitingScript.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" />
     <Compile Include="Assets/Scenes/FaceOff/DuelResult.cs" />
+    <Compile Include="Assets/Scenes/FaceOff/FaceOffCardEffectEffect.cs" />
     <Compile Include="Assets/Scenes/WaitTracker.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeA.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_ExampleScript_01.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Assets/Scenes/FaceOff/FaceOffCard.cs" />
     <Compile Include="Assets/Cards/CardFinder.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" />
+    <Compile Include="Assets/Scenes/FaceOff/FaceOffCardEffectTarget.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets/Scenes/Clash/ClashConstants.cs" />
@@ -116,9 +118,11 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ShaderPropAnimator.cs" />
     <Compile Include="Assets/Scenes/Clash/ActingPlayer.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
+    <Compile Include="Assets/Scenes/FaceOff/FaceOffCardEffectTiming.cs" />
     <Compile Include="Assets/Scenes/FaceOff/FaceOffPlayerPosition.cs" />
     <Compile Include="Assets/Cards/CrewCardScript.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark03.cs" />
+    <Compile Include="Assets/Cards/CardType.cs" />
     <Compile Include="Assets/Scenes/Recruiting/CurrentRecruitingAction.cs" />
     <Compile Include="Assets/MainScreenScript.cs" />
     <Compile Include="Assets/Cards/CrewCardBehavior.cs" />

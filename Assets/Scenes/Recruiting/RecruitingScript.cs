@@ -15,6 +15,8 @@ public class RecruitingScript : MonoBehaviour
     private GameObject card2;
     private GameObject card3;
     private GameObject shownCardFromSummary;
+
+    private int oneTimeRecruitingCostReduction = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -99,11 +101,22 @@ public class RecruitingScript : MonoBehaviour
 
     private void recruitCard(int whichCard)
     {
-        bool succeeded = FandomForge.recruitCard(whichCard);
+        bool succeeded = FandomForge.recruitCard(whichCard, this.oneTimeRecruitingCostReduction);
         if (succeeded)
         {
             removeCard(whichCard);
+            resetOneTimeRecruitingCostReduction();
         }
+    }
+
+    private void resetOneTimeRecruitingCostReduction()
+    {
+        this.oneTimeRecruitingCostReduction = 0;
+    }
+
+    public void setOneTimeRecruitingCostReduction(int costReduction)
+    {
+        this.oneTimeRecruitingCostReduction = costReduction;
     }
 
     private void refresh()
@@ -169,18 +182,27 @@ public class RecruitingScript : MonoBehaviour
                     crewCardPrefab,
                     new Vector3(-5.2f, 2.2f, transform.position.z),
                     transform.rotation);
+        GameObject.Find("recruit-button-1/cost-text").GetComponent<TextMeshPro>().text = determineCostOfCard(FandomForge.currentRecruitingHand()[0]).ToString();
 
         crewCardPrefab.GetComponent<CrewCardScript>().crewCard = FandomForge.currentRecruitingHand()[1];
         card2 = Instantiate(
                     crewCardPrefab,
                     new Vector3(-2f, 2.2f, transform.position.z),
                     transform.rotation);
+        GameObject.Find("recruit-button-2/cost-text").GetComponent<TextMeshPro>().text = determineCostOfCard(FandomForge.currentRecruitingHand()[1]).ToString();
 
         crewCardPrefab.GetComponent<CrewCardScript>().crewCard = FandomForge.currentRecruitingHand()[2];
         card3 = Instantiate(
                     crewCardPrefab,
                     new Vector3(1.2f, 2.2f, transform.position.z),
                     transform.rotation);
+        GameObject.Find("recruit-button-3/cost-text").GetComponent<TextMeshPro>().text = determineCostOfCard(FandomForge.currentRecruitingHand()[2]).ToString();
+    }
+
+    private int determineCostOfCard(CrewCard card)
+    {
+        int rawCost = card.cost - this.oneTimeRecruitingCostReduction;
+        return rawCost > 0 ? rawCost : 0;
     }
 
     private void updatePlayerInformation()

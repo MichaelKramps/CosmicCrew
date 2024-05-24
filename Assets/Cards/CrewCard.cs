@@ -13,6 +13,8 @@ public class CrewCard : ScriptableObject
     public int powerCounters;
     public int numberAllowedInDeck;
     public int cardId;
+    public int cost = 2;
 
     public FandomType fandomType;
+    public CardType cardType = CardType.FANATIC;
 }

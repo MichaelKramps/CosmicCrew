@@ -32,9 +32,9 @@ public static class FandomForge
         return FandomForge.enemyGenerator;
     }
 
-    public static bool recruitCard(int whichCard)
+    public static bool recruitCard(int whichCard, int priceReduction)
     {
-        int recruitmentCost = 2;
+        int recruitmentCost = 2 - priceReduction;
         CrewCard cardToRecruit = draftMachine.currentRecruitingHand()[whichCard - 1];
         if (player.canAffordToPay(recruitmentCost) && cardToRecruit != null)
         {

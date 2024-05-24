@@ -9,10 +9,21 @@ public class CardFinder
             { 0, "fandom-lurker" },
             { 1, "fandom-participant" },
             { 2, "fandom-club-member" },
+            { 3, "hostile-dog" },
         };
     private static Dictionary<String, List<FaceOffCardEffect>> effectDictionary = new Dictionary<string, List<FaceOffCardEffect>>
         {
-            { "fandom-lurker", new List<FaceOffCardEffect>() }
+            { "fandom-lurker", new List<FaceOffCardEffect>() },
+            { "fandom-participant", new List<FaceOffCardEffect>() },
+            { "fandom-club-member", new List<FaceOffCardEffect>() },
+            { "hostile-dog", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_DISMISS_THIS_CARD,
+                    FaceOffCardEffectEffect.REDUCE_COST,
+                    FaceOffCardEffectTarget.RECRUITING_HAND
+                    ).withEffectAmount(99)
+                }
+            },
         };
 
     public static CrewCard getCrewCardFromId(int id)

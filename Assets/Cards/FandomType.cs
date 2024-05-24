@@ -1,9 +1,9 @@
 ﻿using System;
 public enum FandomType
 {
-    Support,
-    Cycling,
-    Houseplants,
-    SherlockHolmes,
-    GhostHunting,
+    SUPPORT,
+    CYCLING,
+    HOUSEPLANTS,
+    SHERLOCK_HOLMES,
+    GHOST_HUNTING,
 }

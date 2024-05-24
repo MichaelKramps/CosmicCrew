@@ -104,11 +104,24 @@ public class FandomForgePlayer
             CrewCard thisCard = faceOffDeck[cardIndex];
             if (thisCard.cardId == cardToDismiss.cardId)
             {
+                //cannot use FaceOffCard methods because no GameObject exists here
+                this.activateEffectsFor(CardFinder.getCardEffectsFromCrewCard(thisCard), FaceOffCardEffectTiming.WHEN_YOU_DISMISS_THIS_CARD);
                 faceOffDeck.RemoveAt(cardIndex);
                 summarizeFaceOffDeck();
                 return true;
             }
         }
         return false;
+    }
+
+    private void activateEffectsFor(List<FaceOffCardEffect> effects, FaceOffCardEffectTiming timing)
+    {
+        foreach(FaceOffCardEffect effect in effects)
+        {
+            if (effect.timingIs(timing))
+            {
+                effect.activateEffect();
+            }
+        }
     }
 }

@@ -61,4 +61,14 @@ public class CardFinder
         }
         return new List<FaceOffCardEffect>();
     }
+
+    public static List<FaceOffCardEffect> getCardEffectsFromCrewCard(CrewCard crewCard)
+    {
+        string dictionaryKey = crewCard.cardName.ToLower().Replace(" ", "-");
+        if (effectDictionary.ContainsKey(dictionaryKey))
+        {
+            return effectDictionary[dictionaryKey];
+        }
+        return new List<FaceOffCardEffect>();
+    }
 }

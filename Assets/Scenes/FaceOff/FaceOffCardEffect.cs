@@ -22,4 +22,29 @@ public class FaceOffCardEffect
         this.effectAmount = amount;
         return this;
     }
+
+    public bool timingIs(FaceOffCardEffectTiming timing)
+    {
+        return this.timing == timing;
+    }
+
+    public void activateEffect()
+    {
+        switch (this.effect)
+        {
+            case FaceOffCardEffectEffect.REDUCE_COST:
+                reduceCost();
+                break;
+        }
+    }
+
+    private void reduceCost()
+    {
+        switch (this.target)
+        {
+            case FaceOffCardEffectTarget.RECRUITING_HAND:
+                FandomForge.setOneTimeRecruitingCostReduction(this.effectAmount);
+                break;
+        }
+    }
 }

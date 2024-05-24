@@ -18,11 +18,6 @@ public class DraftMachine
         random = new System.Random();
     }
 
-    public void draftCard(int cardIndex)
-    {
-        
-    }
-
     public void refresh()
     {
 

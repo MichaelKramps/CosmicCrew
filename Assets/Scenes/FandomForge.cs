@@ -11,6 +11,8 @@ public static class FandomForge
     public static CrewCard selectedCrewCard;
     public static int currentLevel;
 
+    private static int oneTimeRecruitingCostReduction = 0;
+
     public static void resetForge()
     {
         //reset stuff
@@ -32,10 +34,10 @@ public static class FandomForge
         return FandomForge.enemyGenerator;
     }
 
-    public static bool recruitCard(int whichCard, int priceReduction)
+    public static bool recruitCard(int whichCard)
     {
-        int recruitmentCost = 2 - priceReduction;
         CrewCard cardToRecruit = draftMachine.currentRecruitingHand()[whichCard - 1];
+        int recruitmentCost = FandomForge.determineCostOfCard(cardToRecruit);
         if (player.canAffordToPay(recruitmentCost) && cardToRecruit != null)
         {
             //pay the cost
@@ -44,10 +46,28 @@ public static class FandomForge
             player.addToDeck(cardToRecruit);
             //remove card from recruiting hand
             draftMachine.recruitCard(whichCard);
+            //reset oneTimeCostReduction
+            FandomForge.resetOneTimeRecruitingCostReduction();
 
             return true;
         }
         return false;
+    }
+
+    public static int determineCostOfCard(CrewCard card)
+    {
+        int rawCost = card.cost - FandomForge.oneTimeRecruitingCostReduction;
+        return rawCost > 0 ? rawCost : 0;
+    }
+
+    private static void resetOneTimeRecruitingCostReduction()
+    {
+        FandomForge.oneTimeRecruitingCostReduction = 0;
+    }
+
+    public static void setOneTimeRecruitingCostReduction(int reduction)
+    {
+        FandomForge.oneTimeRecruitingCostReduction = reduction;
     }
 
     public static bool refresh()

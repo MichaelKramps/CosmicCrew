@@ -86,4 +86,15 @@ public class FaceOffCard
     {
         return this.crewCard.power + this.crewCard.powerCounters;
     }
+
+    public void activateEffectsFor(FaceOffCardEffectTiming timing)
+    {
+        foreach(FaceOffCardEffect effect in cardEffects)
+        {
+            if (effect.timingIs(timing))
+            {
+                effect.activateEffect();
+            }
+        }
+    }
 }

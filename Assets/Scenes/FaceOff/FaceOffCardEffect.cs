@@ -5,6 +5,7 @@ public class FaceOffCardEffect
     FaceOffCardEffectEffect effect;
     FaceOffCardEffectTarget target;
     int effectAmount = 0;
+    FandomType fandomTypeFilter;
     //FaceOffCardEffectTargetFilter targetFilter;
 
     public FaceOffCardEffect(
@@ -20,6 +21,12 @@ public class FaceOffCardEffect
     public FaceOffCardEffect withEffectAmount(int amount)
     {
         this.effectAmount = amount;
+        return this;
+    }
+
+    public FaceOffCardEffect withFandomFilter(FandomType fandomType)
+    {
+        this.fandomTypeFilter = fandomType;
         return this;
     }
 

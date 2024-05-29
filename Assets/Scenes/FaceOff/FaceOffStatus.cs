@@ -3,6 +3,7 @@ public enum FaceOffStatus
 {
     Start,
     WaitingForPlayerToPlayCard,
+    WaitingForPlayerToSelectFanaticForGearAttachment,
     WaitingForEnemyToPlayCard,
     CheckForCardsToPlay,
     DetermineNextStep,

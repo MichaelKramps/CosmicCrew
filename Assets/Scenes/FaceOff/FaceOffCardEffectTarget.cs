@@ -2,5 +2,6 @@
 public enum FaceOffCardEffectTarget
 {
     SELF,
-    RECRUITING_HAND
+    ENTIRE_TEAM,
+    RECRUITING_HAND,
 }

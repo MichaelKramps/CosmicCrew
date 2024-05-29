@@ -51,6 +51,18 @@ public class FaceOffGenerator
         this.faceOffStatus = FaceOffStatus.CheckForCardsToPlay;
     }
 
+    public void selectFanaticForGearAttachment(GameObject fanaticSelected)
+    {
+        this.player.selectFanaticForGearAttachment(fanaticSelected);
+        this.faceOffStatus = FaceOffStatus.CheckForCardsToPlay;
+    }
+
+    public void selectGameObjectGearCardFromHand(GameObject gearCardToSelect)
+    {
+        this.player.selectGameObjectGearCardFromHand(gearCardToSelect);
+        this.faceOffStatus = FaceOffStatus.WaitingForPlayerToSelectFanaticForGearAttachment;
+    }
+
     public void playRandomCardFromEnemyHand()
     {
         this.enemy.playRandomCardFromHand();

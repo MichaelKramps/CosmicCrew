@@ -10,6 +10,7 @@ public class FaceOffPlayer
     private List<FaceOffCard> hand;
     private List<FaceOffCard> team;
     private List<FaceOffCard> discard;
+    private FaceOffCard selectedGearCard;
     private int startingHandSize = 6;
     private System.Random random = new System.Random();
 
@@ -97,6 +98,28 @@ public class FaceOffPlayer
         }
     }
 
+    public void selectGameObjectGearCardFromHand(GameObject gearCardToSelect)
+    {
+        int indexOfGearCard = this.findIndexOfGameObjectInHand(gearCardToSelect);
+        if (indexOfGearCard > -1)
+        {
+            this.selectedGearCard = this.hand[indexOfGearCard];
+            this.highlightTeam();
+        }
+    }
+
+    public void selectFanaticForGearAttachment(GameObject fanaticSelected)
+    {
+        int indexOfFanaticSelected = this.findIndexOfGameObjectInTeam(fanaticSelected);
+        if (indexOfFanaticSelected > -1)
+        {
+            this.team[indexOfFanaticSelected].attachGear(this.selectedGearCard);
+            this.hand.Remove(this.selectedGearCard);
+            this.repositionTeam();
+            this.repositionHand();
+        }
+    }
+
     public int findIndexOfGameObjectInHand(GameObject cardGameObjectToFind)
     {
         foreach(FaceOffCard card in this.hand)
@@ -104,6 +127,18 @@ public class FaceOffPlayer
             if (card.getCardsGameObject() == cardGameObjectToFind)
             {
                 return this.hand.IndexOf(card);
+            }
+        }
+        return -1;
+    }
+
+    public int findIndexOfGameObjectInTeam(GameObject cardGameObjectToFind)
+    {
+        foreach (FaceOffCard card in this.team)
+        {
+            if (card.getCardsGameObject() == cardGameObjectToFind)
+            {
+                return this.team.IndexOf(card);
             }
         }
         return -1;
@@ -130,6 +165,15 @@ public class FaceOffPlayer
         {
             teamCard.repositionCardInTeam(this.team.Count, positionInTeam);
             positionInTeam++;
+        }
+    }
+
+    private void highlightTeam()
+    {
+        Debug.Log("highlighting team");
+        foreach (FaceOffCard teamCard in this.team)
+        {
+            teamCard.highlight();
         }
     }
 
@@ -168,19 +212,47 @@ public class FaceOffPlayer
         switch (postDuelCard.getDuelResult())
         {
             case DuelResult.Won:
-                this.team.Remove(postDuelCard);
-                this.drawXCards(1);
-                this.deck.Add(postDuelCard);
+                handleDuelWin(postDuelCard);
                 break;
             case DuelResult.Lost:
             case DuelResult.Tied:
-                this.team.Remove(postDuelCard);
-                this.discard.Add(postDuelCard);
+                handleDuelLoss(postDuelCard);
                 break;
             default:
                 break;
         }
 
         postDuelCard.setDuelResult(DuelResult.None);
+    }
+
+    public void handleDuelWin(FaceOffCard postDuelCard)
+    {
+        //draw a card from deck before putting cards in
+        this.drawXCards(1);
+
+        //put card on bottom of deck
+        this.team.Remove(postDuelCard);
+        this.deck.Add(postDuelCard);
+
+        //put attached gear on bottom of deck
+        foreach(FaceOffCard gearCard in postDuelCard.getAttachedGear())
+        {
+            this.deck.Add(gearCard);
+        }
+        postDuelCard.removeGear();
+    }
+
+    public void handleDuelLoss(FaceOffCard postDuelCard)
+    {
+        //put card on bottom of discard
+        this.team.Remove(postDuelCard);
+        this.discard.Add(postDuelCard);
+
+        //put attached gear on bottom of discard
+        foreach (FaceOffCard gearCard in postDuelCard.getAttachedGear())
+        {
+            this.discard.Add(gearCard);
+        }
+        postDuelCard.removeGear();
     }
 }

@@ -10,6 +10,7 @@ public class CardFinder
             { 1, "fandom-participant" },
             { 2, "fandom-club-member" },
             { 3, "hostile-dog" },
+            { 4, "rainbow-jersey" },
         };
     private static Dictionary<String, List<FaceOffCardEffect>> effectDictionary = new Dictionary<string, List<FaceOffCardEffect>>
         {
@@ -20,8 +21,17 @@ public class CardFinder
                 new FaceOffCardEffect(
                     FaceOffCardEffectTiming.WHEN_YOU_DISMISS_THIS_CARD,
                     FaceOffCardEffectEffect.REDUCE_COST,
-                    FaceOffCardEffectTarget.RECRUITING_HAND
-                    ).withEffectAmount(99)
+                    FaceOffCardEffectTarget.RECRUITING_HAND)
+                    .withEffectAmount(99)
+                }
+            },
+            { "rainbow-jersey", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_GIVE_THIS_TO_A_FANATIC,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.ENTIRE_TEAM)
+                    .withEffectAmount(2)
+                    .withFandomFilter(FandomType.CYCLING)
                 }
             },
         };

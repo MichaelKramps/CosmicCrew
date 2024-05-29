@@ -44,6 +44,9 @@ public class FaceOffScript : MonoBehaviour
                 case FaceOffStatus.WaitingForPlayerToPlayCard:
                     waitingForPlayerToPlayCard();
                     break;
+                case FaceOffStatus.WaitingForPlayerToSelectFanaticForGearAttachment:
+                    waitingForPlayerToSelectFanaticForGearAttachment();
+                    break;
                 case FaceOffStatus.WaitingForEnemyToPlayCard:
                     waitingForEnemyToPlayCard();
                     break;
@@ -112,6 +115,35 @@ public class FaceOffScript : MonoBehaviour
         }
     }
 
+    private void waitingForPlayerToSelectFanaticForGearAttachment()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        if (hit.collider != null && hit.transform.gameObject.tag == "Card")
+        {
+            if (selectedCard != hit.transform.gameObject)
+            {
+                unselectSelectedCard();
+                selectedCard = hit.transform.gameObject;
+            }
+
+            //Check for mouse click 
+            if (Input.GetMouseButtonDown(0))
+            {
+                //play card
+                selectFanaticAndPlayGearCard();
+            }
+            else
+            {
+                enlargeSelectedCard();
+            }
+        }
+        else
+        {
+            unselectSelectedCard();
+        }
+    }
+
     private void unselectSelectedCard()
     {
         if (selectedCard != null)
@@ -133,7 +165,22 @@ public class FaceOffScript : MonoBehaviour
 
     private void playSelectedCardFromHand()
     {
-        faceOffGenerator.playGameObjectCardFromHand(selectedCard);
+        if (selectedCard.GetComponent<CrewCardScript>().crewCard.cardType == CardType.FANATIC)
+        {
+            faceOffGenerator.playGameObjectCardFromHand(selectedCard);
+            unselectSelectedCard();
+            wait(Animate.cardMovementTime * 2);
+        } else
+        {
+            //card attaches to something
+            this.faceOffGenerator.selectGameObjectGearCardFromHand(selectedCard);
+        }
+        
+    }
+
+    private void selectFanaticAndPlayGearCard()
+    {
+        faceOffGenerator.selectFanaticForGearAttachment(selectedCard);
         unselectSelectedCard();
         wait(Animate.cardMovementTime * 2);
     }

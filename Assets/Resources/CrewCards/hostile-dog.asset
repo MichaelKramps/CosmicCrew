@@ -22,5 +22,5 @@ MonoBehaviour:
   numberAllowedInDeck: 4
   cardId: 3
   cost: 2
-  fandomType: 1
+  fandomType: 2
   cardType: 0

@@ -68,10 +68,8 @@ public class FaceOffCardEffect
         //check for attached gear with the fandom type
         if (!passesFandomTypeFilter && card.getAttachedGear().Count > 0)
         {
-            Debug.Log("gear found!");
             foreach(FaceOffCard attachedGear in card.getAttachedGear())
             {
-                Debug.Log(attachedGear.getCardName() + " has type " + attachedGear.getFandomType());
                 if (attachedGear.getFandomType() == this.fandomTypeFilter)
                 {
                     passesFandomTypeFilter = true;
@@ -79,8 +77,6 @@ public class FaceOffCardEffect
                 }
             }
         }
-
-        Debug.Log(card.getCardName() + " " + passesFandomTypeFilter);
 
         return passesFandomTypeFilter;
     }

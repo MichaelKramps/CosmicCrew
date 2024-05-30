@@ -91,16 +91,16 @@ public class CrewCardBehavior : MonoBehaviour
         CardAnimation swayCounterAnimation = new CardAnimation(CardAnimationType.SWAY_COUNTERS)
             .withAnimationString(newTotalSwayCounters.ToString())
             .withAnimationInteger(newTotalSwayCounters)
-            .withStartingPoint(new Vector3(currentCardPosition.x, currentCardPosition.y + 0.3f))
-            .withEndingPoint(new Vector3(currentCardPosition.x, currentCardPosition.y - 1f));
+            .withStartingPoint(new Vector3(currentCardPosition.x, currentCardPosition.y))
+            .withEndingPoint(new Vector3(currentCardPosition.x, currentCardPosition.y + 0.55f));
 
         this.animationQueue.Enqueue(swayCounterAnimation);
 
         //set up start of sway counter animation
         GameObject powerCountersObject = gameObject.transform.Find("Power Counters").gameObject;
         SpriteRenderer powerCountersSprite = powerCountersObject.GetComponent<SpriteRenderer>();
-        powerCountersSprite.sortingOrder = 98;
+        powerCountersSprite.sortingOrder = 1;
         powerCountersSprite.transform.position = swayCounterAnimation.getStartingPoint();
-        powerCountersObject.transform.Find("Number Counters").gameObject.GetComponent<SortingGroup>().sortingOrder = 99;
+        powerCountersObject.transform.Find("Number Counters").gameObject.GetComponent<SortingGroup>().sortingOrder = 2;
     }
 }

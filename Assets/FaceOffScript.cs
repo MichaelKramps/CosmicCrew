@@ -90,6 +90,10 @@ public class FaceOffScript : MonoBehaviour
 
     private void waitingForPlayerToPlayCard()
     {
+        if (!faceOffGenerator.playerHasPlayableCardsInHand())
+        {
+            faceOffGenerator.checkForCardsToPlay();
+        }
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider != null && hit.transform.gameObject.tag == "Card")
@@ -187,6 +191,10 @@ public class FaceOffScript : MonoBehaviour
 
     private void waitingForEnemyToPlayCard()
     {
+        if (!faceOffGenerator.enemyHasPlayableCardsInHand())
+        {
+            faceOffGenerator.checkForCardsToPlay();
+        }
         faceOffGenerator.playRandomCardFromEnemyHand();
         faceOffGenerator.checkForCardsToPlay();
         wait(Animate.cardMovementTime * 2);

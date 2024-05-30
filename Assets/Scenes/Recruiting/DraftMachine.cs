@@ -7,7 +7,6 @@ public class DraftMachine
     private CardFinder cardFinder;
     private List<CrewCard> draftPool;
     private List<CrewCard> recruitingHand;
-    private FandomForgePlayer player;
 
     private System.Random random;
 
@@ -46,7 +45,10 @@ public class DraftMachine
 
     public void recruitCard (int whichCard)
     {
+        //remove from draftPool
+        draftPool.Remove(recruitingHand[whichCard - 1]);
         //remove card from recruitingHand
         recruitingHand[whichCard - 1] = null;
+
     }
 }

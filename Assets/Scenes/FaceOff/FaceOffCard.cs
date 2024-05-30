@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using TMPro;
 
 public class FaceOffCard
 {
@@ -52,6 +53,26 @@ public class FaceOffCard
         this.attachedGear.Add(gearCardToAttach);
     }
 
+    public void resetCard()
+    {
+        this.removeGear();
+        this.powerCounters = 0;
+
+        //reset power visually
+        GameObject powerCountersObject = cardsGameObject.transform.Find("Power Counters").gameObject;
+        powerCountersObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
+        GameObject numberCountersObject = powerCountersObject.transform.Find("Number Counters").gameObject;
+        numberCountersObject.GetComponent<SortingGroup>().sortingOrder = 0;
+        int numberPowerCounters = Int32.Parse(numberCountersObject.GetComponent<TextMeshPro>().text);
+        numberCountersObject.GetComponent<TextMeshPro>().text = "0";
+        GameObject powerObject = cardsGameObject.transform.Find("Power").gameObject;
+        int currentPower = Int32.Parse(powerObject.GetComponent<TextMeshPro>().text);
+        int newPower = currentPower - numberPowerCounters;
+        powerObject.GetComponent<TextMeshPro>().text = newPower.ToString();
+        powerObject.GetComponent<TextMeshPro>().fontStyle = FontStyles.Normal;
+        powerObject.GetComponent<TextMeshPro>().color = Color.black;
+    }
+
     public void highlight()
     {
         this.cardsGameObject.transform.Find("Highlight").GetComponent<Renderer>().enabled = true;
@@ -81,7 +102,7 @@ public class FaceOffCard
         int index = 1;
         foreach(FaceOffCard gear in this.attachedGear)
         {
-            yCoordinate += index * -0.4f;
+            yCoordinate += (index * -0.4f) - 0.4f;
             gear.getCardsGameObject().GetComponent<CrewCardBehavior>().moveTo(new Vector3(futureXCoordinateOfThisCard, yCoordinate), Animate.cardMovementTime);
             gear.getCardsGameObject().GetComponent<SortingGroup>().sortingLayerName = "Cards";
             gear.getCardsGameObject().GetComponent<SortingGroup>().sortingOrder = index;
@@ -162,5 +183,15 @@ public class FaceOffCard
     {
         this.powerCounters += numberSwayCounters;
         this.cardsGameObject.GetComponent<CrewCardBehavior>().addSwayCounters(this.powerCounters);
+    }
+
+    public bool isFanatic()
+    {
+        return this.crewCard.cardType == CardType.FANATIC;
+    }
+
+    public bool isGear()
+    {
+        return this.crewCard.cardType == CardType.GEAR || this.crewCard.cardType == CardType.ETERNAL_GEAR;
     }
 }

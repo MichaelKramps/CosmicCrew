@@ -67,6 +67,7 @@ public class FaceOffGenerator
 
     public void playRandomCardFromEnemyHand()
     {
+        Debug.Log("playing enemy card: " + this.faceOffStatus);
         this.enemy.playRandomCardFromHand();
     }
 
@@ -81,9 +82,27 @@ public class FaceOffGenerator
         return this.player.getHand().Count;
     }
 
-    public bool playerHasCardsInHand()
+    public bool playerHasPlayableCardsInHand(FaceOffPlayer player)
     {
-        return this.player.getHand().Count > 0;
+        bool hasFanaticInTeam = player.getTeam().Count > 0;
+        foreach(FaceOffCard card in player.getHand())
+        {
+            if (card.isFanatic() || (card.isGear() && hasFanaticInTeam))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool playerHasPlayableCardsInHand()
+    {
+        return this.playerHasPlayableCardsInHand(this.player);
+    }
+
+    public bool enemyHasPlayableCardsInHand()
+    {
+        return this.playerHasPlayableCardsInHand(this.enemy);
     }
 
     public int enemyNumberCardsInHand()
@@ -91,18 +110,20 @@ public class FaceOffGenerator
         return this.enemy.getHand().Count;
     }
 
-    public bool enemyHasCardsInHand()
-    {
-        return this.enemy.getHand().Count > 0;
-    }
-
     public void checkForCardsToPlay()
     {
-        if (this.playerHasCardsInHand() && this.playerNumberCardsInHand() >= this.enemyNumberCardsInHand())
+        if (this.playerHasPlayableCardsInHand())
         {
-            this.faceOffStatus = FaceOffStatus.WaitingForPlayerToPlayCard;
+            if (this.playerNumberCardsInHand() >= this.enemyNumberCardsInHand() || !this.enemyHasPlayableCardsInHand())
+            {
+                this.faceOffStatus = FaceOffStatus.WaitingForPlayerToPlayCard;
+            } else
+            {
+                //enemy has more cards and has playable cards
+                this.faceOffStatus = FaceOffStatus.WaitingForEnemyToPlayCard;
+            }
         }
-        else if (this.enemyHasCardsInHand())
+        else if (this.enemyHasPlayableCardsInHand())
         {
             this.faceOffStatus = FaceOffStatus.WaitingForEnemyToPlayCard;
         }

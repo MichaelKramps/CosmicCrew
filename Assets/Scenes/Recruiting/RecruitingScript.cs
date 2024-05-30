@@ -163,6 +163,8 @@ public class RecruitingScript : MonoBehaviour
     {
         destroyRecruitingHand();
 
+        Debug.Log("recruiting hand: " + FandomForge.currentRecruitingHand().Count);
+
         crewCardPrefab.GetComponent<CrewCardScript>().crewCard = FandomForge.currentRecruitingHand()[0];
         card1 = Instantiate(
                     crewCardPrefab,

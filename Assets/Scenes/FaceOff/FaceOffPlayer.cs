@@ -253,7 +253,7 @@ public class FaceOffPlayer
         {
             this.deck.Add(gearCard);
         }
-        postDuelCard.removeGear();
+        postDuelCard.resetCard();
     }
 
     public void handleDuelLoss(FaceOffCard postDuelCard)
@@ -267,6 +267,6 @@ public class FaceOffPlayer
         {
             this.discard.Add(gearCard);
         }
-        postDuelCard.removeGear();
+        postDuelCard.resetCard();
     }
 }

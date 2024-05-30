@@ -65,7 +65,6 @@ public class RecruitingScript : MonoBehaviour
 
     private void handleClick(GameObject gameObject)
     {
-        Debug.Log(gameObject.tag);
         switch (gameObject.tag)
         {
             case "RecruitCardOne":

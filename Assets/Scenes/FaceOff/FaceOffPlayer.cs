@@ -10,11 +10,11 @@ public class FaceOffPlayer
     private List<FaceOffCard> hand;
     private List<FaceOffCard> team;
     private List<FaceOffCard> discard;
-    private FaceOffCard selectedGearCard;
     private int startingHandSize = 6;
     private System.Random random = new System.Random();
 
-    
+    private FaceOffPlayer opponent;
+    private FaceOffCard selectedGearCard;
 
     public FaceOffPlayer(List<FaceOffCard> deck, FaceOffPlayerPosition position)
     {
@@ -22,6 +22,16 @@ public class FaceOffPlayer
         this.hand = new List<FaceOffCard>();
         this.team = new List<FaceOffCard>();
         this.discard = new List<FaceOffCard>();
+    }
+
+    public void addOpponent(FaceOffPlayer opponent)
+    {
+        this.opponent = opponent;
+    }
+
+    public FaceOffPlayer getOpponent()
+    {
+        return this.opponent;
     }
 
     public List<FaceOffCard> getDeck()
@@ -113,8 +123,13 @@ public class FaceOffPlayer
         int indexOfFanaticSelected = this.findIndexOfGameObjectInTeam(fanaticSelected);
         if (indexOfFanaticSelected > -1)
         {
-            this.team[indexOfFanaticSelected].attachGear(this.selectedGearCard);
+            FaceOffCard fanaticCardSelected = this.team[indexOfFanaticSelected];
+            fanaticCardSelected.attachGear(this.selectedGearCard);
             this.hand.Remove(this.selectedGearCard);
+
+            fanaticCardSelected.activateEffectsFor(FaceOffCardEffectTiming.WHEN_GEAR_IS_ATTACHED_TO_THIS_CARD, this);
+            this.selectedGearCard.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_GIVE_THIS_TO_A_FANATIC, this);
+
             this.repositionTeam();
             this.repositionHand();
         }
@@ -170,7 +185,6 @@ public class FaceOffPlayer
 
     private void highlightTeam()
     {
-        Debug.Log("highlighting team");
         foreach (FaceOffCard teamCard in this.team)
         {
             teamCard.highlight();

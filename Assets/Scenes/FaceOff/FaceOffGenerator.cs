@@ -15,6 +15,8 @@ public class FaceOffGenerator
     {
         this.player = new FaceOffPlayer(playerDeck, FaceOffPlayerPosition.Bottom);
         this.enemy = new FaceOffPlayer(enemyDeck, FaceOffPlayerPosition.Top);
+        this.player.addOpponent(this.enemy);
+        this.enemy.addOpponent(this.player);
     }
 
     public void updateStatus(FaceOffStatus status)

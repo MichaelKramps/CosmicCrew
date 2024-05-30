@@ -7,6 +7,7 @@ public class FaceOffCard
 {
     private GameObject cardsGameObject;
     private CrewCard crewCard;
+    public int powerCounters = 0;
     //private FaceOffPlayerPosition cardOwner;
 
     private List<FaceOffCardEffect> cardEffects;
@@ -23,7 +24,7 @@ public class FaceOffCard
     {
         this.cardsGameObject = cardsGameObject;
         this.crewCard = cardsGameObject.GetComponent<CrewCardScript>().crewCard;
-        this.cardEffects = CardFinder.getCardEffectsFromName(this.crewCard.cardName);
+        this.cardEffects = CardFinder.getCardEffectsFromCrewCard(this.crewCard);
         this.teamY = cardOwner == FaceOffPlayerPosition.Top ? 1.5f : -1.5f;
         this.handY = cardOwner == FaceOffPlayerPosition.Top ? 4.3f : -4.3f;
         this.deckDiscardY = cardOwner == FaceOffPlayerPosition.Top ? 3f : -3f;
@@ -54,6 +55,7 @@ public class FaceOffCard
     public void highlight()
     {
         this.cardsGameObject.transform.Find("Highlight").GetComponent<Renderer>().enabled = true;
+
     }
 
     public void unHighlight()
@@ -132,17 +134,33 @@ public class FaceOffCard
 
     public int getTotalPower()
     {
-        return this.crewCard.power + this.crewCard.powerCounters;
+        return this.crewCard.power + this.powerCounters;
     }
 
-    public void activateEffectsFor(FaceOffCardEffectTiming timing)
+    public void activateEffectsFor(FaceOffCardEffectTiming timing, FaceOffPlayer player)
     {
-        foreach(FaceOffCardEffect effect in cardEffects)
+        foreach (FaceOffCardEffect effect in this.cardEffects)
         {
             if (effect.timingIs(timing))
             {
-                effect.activateEffect();
+                effect.activateEffect(player);
             }
         }
+    }
+
+    public FandomType getFandomType()
+    {
+        return this.crewCard.fandomType;
+    }
+
+    public String getCardName()
+    {
+        return this.crewCard.cardName;
+    }
+
+    public void addSwayCounters(int numberSwayCounters)
+    {
+        this.powerCounters += numberSwayCounters;
+        this.cardsGameObject.GetComponent<CrewCardBehavior>().addSwayCounters(this.powerCounters);
     }
 }

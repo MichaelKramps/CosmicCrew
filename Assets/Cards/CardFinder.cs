@@ -12,6 +12,9 @@ public class CardFinder
             { 3, "hostile-dog" },
             { 4, "rainbow-jersey" },
             { 5, "king-of-the-mountains" },
+            { 6, "lady-cyclist" },
+            { 7, "expensive-wheels" },
+            { 8, "well-fitted-seat" },
         };
     private static Dictionary<String, List<FaceOffCardEffect>> effectDictionary = new Dictionary<string, List<FaceOffCardEffect>>
         {
@@ -41,6 +44,30 @@ public class CardFinder
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.SELF)
                     .withEffectAmount(1)
+                }
+            },
+            { "lady-cyclist", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_GEAR_IS_ATTACHED_TO_THIS_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.SELF)
+                    .withEffectAmount(2)
+                }
+            },
+            { "expensive-wheels", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.ENTIRE_TEAM)
+                    .withEffectAmount(1)
+                }
+            },
+            { "well-fitted-seat", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.RANDOM_FANATIC)
+                    .withEffectAmount(2)
                 }
             },
         };

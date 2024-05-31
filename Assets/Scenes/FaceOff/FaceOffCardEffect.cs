@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FaceOffCardEffect
 {
@@ -11,6 +12,8 @@ public class FaceOffCardEffect
     int effectAmount = 0;
     FandomType fandomTypeFilter = FandomType.NONE;
     //FaceOffCardEffectTargetFilter targetFilter;
+
+    private System.Random random = new System.Random();
 
     public FaceOffCardEffect(
         FaceOffCardEffectTiming timing,
@@ -113,6 +116,13 @@ public class FaceOffCardEffect
                     {
                         teamMember.addSwayCounters(this.effectAmount);
                     }
+                }
+                break;
+            case FaceOffCardEffectTarget.RANDOM_FANATIC:
+                if (effectOwner.getCardOwner().getTeam().Count > 0)
+                {
+                    FaceOffCard randomFanatic = effectOwner.getCardOwner().getTeam()[random.Next(effectOwner.getCardOwner().getTeam().Count)];
+                    randomFanatic.addSwayCounters(this.effectAmount);
                 }
                 break;
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class FaceOffScript : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class FaceOffScript : MonoBehaviour
         faceOffGenerator.repositionCards();
 
         faceOffGenerator.checkForCardsToPlay();
+        updateDeckCounts();
     }
 
     // Update is called once per frame
@@ -70,7 +72,17 @@ public class FaceOffScript : MonoBehaviour
                 default:
                     break;
             }
+            if (!waitingOnPlayer())
+            {
+                updateDeckCounts();
+            }
         }
+    }
+
+    private bool waitingOnPlayer()
+    {
+        return this.faceOffGenerator.currentStatus() == FaceOffStatus.WaitingForPlayerToPlayCard ||
+                this.faceOffGenerator.currentStatus() == FaceOffStatus.WaitingForPlayerToSelectFanaticForGearAttachment;
     }
 
     private List<FaceOffCard> setupDeck(List<CrewCard> deck, FaceOffPlayerPosition faceOffPlayerPosition)
@@ -218,6 +230,12 @@ public class FaceOffScript : MonoBehaviour
     {
         //figure out if card(s) need to be played
         faceOffGenerator.afterDuel();
+    }
+
+    private void updateDeckCounts()
+    {
+        GameObject.Find("Deck2/NumberCards").GetComponent<TextMeshPro>().text = faceOffGenerator.getEnemy().getDeck().Count.ToString();
+        GameObject.Find("Deck1/NumberCards").GetComponent<TextMeshPro>().text = faceOffGenerator.getPlayer().getDeck().Count.ToString();
     }
 
     private void wait(int milliseconds)

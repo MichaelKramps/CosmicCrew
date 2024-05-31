@@ -169,7 +169,7 @@ public class FaceOffCard
         return this.crewCard.power + this.powerCounters;
     }
 
-    public void activateEffectsFor(FaceOffCardEffectTiming timing, FaceOffPlayer player)
+    public void activateEffectsFor(FaceOffCardEffectTiming timing)
     {
         foreach (FaceOffCardEffect effect in this.cardEffects)
         {

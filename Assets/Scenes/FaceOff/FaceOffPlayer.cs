@@ -83,11 +83,15 @@ public class FaceOffPlayer
 
         for (int cardNumber = 0; cardNumber < actualNumberOfCardsToDraw; cardNumber++)
         {
-            foreach(FaceOffCard card in this.team)
+            FaceOffCard cardDrawn = this.deck[0];
+
+            foreach (FaceOffCard card in this.team)
             {
-                card.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD, this);
+                card.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD);
             }
-            this.hand.Add(this.deck[0]);
+            cardDrawn.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD);
+
+            this.hand.Add(cardDrawn);
             this.deck.RemoveAt(0);
         }
     }
@@ -139,8 +143,8 @@ public class FaceOffPlayer
             fanaticCardSelected.attachGear(this.selectedGearCard);
             this.hand.Remove(this.selectedGearCard);
 
-            fanaticCardSelected.activateEffectsFor(FaceOffCardEffectTiming.WHEN_GEAR_IS_ATTACHED_TO_THIS_CARD, this);
-            this.selectedGearCard.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_GIVE_THIS_TO_A_FANATIC, this);
+            fanaticCardSelected.activateEffectsFor(FaceOffCardEffectTiming.WHEN_GEAR_IS_ATTACHED_TO_THIS_CARD);
+            this.selectedGearCard.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_GIVE_THIS_TO_A_FANATIC);
 
             this.repositionTeam();
             this.repositionHand();

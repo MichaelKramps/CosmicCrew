@@ -47,13 +47,13 @@ public class FaceOffGenerator
 
     public List<FaceOffCard> drawPlayerStartingHand()
     {
-        this.player.drawXCards(6);
+        this.player.drawXCardsIntoHand(6);
         return this.player.getHand();
     }
 
     public List<FaceOffCard> drawEnemyStartingHand()
     {
-        this.enemy.drawXCards(6);
+        this.enemy.drawXCardsIntoHand(6);
         return this.enemy.getHand();
     }
 
@@ -99,15 +99,20 @@ public class FaceOffGenerator
 
     public bool playerHasPlayableCardsInHand(FaceOffPlayer player)
     {
+        bool hasPlayableCardInHand = false;
         bool hasFanaticInTeam = player.getTeam().Count > 0;
         foreach(FaceOffCard card in player.getHand())
         {
-            if (card.isFanatic() || (card.isGear() && hasFanaticInTeam))
+            if (card.isFanatic())
             {
-                return true;
+                return player.getTeam().Count < 6;
+            }
+            if (card.isGear() && hasFanaticInTeam)
+            {
+                hasPlayableCardInHand = true;
             }
         }
-        return false;
+        return hasPlayableCardInHand;
     }
 
     public bool playerHasPlayableCardsInHand()

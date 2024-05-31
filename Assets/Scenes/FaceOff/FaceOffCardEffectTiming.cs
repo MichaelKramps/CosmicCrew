@@ -8,4 +8,5 @@ public enum FaceOffCardEffectTiming
     WHEN_GEAR_IS_ATTACHED_TO_THIS_CARD,
     WHEN_YOU_DRAW_A_CARD,
     WHEN_YOU_DRAW_THIS_CARD,
+    WHEN_YOU_CYCLE_THIS_CARD,
 }

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86986a1d4080344608ad451d93f31b63, type: 3}
-  m_Name: well-fitted-seat
+  m_Name: gc-rider
   m_EditorClassIdentifier: 
-  cardName: Well-Fitted Seat
+  cardName: GC Rider
   cardText: 
-  image: {fileID: 21300000, guid: 27cc6c33802e74c18ad0c8acecac3330, type: 3}
+  image: {fileID: 21300000, guid: ea23150418d434b73a0be772fa85204d, type: 3}
   backgroundTexture: {fileID: 0}
-  power: 0
+  power: 6
   powerCounters: 0
-  numberAllowedInDeck: 4
-  cardId: 8
-  cost: 2
+  numberAllowedInDeck: 2
+  cardId: 9
+  cost: 3
   fandomType: 2
-  cardType: 1
+  cardType: 0

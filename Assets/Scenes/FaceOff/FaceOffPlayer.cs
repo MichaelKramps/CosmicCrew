@@ -77,22 +77,72 @@ public class FaceOffPlayer
         this.deck = this.deck.OrderBy(x => random.Next()).ToList();
     }
 
-    public void drawXCards(int numberCardsToDraw)
+    public FaceOffCard drawACard()
+    {
+        FaceOffCard cardDrawn = this.deck[0];
+
+        foreach (FaceOffCard card in this.team)
+        {
+            card.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD);
+        }
+        cardDrawn.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD);
+
+        this.deck.Remove(cardDrawn);
+        return cardDrawn;
+    }
+
+    public void putCardInHand(FaceOffCard card)
+    {
+        this.hand.Add(card);
+    }
+
+    public void cycleCard(FaceOffCard card)
+    {
+        card.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_CYCLE_THIS_CARD);
+        if (!this.team.Contains(card) && !this.hand.Contains(card))
+        {
+            card.getCardsGameObject().GetComponent<CrewCardBehavior>().cycleCard();
+            this.deck.Add(card);
+        }
+    }
+
+    public void drawXCardsIntoHand(int numberCardsToDraw)
     {
         int actualNumberOfCardsToDraw = numberCardsToDraw <= this.deckSize() ? numberCardsToDraw : this.deckSize();
 
         for (int cardNumber = 0; cardNumber < actualNumberOfCardsToDraw; cardNumber++)
         {
-            FaceOffCard cardDrawn = this.deck[0];
-
-            foreach (FaceOffCard card in this.team)
+            if (this.deck.Count > 0)
             {
-                card.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD);
+                FaceOffCard drawnCard = drawACard();
+                putCardInHand(drawnCard);
             }
-            cardDrawn.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD);
+        }
+    }
 
-            this.hand.Add(cardDrawn);
-            this.deck.RemoveAt(0);
+    
+
+    public void cycleXCards(int numberCardsToCycle)
+    {
+        int actualNumberOfCardsToCycle = this.deckSize() > 0 ? numberCardsToCycle : 0;
+
+        for (int cardNumber = 0; cardNumber < actualNumberOfCardsToCycle; cardNumber++)
+        {
+            if (this.deck.Count > 0)
+            {
+                FaceOffCard drawnCard = drawACard();
+                cycleCard(drawnCard);
+            }
+        }
+    }
+
+    public void playCardFromCycle(FaceOffCard cardToPlay)
+    {
+        if (this.team.Count < 6)
+        {
+            this.team.Add(cardToPlay);
+            this.repositionTeam();
+            this.repositionHand();
         }
     }
 
@@ -103,7 +153,7 @@ public class FaceOffPlayer
 
     public void playCardFromHand(FaceOffCard cardToPlay)
     {
-        if (this.hand.Contains(cardToPlay))
+        if (this.hand.Contains(cardToPlay) && this.team.Count < 6)
         {
             this.team.Add(cardToPlay);
             this.hand.Remove(cardToPlay);
@@ -115,12 +165,16 @@ public class FaceOffPlayer
     public void playGameObjectCardFromHand(GameObject cardToPlay)
     {
         int indexOfCardToPlay = this.findIndexOfGameObjectInHand(cardToPlay);
-        if (indexOfCardToPlay > -1)
+        if (indexOfCardToPlay > -1 && this.team.Count < 6)
         {
-            this.team.Add(this.hand[indexOfCardToPlay]);
+            FaceOffCard playedCard = this.hand[indexOfCardToPlay];
+            this.team.Add(playedCard);
             this.hand.RemoveAt(indexOfCardToPlay);
+
             this.repositionTeam();
             this.repositionHand();
+
+            playedCard.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD);
         }
     }
 
@@ -261,7 +315,7 @@ public class FaceOffPlayer
         this.team.Remove(postDuelCard);
 
         //draw a card from deck before putting cards in
-        this.drawXCards(1);
+        this.drawXCardsIntoHand(1);
 
         //put card on bottom of deck
         this.deck.Add(postDuelCard);

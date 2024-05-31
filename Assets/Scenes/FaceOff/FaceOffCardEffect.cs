@@ -63,11 +63,17 @@ public class FaceOffCardEffect
     {
         switch (this.effect)
         {
+            case FaceOffCardEffectEffect.SWAY_COUNTERS:
+                swayCounters();
+                break;
             case FaceOffCardEffectEffect.REDUCE_COST:
                 reduceCost();
                 break;
-            case FaceOffCardEffectEffect.SWAY_COUNTERS:
-                swayCounters();
+            case FaceOffCardEffectEffect.CYCLE:
+                cycle();
+                break;
+            case FaceOffCardEffectEffect.PLAY_CARD_FROM_CYCLE:
+                playCardFromCycle();
                 break;
         }
     }
@@ -112,6 +118,7 @@ public class FaceOffCardEffect
             case FaceOffCardEffectTarget.ENTIRE_TEAM:
                 foreach(FaceOffCard teamMember in effectOwner.getCardOwner().getTeam())
                 {
+                    Debug.Log("add sway counter to " + teamMember.getCardName());
                     if (qualifiesForEffect(teamMember))
                     {
                         teamMember.addSwayCounters(this.effectAmount);
@@ -126,5 +133,15 @@ public class FaceOffCardEffect
                 }
                 break;
         }
+    }
+
+    private void cycle()
+    {
+        this.effectOwner.getCardOwner().cycleXCards(this.effectAmount);
+    }
+
+    private void playCardFromCycle()
+    {
+        this.effectOwner.getCardOwner().playCardFromCycle(this.effectOwner);
     }
 }

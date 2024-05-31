@@ -5,6 +5,7 @@ public class CardAnimation
 {
     private CardAnimationType animationType;
     private int animationInteger = 0;
+    private int durationInMilliseconds;
     private String animationString = "";
     private Vector3 startingPoint;
     private Vector3 endingPoint;
@@ -29,6 +30,17 @@ public class CardAnimation
     public int getAnimationInteger()
     {
         return this.animationInteger;
+    }
+
+    public CardAnimation withDuration(int durationInMilliseconds)
+    {
+        this.durationInMilliseconds = durationInMilliseconds;
+        return this;
+    }
+
+    public int getDuration()
+    {
+        return this.durationInMilliseconds;
     }
 
     public CardAnimation withAnimationString(String animationString)

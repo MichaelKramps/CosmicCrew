@@ -6,10 +6,7 @@ using TMPro;
 
 public class CrewCardBehavior : MonoBehaviour
 {
-    private bool moving;
-    private Vector3 startingPoint;
-    private Vector3 endingPoint;
-    private int timeInMilliseconds;
+    static float defaultCardScale = 0.3f;
 
     private Queue<CardAnimation> animationQueue = new Queue<CardAnimation>();
 
@@ -22,31 +19,27 @@ public class CrewCardBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moving)
-        {
-            this.moving = Animate.moveTowardsPoint(this.endingPoint, this.startingPoint, this.timeInMilliseconds, gameObject);
-        }
-
         if (animationQueue.Count > 0)
         {
             this.animate();
         }
     }
 
-    public void moveTo(Vector3 whereToMove, int timeInMilliseconds)
-    {
-        this.startingPoint = gameObject.GetComponent<Transform>().position;
-        this.endingPoint = whereToMove;
-        this.timeInMilliseconds = timeInMilliseconds;
-        this.moving = true;
-    }
-
     private void animate()
     {
         switch (this.currentAnimation().getAnimationType())
         {
+            case CardAnimationType.MOVE_CARD:
+                animateMove();
+                break;
             case CardAnimationType.SWAY_COUNTERS:
                 animateSwayCounters();
+                break;
+            case CardAnimationType.DRAW_CARD:
+                animateDrawCard();
+                break;
+            case CardAnimationType.CYCLE_CARD:
+                animateCycleCard();
                 break;
         }
     }
@@ -54,6 +47,25 @@ public class CrewCardBehavior : MonoBehaviour
     private CardAnimation currentAnimation()
     {
         return animationQueue.Peek();
+    }
+
+    public void animateMove()
+    {
+        if(!Animate.moveTowardsPoint(this.currentAnimation().getEndingPoint(), this.currentAnimation().getStartingPoint(), this.currentAnimation().getDuration(), gameObject))
+        {
+            nextAnimation();
+        }
+    }
+
+    public void moveTo(Vector3 whereToMove, int timeInMilliseconds)
+    {
+        Vector3 currentCardPosition = gameObject.GetComponent<Transform>().position;
+        CardAnimation moveAnimation = new CardAnimation(CardAnimationType.MOVE_CARD)
+            .withDuration(timeInMilliseconds)
+            .withStartingPoint(currentCardPosition)
+            .withEndingPoint(whereToMove);
+
+        this.animationQueue.Enqueue(moveAnimation);
     }
 
     private void animateSwayCounters()
@@ -80,8 +92,7 @@ public class CrewCardBehavior : MonoBehaviour
                 powerObject.GetComponent<TextMeshPro>().fontStyle = FontStyles.Normal;
                 powerObject.GetComponent<TextMeshPro>().color = new Color32(0, 0, 0, 255);
             }
-
-            animationQueue.Dequeue();
+            nextAnimation();
         }
     }
 
@@ -102,5 +113,65 @@ public class CrewCardBehavior : MonoBehaviour
         powerCountersSprite.sortingOrder = 1;
         powerCountersSprite.transform.position = swayCounterAnimation.getStartingPoint();
         powerCountersObject.transform.Find("Number Counters").gameObject.GetComponent<SortingGroup>().sortingOrder = 2;
+    }
+
+    public void animateDrawCard()
+    {
+        if (!Animate.moveTowardsPointAlongX(this.currentAnimation().getEndingPoint(), this.currentAnimation().getStartingPoint(), 750f, gameObject) ||
+            !Animate.scaleTowardsSize(defaultCardScale * 1.5f, defaultCardScale, 750f, gameObject))
+        {
+            this.animationQueue.Dequeue();
+        }
+    }
+
+    public void animateCycleCard()
+    {
+        if (!Animate.moveTowardsPointAlongX(this.currentAnimation().getEndingPoint(), this.currentAnimation().getStartingPoint(), 750f, gameObject) ||
+            !Animate.scaleTowardsSize(defaultCardScale, defaultCardScale * 1.5f, 750f, gameObject))
+        {
+            gameObject.GetComponent<SortingGroup>().sortingLayerName = "Cards";
+            nextAnimation();
+        }
+    }
+
+    public void cycleCard()
+    {
+        Vector3 currentCardPosition = gameObject.GetComponent<Transform>().position;
+        Vector3 showcasePosition = new Vector3(currentCardPosition.x - 1.5f, currentCardPosition.y);
+        CardAnimation drawAnimation = new CardAnimation(CardAnimationType.DRAW_CARD)
+            .withStartingPoint(currentCardPosition)
+            .withEndingPoint(showcasePosition);
+        CardAnimation cycleAnimation = new CardAnimation(CardAnimationType.CYCLE_CARD)
+            .withStartingPoint(showcasePosition)
+            .withEndingPoint(currentCardPosition);
+
+        this.animationQueue.Enqueue(drawAnimation);
+        this.animationQueue.Enqueue(cycleAnimation);
+
+        //set up draw animation
+        gameObject.GetComponent<SortingGroup>().sortingLayerName = "Featured";
+    }
+
+    public void nextAnimation()
+    {
+        this.animationQueue.Dequeue();
+
+        if (this.animationQueue.Count > 0)
+        {
+            switch (this.animationQueue.Peek().getAnimationType())
+            {
+                case CardAnimationType.SWAY_COUNTERS:
+                    //need to reset starting/ending points to current card position
+                    Vector3 currentCardPosition = gameObject.GetComponent<Transform>().position;
+                    this.animationQueue.Peek()
+                        .withStartingPoint(new Vector3(currentCardPosition.x, currentCardPosition.y))
+                        .withEndingPoint(new Vector3(currentCardPosition.x, currentCardPosition.y + 0.55f)); ;
+                    break;
+                case CardAnimationType.DRAW_CARD:
+                    //put card back on top of deck
+                    gameObject.GetComponent<SortingGroup>().sortingLayerName = "Featured";
+                    break;
+            }
+        }
     }
 }

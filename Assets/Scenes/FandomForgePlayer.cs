@@ -13,12 +13,12 @@ public class FandomForgePlayer
     public FandomForgePlayer()
     {
         faceOffDeck = new List<CrewCard> {
-            CardFinder.getCrewCardFromId(0),
-            CardFinder.getCrewCardFromId(0),
-            CardFinder.getCrewCardFromId(1),
-            CardFinder.getCrewCardFromId(1),
-            CardFinder.getCrewCardFromId(2),
-            CardFinder.getCrewCardFromId(2),
+            CardFinder.getCrewCardFromId(10),
+            CardFinder.getCrewCardFromId(9),
+            CardFinder.getCrewCardFromId(9),
+            CardFinder.getCrewCardFromId(9),
+            CardFinder.getCrewCardFromId(10),
+            CardFinder.getCrewCardFromId(11),
         };
 
         unspentRecruitingTokens = 3;

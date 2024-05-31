@@ -15,12 +15,12 @@ public class CardFinder
             { 6, "lady-cyclist" },
             { 7, "expensive-wheels" },
             { 8, "well-fitted-seat" },
+            { 9, "gc-rider" },
+            { 10, "best-young-rider" },
+            { 11, "weight-loss-seeker" },
         };
     private static Dictionary<String, List<FaceOffCardEffect>> effectDictionary = new Dictionary<string, List<FaceOffCardEffect>>
         {
-            { "fandom-lurker", new List<FaceOffCardEffect>() },
-            { "fandom-participant", new List<FaceOffCardEffect>() },
-            { "fandom-club-member", new List<FaceOffCardEffect>() },
             { "hostile-dog", new List<FaceOffCardEffect>{
                 new FaceOffCardEffect(
                     FaceOffCardEffectTiming.WHEN_YOU_DISMISS_THIS_CARD,
@@ -68,6 +68,34 @@ public class CardFinder
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.RANDOM_FANATIC)
                     .withEffectAmount(2)
+                }
+            },
+            { "gc-rider", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_CYCLE_THIS_CARD,
+                    FaceOffCardEffectEffect.PLAY_CARD_FROM_CYCLE,
+                    FaceOffCardEffectTarget.NONE)
+                }
+            },
+            { "best-young-rider", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.SELF)
+                    .withEffectAmount(3),
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
+                    FaceOffCardEffectEffect.CYCLE,
+                    FaceOffCardEffectTarget.NONE)
+                    .withEffectAmount(3)
+                }
+            },
+            { "weight-loss-seeker", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
+                    FaceOffCardEffectEffect.CYCLE,
+                    FaceOffCardEffectTarget.NONE)
+                    .withEffectAmount(1)
                 }
             },
         };

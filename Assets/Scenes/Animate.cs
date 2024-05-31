@@ -71,6 +71,40 @@ public static class Animate
 
     }
 
+    public static bool moveTowardsPointAlongX(Vector3 destination, Vector3 startingPoint, float timeInMilliseconds, GameObject objectToMove)
+    {
+        if (Animate.notYetReachedXDestination(destination, objectToMove))
+        {
+            float currentX = objectToMove.transform.position.x;
+            float currentY = objectToMove.transform.position.y;
+
+            float amountToChangeX = ((destination.x - startingPoint.x) / (timeInMilliseconds / 1000f)) * Time.deltaTime;
+
+            float newX = currentX + amountToChangeX;
+
+            if ((destination.x > startingPoint.x && newX > destination.x) || (destination.x < startingPoint.x && newX < destination.x))
+            {
+                newX = destination.x;
+            }
+
+            objectToMove.transform.position = new Vector3(newX, currentY, objectToMove.transform.position.z);
+            //still moving towards point
+            return true;
+        }
+        else
+        {
+            objectToMove.transform.position = new Vector3(objectToMove.transform.position.x, destination.y, objectToMove.transform.position.z);
+            //no longer moving towards point
+            return false;
+        }
+
+    }
+
+    public static bool notYetReachedXDestination(Vector3 destination, GameObject objectToMove)
+    {
+        return objectToMove.transform.position.x != destination.x;
+    }
+
     public static bool notYetReachedYDestination(Vector3 destination, GameObject objectToMove)
     {
         return objectToMove.transform.position.y != destination.y;

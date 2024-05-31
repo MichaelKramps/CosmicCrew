@@ -113,7 +113,7 @@ public class FaceOffCard
         int index = 1;
         foreach(FaceOffCard gear in this.attachedGear)
         {
-            yCoordinate += (index * -0.4f) - 0.4f;
+            yCoordinate += (index * -0.15f) - 0.4f;
             gear.getCardsGameObject().GetComponent<CrewCardBehavior>().moveTo(new Vector3(futureXCoordinateOfThisCard, yCoordinate), Animate.cardMovementTime);
             gear.getCardsGameObject().GetComponent<SortingGroup>().sortingLayerName = "Cards";
             gear.getCardsGameObject().GetComponent<SortingGroup>().sortingOrder = index;

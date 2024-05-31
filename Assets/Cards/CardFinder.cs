@@ -11,6 +11,7 @@ public class CardFinder
             { 2, "fandom-club-member" },
             { 3, "hostile-dog" },
             { 4, "rainbow-jersey" },
+            { 5, "king-of-the-mountains" },
         };
     private static Dictionary<String, List<FaceOffCardEffect>> effectDictionary = new Dictionary<string, List<FaceOffCardEffect>>
         {
@@ -32,6 +33,14 @@ public class CardFinder
                     FaceOffCardEffectTarget.ENTIRE_TEAM)
                     .withEffectAmount(2)
                     .withFandomFilter(FandomType.CYCLING)
+                }
+            },
+            { "king-of-the-mountains", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.SELF)
+                    .withEffectAmount(1)
                 }
             },
         };
@@ -78,6 +87,21 @@ public class CardFinder
         if (effectDictionary.ContainsKey(dictionaryKey))
         {
             return effectDictionary[dictionaryKey];
+        }
+        return new List<FaceOffCardEffect>();
+    }
+
+    public static List<FaceOffCardEffect> getCardEffectsFromCrewCard(CrewCard crewCard, FaceOffCard card)
+    {
+        string dictionaryKey = crewCard.cardName.ToLower().Replace(" ", "-");
+        if (effectDictionary.ContainsKey(dictionaryKey))
+        {
+            List<FaceOffCardEffect> ownedCardEffects = new List<FaceOffCardEffect>();
+            foreach(FaceOffCardEffect effect in effectDictionary[dictionaryKey])
+            {
+                ownedCardEffects.Add(effect.clone().withEffectOwner(card));
+            }
+            return ownedCardEffects;
         }
         return new List<FaceOffCardEffect>();
     }

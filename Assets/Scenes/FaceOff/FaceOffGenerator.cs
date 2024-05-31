@@ -19,6 +19,16 @@ public class FaceOffGenerator
         this.enemy.addOpponent(this.player);
     }
 
+    public FaceOffPlayer getPlayer()
+    {
+        return this.player;
+    }
+
+    public FaceOffPlayer getEnemy()
+    {
+        return this.enemy;
+    }
+
     public void updateStatus(FaceOffStatus status)
     {
         this.faceOffStatus = status;
@@ -27,6 +37,12 @@ public class FaceOffGenerator
     public FaceOffStatus currentStatus()
     {
         return this.faceOffStatus;
+    }
+
+    public void addCardOwners()
+    {
+        this.player.addPlayerToCards();
+        this.enemy.addPlayerToCards();
     }
 
     public List<FaceOffCard> drawPlayerStartingHand()
@@ -67,7 +83,6 @@ public class FaceOffGenerator
 
     public void playRandomCardFromEnemyHand()
     {
-        Debug.Log("playing enemy card: " + this.faceOffStatus);
         this.enemy.playRandomCardFromHand();
     }
 

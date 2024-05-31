@@ -58,7 +58,7 @@ public class CrewCardBehavior : MonoBehaviour
 
     private void animateSwayCounters()
     {
-        if (!Animate.moveTowardsPoint(this.currentAnimation().getEndingPoint(), this.currentAnimation().getStartingPoint(), 750f, gameObject.transform.Find("Power Counters").gameObject))
+        if (!Animate.moveTowardsPointAlongY(this.currentAnimation().getEndingPoint(), this.currentAnimation().getStartingPoint(), 750f, gameObject.transform.Find("Power Counters").gameObject))
         {
             //handle ending of sway counter animation
             GameObject numberCountersObject = gameObject.transform.Find("Power Counters").Find("Number Counters").gameObject;

@@ -24,6 +24,14 @@ public class FaceOffPlayer
         this.discard = new List<FaceOffCard>();
     }
 
+    public void addPlayerToCards()
+    {
+        foreach(FaceOffCard card in deck)
+        {
+            card.addCardOwner(this);
+        }
+    }
+
     public void addOpponent(FaceOffPlayer opponent)
     {
         this.opponent = opponent;
@@ -75,6 +83,10 @@ public class FaceOffPlayer
 
         for (int cardNumber = 0; cardNumber < actualNumberOfCardsToDraw; cardNumber++)
         {
+            foreach(FaceOffCard card in this.team)
+            {
+                card.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD, this);
+            }
             this.hand.Add(this.deck[0]);
             this.deck.RemoveAt(0);
         }
@@ -241,11 +253,13 @@ public class FaceOffPlayer
 
     public void handleDuelWin(FaceOffCard postDuelCard)
     {
+        //remove card from team
+        this.team.Remove(postDuelCard);
+
         //draw a card from deck before putting cards in
         this.drawXCards(1);
 
         //put card on bottom of deck
-        this.team.Remove(postDuelCard);
         this.deck.Add(postDuelCard);
 
         //put attached gear on bottom of deck

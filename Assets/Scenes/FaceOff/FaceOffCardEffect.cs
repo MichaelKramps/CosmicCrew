@@ -7,6 +7,7 @@ public class FaceOffCardEffect
     FaceOffCardEffectTiming timing;
     FaceOffCardEffectEffect effect;
     FaceOffCardEffectTarget target;
+    FaceOffCard effectOwner;
     int effectAmount = 0;
     FandomType fandomTypeFilter = FandomType.NONE;
     //FaceOffCardEffectTargetFilter targetFilter;
@@ -19,6 +20,21 @@ public class FaceOffCardEffect
         this.timing = timing;
         this.effect = effect;
         this.target = target;
+    }
+
+    public FaceOffCardEffect clone()
+    {
+        FaceOffCardEffect selfClone = new FaceOffCardEffect(timing, effect, target)
+            .withFandomFilter(fandomTypeFilter)
+            .withEffectAmount(effectAmount);
+        
+        return selfClone;
+    }
+
+    public FaceOffCardEffect withEffectOwner(FaceOffCard card)
+    {
+        this.effectOwner = card;
+        return this;
     }
 
     public FaceOffCardEffect withEffectAmount(int amount)
@@ -47,16 +63,8 @@ public class FaceOffCardEffect
             case FaceOffCardEffectEffect.REDUCE_COST:
                 reduceCost();
                 break;
-        }
-    }
-
-    //should be called when a player exists (in a Face-Off)
-    public void activateEffect(FaceOffPlayer player)
-    {
-        switch (this.effect)
-        {
             case FaceOffCardEffectEffect.SWAY_COUNTERS:
-                swayCounters(player);
+                swayCounters();
                 break;
         }
     }
@@ -91,12 +99,15 @@ public class FaceOffCardEffect
         }
     }
 
-    private void swayCounters(FaceOffPlayer player)
+    private void swayCounters()
     {
         switch (this.target)
         {
+            case FaceOffCardEffectTarget.SELF:
+                this.effectOwner.addSwayCounters(this.effectAmount);
+                break;
             case FaceOffCardEffectTarget.ENTIRE_TEAM:
-                foreach(FaceOffCard teamMember in player.getTeam())
+                foreach(FaceOffCard teamMember in effectOwner.getCardOwner().getTeam())
                 {
                     if (qualifiesForEffect(teamMember))
                     {

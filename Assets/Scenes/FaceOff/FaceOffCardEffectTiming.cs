@@ -6,4 +6,5 @@ public enum FaceOffCardEffectTiming
     WHEN_YOU_RECRUIT_THIS_CARD,
     WHEN_YOU_GIVE_THIS_TO_A_FANATIC, //gear timing
     WHEN_GEAR_IS_ATTACHED_TO_THIS_CARD,
+    WHEN_YOU_DRAW_A_CARD,
 }

@@ -9,6 +9,7 @@ public class FaceOffCard
     private GameObject cardsGameObject;
     private CrewCard crewCard;
     public int powerCounters = 0;
+    private FaceOffPlayer cardOwner;
     //private FaceOffPlayerPosition cardOwner;
 
     private List<FaceOffCardEffect> cardEffects;
@@ -25,7 +26,7 @@ public class FaceOffCard
     {
         this.cardsGameObject = cardsGameObject;
         this.crewCard = cardsGameObject.GetComponent<CrewCardScript>().crewCard;
-        this.cardEffects = CardFinder.getCardEffectsFromCrewCard(this.crewCard);
+        this.cardEffects = CardFinder.getCardEffectsFromCrewCard(this.crewCard, this);
         this.teamY = cardOwner == FaceOffPlayerPosition.Top ? 1.5f : -1.5f;
         this.handY = cardOwner == FaceOffPlayerPosition.Top ? 4.3f : -4.3f;
         this.deckDiscardY = cardOwner == FaceOffPlayerPosition.Top ? 3f : -3f;
@@ -36,6 +37,16 @@ public class FaceOffCard
     public GameObject getCardsGameObject()
     {
         return this.cardsGameObject;
+    }
+
+    public void addCardOwner(FaceOffPlayer player)
+    {
+        this.cardOwner = player;
+    }
+
+    public FaceOffPlayer getCardOwner()
+    {
+        return this.cardOwner;
     }
 
     public List<FaceOffCard> getAttachedGear()
@@ -164,7 +175,7 @@ public class FaceOffCard
         {
             if (effect.timingIs(timing))
             {
-                effect.activateEffect(player);
+                effect.activateEffect();
             }
         }
     }

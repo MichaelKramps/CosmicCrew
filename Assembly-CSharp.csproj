@@ -114,6 +114,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SkewTextExample.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/WarpTextExample.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
+    <Compile Include="Assets/Scenes/FaceOff/FaceOffGlobalInformation.cs" />
     <Compile Include="Assets/Scenes/Recruiting/DraftMachine.cs" />
     <Compile Include="Assets/Cards/FandomType.cs" />
     <Compile Include="Assets/Scenes/Clash/ClashPlayer.cs" />

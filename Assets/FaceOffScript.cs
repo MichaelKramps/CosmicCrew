@@ -57,17 +57,29 @@ public class FaceOffScript : MonoBehaviour
                     faceOffGenerator.checkForCardsToPlay();
                     break;
                 case FaceOffStatus.ChooseDuelCards:
-                    selectCardsForDuel();
+                    if (FaceOffGlobalInformation.noAnimations())
+                    {
+                        selectCardsForDuel();
+                    }
                     break;
                 case FaceOffStatus.Duel:
-                    duel();
+                    if (FaceOffGlobalInformation.noAnimations())
+                    {
+                        duel();
+                    }
                     break;
                 case FaceOffStatus.AfterDuel:
-                    afterDuel();
+                    if (FaceOffGlobalInformation.noAnimations())
+                    {
+                        afterDuel();
+                    }
                     break;
                 case FaceOffStatus.End:
-                    faceOffGenerator.endFaceOff();
-                    SceneManager.LoadScene("Recruiting Phase");
+                    if (FaceOffGlobalInformation.noAnimations())
+                    {
+                        faceOffGenerator.endFaceOff();
+                        SceneManager.LoadScene("Recruiting Phase");
+                    }
                     break;
                 default:
                     break;

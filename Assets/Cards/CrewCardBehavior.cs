@@ -8,7 +8,7 @@ public class CrewCardBehavior : MonoBehaviour
 {
     static float defaultCardScale = 0.3f;
 
-    private Queue<CardAnimation> animationQueue = new Queue<CardAnimation>();
+    private List<CardAnimation> animationQueue = new List<CardAnimation>();
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +46,7 @@ public class CrewCardBehavior : MonoBehaviour
 
     private CardAnimation currentAnimation()
     {
-        return animationQueue.Peek();
+        return animationQueue[0];
     }
 
     public void animateMove()
@@ -65,7 +65,13 @@ public class CrewCardBehavior : MonoBehaviour
             .withStartingPoint(currentCardPosition)
             .withEndingPoint(whereToMove);
 
-        this.animationQueue.Enqueue(moveAnimation);
+        //moveTo always gets added to the front of the animation queue
+        //because it takes precedence over any other animation
+        //It must also overwrite any other movement animations in the queue
+        this.removeMoveCardAnimationsFromQueue();
+        this.animationQueue.Insert(0, moveAnimation);
+        FaceOffGlobalInformation.objectAnimating(gameObject.GetInstanceID());
+        printAnimationQueue();
     }
 
     private void animateSwayCounters()
@@ -105,7 +111,7 @@ public class CrewCardBehavior : MonoBehaviour
             .withStartingPoint(new Vector3(currentCardPosition.x, currentCardPosition.y))
             .withEndingPoint(new Vector3(currentCardPosition.x, currentCardPosition.y + 0.55f));
 
-        this.animationQueue.Enqueue(swayCounterAnimation);
+        addAnimation(swayCounterAnimation);
 
         //set up start of sway counter animation
         GameObject powerCountersObject = gameObject.transform.Find("Power Counters").gameObject;
@@ -120,7 +126,7 @@ public class CrewCardBehavior : MonoBehaviour
         if (!Animate.moveTowardsPointAlongX(this.currentAnimation().getEndingPoint(), this.currentAnimation().getStartingPoint(), 750f, gameObject) ||
             !Animate.scaleTowardsSize(defaultCardScale * 1.5f, defaultCardScale, 750f, gameObject))
         {
-            this.animationQueue.Dequeue();
+            nextAnimation();
         }
     }
 
@@ -145,25 +151,57 @@ public class CrewCardBehavior : MonoBehaviour
             .withStartingPoint(showcasePosition)
             .withEndingPoint(currentCardPosition);
 
-        this.animationQueue.Enqueue(drawAnimation);
-        this.animationQueue.Enqueue(cycleAnimation);
+        addAnimation(drawAnimation);
+        addAnimation(cycleAnimation);
 
         //set up draw animation
         gameObject.GetComponent<SortingGroup>().sortingLayerName = "Featured";
     }
 
+    private void removeMoveCardAnimationsFromQueue()
+    {
+        List<int> indexesToRemove = new List<int>();
+        for(int index = 0; index < this.animationQueue.Count; index++)
+        {
+            CardAnimation animation = this.animationQueue[index];
+            if (animation.getAnimationType() == CardAnimationType.MOVE_CARD)
+            {
+                indexesToRemove.Add(index);
+            }
+        }
+
+        foreach(int index in indexesToRemove)
+        {
+            this.animationQueue.RemoveAt(index);
+        }
+    }
+
+    public void addAnimation(CardAnimation animation)
+    {
+        this.animationQueue.Add(animation);
+        FaceOffGlobalInformation.objectAnimating(gameObject.GetInstanceID());
+    }
+
     public void nextAnimation()
     {
-        this.animationQueue.Dequeue();
+        this.animationQueue.RemoveAt(0);
+        this.recalibrateCurrentAnimation();
+        if (this.animationQueue.Count == 0)
+        {
+            FaceOffGlobalInformation.objectDoneAnimating(gameObject.GetInstanceID());
+        }
+    }
 
+    public void recalibrateCurrentAnimation()
+    {
         if (this.animationQueue.Count > 0)
         {
-            switch (this.animationQueue.Peek().getAnimationType())
+            switch (this.currentAnimation().getAnimationType())
             {
                 case CardAnimationType.SWAY_COUNTERS:
                     //need to reset starting/ending points to current card position
                     Vector3 currentCardPosition = gameObject.GetComponent<Transform>().position;
-                    this.animationQueue.Peek()
+                    this.currentAnimation()
                         .withStartingPoint(new Vector3(currentCardPosition.x, currentCardPosition.y))
                         .withEndingPoint(new Vector3(currentCardPosition.x, currentCardPosition.y + 0.55f)); ;
                     break;
@@ -173,5 +211,17 @@ public class CrewCardBehavior : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void printAnimationQueue()
+    {
+        Debug.Log(gameObject.GetComponent<CrewCardScript>().crewCard.cardName);
+        string queueOutput = "";
+        foreach (CardAnimation animation in this.animationQueue)
+        {
+            queueOutput += animation.getAnimationType();
+            queueOutput += " ";
+        }
+        Debug.Log(queueOutput);
     }
 }

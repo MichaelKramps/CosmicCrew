@@ -187,6 +187,10 @@ public class FaceOffGenerator
         playerDuelCard = null;
         enemyDuelCard = null;
 
+        //happens after duel result is set, but before card has been moved
+        this.player.handleTeamEffectsFor(FaceOffCardEffectTiming.AFTER_EACH_DUEL);
+        this.enemy.handleTeamEffectsFor(FaceOffCardEffectTiming.AFTER_EACH_DUEL);
+
         if (this.player.getHand().Count > 0)
         {
             this.faceOffStatus = FaceOffStatus.WaitingForPlayerToPlayCard;

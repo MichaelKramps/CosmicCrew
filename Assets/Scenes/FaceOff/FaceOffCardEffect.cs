@@ -118,7 +118,6 @@ public class FaceOffCardEffect
             case FaceOffCardEffectTarget.ENTIRE_TEAM:
                 foreach(FaceOffCard teamMember in effectOwner.getCardOwner().getTeam())
                 {
-                    Debug.Log("add sway counter to " + teamMember.getCardName());
                     if (qualifiesForEffect(teamMember))
                     {
                         teamMember.addSwayCounters(this.effectAmount);
@@ -130,6 +129,28 @@ public class FaceOffCardEffect
                 {
                     FaceOffCard randomFanatic = effectOwner.getCardOwner().getTeam()[random.Next(effectOwner.getCardOwner().getTeam().Count)];
                     randomFanatic.addSwayCounters(this.effectAmount);
+                }
+                break;
+            case FaceOffCardEffectTarget.LEFTMOST_FANATIC:
+                foreach (FaceOffCard teamMember in effectOwner.getCardOwner().getTeam())
+                {
+                    if (qualifiesForEffect(teamMember))
+                    {
+                        teamMember.addSwayCounters(this.effectAmount);
+                        break;
+                    }
+                }
+                break;
+            case FaceOffCardEffectTarget.RIGHTMOST_FANATIC:
+                //iterate backwards through team
+                for (int index = effectOwner.getCardOwner().getTeam().Count - 1; index > -1; index++)
+                {
+                    FaceOffCard teamMember = effectOwner.getCardOwner().getTeam()[index];
+                    if (qualifiesForEffect(teamMember))
+                    {
+                        teamMember.addSwayCounters(this.effectAmount);
+                        break;
+                    }
                 }
                 break;
         }

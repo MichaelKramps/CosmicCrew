@@ -66,6 +66,7 @@ public class FaceOffScript : MonoBehaviour
                     if (FaceOffGlobalInformation.noAnimations())
                     {
                         duel();
+                        faceOffGenerator.repositionCards();
                     }
                     break;
                 case FaceOffStatus.AfterDuel:
@@ -234,7 +235,6 @@ public class FaceOffScript : MonoBehaviour
     private void duel()
     {
         faceOffGenerator.duel();
-        faceOffGenerator.repositionCards();
         wait(Animate.cardMovementTime * 2);
     }
 

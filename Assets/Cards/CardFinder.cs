@@ -18,6 +18,24 @@ public class CardFinder
             { 9, "gc-rider" },
             { 10, "best-young-rider" },
             { 11, "weight-loss-seeker" },
+            { 12, "domestique" },
+            { 13, "points-leader" },
+            //{ 14, "newbie-cyclist" },
+            //{ 15, "ex-pro-biker" },
+            //{ 16, "low-gear-guy" },
+            //{ 17, "boom-box-player" },
+            //{ 18, "no-hands-gal" },
+            //{ 19, "squeaky-gears" },
+            //{ 20, "safety-fanatic" },
+            //{ 21, "electric-bike-user" },
+            //{ 22, "bike-repair-kit" },
+            //{ 23, "state-of-the-art-bike" },
+            //{ 24, "bodacious-bibs" },
+            //{ 25, "hair-protecting-helmet" },
+            //{ 26, "bike-collector" },
+            //{ 27, "unwanted-coach" },
+            //{ 28, "modern-bohemian" },
+            //{ 29, "sherlock-holmes" },
         };
     private static Dictionary<String, List<FaceOffCardEffect>> effectDictionary = new Dictionary<string, List<FaceOffCardEffect>>
         {
@@ -93,6 +111,27 @@ public class CardFinder
             { "weight-loss-seeker", new List<FaceOffCardEffect>{
                 new FaceOffCardEffect(
                     FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
+                    FaceOffCardEffectEffect.CYCLE,
+                    FaceOffCardEffectTarget.NONE)
+                    .withEffectAmount(1)
+                }
+            },
+            { "domestique", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_OPPONENT_DRAWS_A_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.LEFTMOST_FANATIC)
+                    .withEffectAmount(1),
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_OPPONENT_DRAWS_A_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.RIGHTMOST_FANATIC)
+                    .withEffectAmount(1)
+                }
+            },
+            { "points-leader", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.AFTER_EACH_DUEL,
                     FaceOffCardEffectEffect.CYCLE,
                     FaceOffCardEffectTarget.NONE)
                     .withEffectAmount(1)

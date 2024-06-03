@@ -77,14 +77,28 @@ public class FaceOffPlayer
         this.deck = this.deck.OrderBy(x => random.Next()).ToList();
     }
 
+    public void handleTeamEffectsFor(FaceOffCardEffectTiming timing)
+    {
+        foreach (FaceOffCard teamMember in this.team)
+        {
+            teamMember.activateEffectsFor(timing);
+        }
+    }
+
+    public void handleOpposingTeamEffectsFor(FaceOffCardEffectTiming timing)
+    {
+        foreach (FaceOffCard opposingTeamMember in this.opponent.team)
+        {
+            opposingTeamMember.activateEffectsFor(timing);
+        }
+    }
+
     public FaceOffCard drawACard()
     {
         FaceOffCard cardDrawn = this.deck[0];
 
-        foreach (FaceOffCard card in this.team)
-        {
-            card.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD);
-        }
+        this.handleTeamEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD);
+        this.handleOpposingTeamEffectsFor(FaceOffCardEffectTiming.WHEN_OPPONENT_DRAWS_A_CARD);
         cardDrawn.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD);
 
         this.deck.Remove(cardDrawn);
@@ -119,7 +133,6 @@ public class FaceOffPlayer
             }
         }
     }
-
     
 
     public void cycleXCards(int numberCardsToCycle)

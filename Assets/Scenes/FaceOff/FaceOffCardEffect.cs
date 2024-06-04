@@ -72,6 +72,9 @@ public class FaceOffCardEffect
             case FaceOffCardEffectEffect.CYCLE:
                 cycle();
                 break;
+            case FaceOffCardEffectEffect.REFRESH:
+                refresh();
+                break;
             case FaceOffCardEffectEffect.PLAY_CARD_FROM_CYCLE:
                 playCardFromCycle();
                 break;
@@ -106,6 +109,11 @@ public class FaceOffCardEffect
                 FandomForge.setOneTimeRecruitingCostReduction(this.effectAmount);
                 break;
         }
+    }
+
+    private void refresh()
+    {
+        FandomForge.freeRefresh();
     }
 
     private void swayCounters()

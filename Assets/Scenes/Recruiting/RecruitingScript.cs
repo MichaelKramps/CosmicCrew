@@ -104,6 +104,7 @@ public class RecruitingScript : MonoBehaviour
         {
             removeCard(whichCard);
         }
+        showRecruitingHand();
     }
 
     private void refresh()
@@ -165,26 +166,35 @@ public class RecruitingScript : MonoBehaviour
 
         Debug.Log("recruiting hand: " + FandomForge.currentRecruitingHand().Count);
 
-        crewCardPrefab.GetComponent<CrewCardScript>().crewCard = FandomForge.currentRecruitingHand()[0];
-        card1 = Instantiate(
-                    crewCardPrefab,
-                    new Vector3(-5.2f, 2.2f, transform.position.z),
-                    transform.rotation);
-        GameObject.Find("recruit-button-1/cost-text").GetComponent<TextMeshPro>().text = FandomForge.determineCostOfCard(FandomForge.currentRecruitingHand()[0]).ToString();
+        if (FandomForge.currentRecruitingHand()[0] != null)
+        {
+            crewCardPrefab.GetComponent<CrewCardScript>().crewCard = FandomForge.currentRecruitingHand()[0];
+            card1 = Instantiate(
+                        crewCardPrefab,
+                        new Vector3(-5.2f, 2.2f, transform.position.z),
+                        transform.rotation);
+            GameObject.Find("recruit-button-1/cost-text").GetComponent<TextMeshPro>().text = FandomForge.determineCostOfCard(FandomForge.currentRecruitingHand()[0]).ToString();
+        }
 
-        crewCardPrefab.GetComponent<CrewCardScript>().crewCard = FandomForge.currentRecruitingHand()[1];
-        card2 = Instantiate(
-                    crewCardPrefab,
-                    new Vector3(-2f, 2.2f, transform.position.z),
-                    transform.rotation);
-        GameObject.Find("recruit-button-2/cost-text").GetComponent<TextMeshPro>().text = FandomForge.determineCostOfCard(FandomForge.currentRecruitingHand()[1]).ToString();
+        if (FandomForge.currentRecruitingHand()[1] != null)
+        {
+            crewCardPrefab.GetComponent<CrewCardScript>().crewCard = FandomForge.currentRecruitingHand()[1];
+            card2 = Instantiate(
+                        crewCardPrefab,
+                        new Vector3(-2f, 2.2f, transform.position.z),
+                        transform.rotation);
+            GameObject.Find("recruit-button-2/cost-text").GetComponent<TextMeshPro>().text = FandomForge.determineCostOfCard(FandomForge.currentRecruitingHand()[1]).ToString();
+        }
 
-        crewCardPrefab.GetComponent<CrewCardScript>().crewCard = FandomForge.currentRecruitingHand()[2];
-        card3 = Instantiate(
-                    crewCardPrefab,
-                    new Vector3(1.2f, 2.2f, transform.position.z),
-                    transform.rotation);
-        GameObject.Find("recruit-button-3/cost-text").GetComponent<TextMeshPro>().text = FandomForge.determineCostOfCard(FandomForge.currentRecruitingHand()[2]).ToString();
+        if (FandomForge.currentRecruitingHand()[2] != null)
+        {
+            crewCardPrefab.GetComponent<CrewCardScript>().crewCard = FandomForge.currentRecruitingHand()[2];
+            card3 = Instantiate(
+                        crewCardPrefab,
+                        new Vector3(1.2f, 2.2f, transform.position.z),
+                        transform.rotation);
+            GameObject.Find("recruit-button-3/cost-text").GetComponent<TextMeshPro>().text = FandomForge.determineCostOfCard(FandomForge.currentRecruitingHand()[2]).ToString();
+        }
     }
 
     private void updatePlayerInformation()

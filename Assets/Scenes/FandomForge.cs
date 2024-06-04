@@ -46,6 +46,8 @@ public static class FandomForge
             player.addToDeck(cardToRecruit);
             //remove card from recruiting hand
             draftMachine.recruitCard(whichCard);
+            //activate WHEN_YOU_RECRUIT_THIS_CARD effects
+            player.activateEffectsFor(CardFinder.getCardEffectsFromCrewCard(cardToRecruit), FaceOffCardEffectTiming.WHEN_YOU_RECRUIT_THIS_CARD);
             //reset oneTimeCostReduction
             FandomForge.resetOneTimeRecruitingCostReduction();
 
@@ -82,6 +84,11 @@ public static class FandomForge
         }
         //return false if can't afford
         return false;
+    }
+
+    public static void freeRefresh()
+    {
+        draftMachine.newRecruitingHand();
     }
 
     public static bool payToPlace()

@@ -13,16 +13,16 @@ public class FandomForgePlayer
     public FandomForgePlayer()
     {
         faceOffDeck = new List<CrewCard> {
-            CardFinder.getCrewCardFromId(7),
+            CardFinder.getCrewCardFromId(14),
             CardFinder.getCrewCardFromId(9),
-            CardFinder.getCrewCardFromId(13),
+            CardFinder.getCrewCardFromId(9),
             CardFinder.getCrewCardFromId(0),
             CardFinder.getCrewCardFromId(0),
             CardFinder.getCrewCardFromId(0),
-            CardFinder.getCrewCardFromId(11),
+            CardFinder.getCrewCardFromId(14),
         };
 
-        unspentRecruitingTokens = 3;
+        unspentRecruitingTokens = 30;
         tokensGenerated = 2;
 
         summarizeFaceOffDeck();
@@ -115,7 +115,7 @@ public class FandomForgePlayer
         return false;
     }
 
-    private void activateEffectsFor(List<FaceOffCardEffect> effects, FaceOffCardEffectTiming timing)
+    public void activateEffectsFor(List<FaceOffCardEffect> effects, FaceOffCardEffectTiming timing)
     {
         foreach(FaceOffCardEffect effect in effects)
         {

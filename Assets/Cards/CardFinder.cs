@@ -20,8 +20,8 @@ public class CardFinder
             { 11, "weight-loss-seeker" },
             { 12, "domestique" },
             { 13, "points-leader" },
-            //{ 14, "newbie-cyclist" },
-            //{ 15, "ex-pro-biker" },
+            { 14, "newbie-cyclist" },
+            { 15, "ex-pro-biker" },
             //{ 16, "low-gear-guy" },
             //{ 17, "boom-box-player" },
             //{ 18, "no-hands-gal" },
@@ -135,6 +135,26 @@ public class CardFinder
                     FaceOffCardEffectEffect.CYCLE,
                     FaceOffCardEffectTarget.NONE)
                     .withEffectAmount(1)
+                }
+            },
+            { "newbie-cyclist", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.SELF)
+                    .withEffectAmount(1),
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
+                    FaceOffCardEffectEffect.CYCLE,
+                    FaceOffCardEffectTarget.NONE)
+                    .withEffectAmount(1)
+                }
+            },
+            { "ex-pro-biker", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_RECRUIT_THIS_CARD,
+                    FaceOffCardEffectEffect.REFRESH,
+                    FaceOffCardEffectTarget.NONE)
                 }
             },
         };

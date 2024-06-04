@@ -20,7 +20,7 @@ public class CrewCardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        power.text = crewCard.power.ToString();
+        power.text = crewCard.cardType == CardType.FANATIC ? crewCard.power.ToString() : "";
         powerCounters.text = "0";
 
         artwork.sprite = crewCard.image;

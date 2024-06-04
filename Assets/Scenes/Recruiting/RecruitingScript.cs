@@ -166,6 +166,7 @@ public class RecruitingScript : MonoBehaviour
 
         Debug.Log("recruiting hand: " + FandomForge.currentRecruitingHand().Count);
 
+        Vector3 recruitScale = new Vector3(0.5f, 0.5f); ;
         if (FandomForge.currentRecruitingHand()[0] != null)
         {
             crewCardPrefab.GetComponent<CrewCardScript>().crewCard = FandomForge.currentRecruitingHand()[0];
@@ -174,6 +175,7 @@ public class RecruitingScript : MonoBehaviour
                         new Vector3(-5.2f, 2.2f, transform.position.z),
                         transform.rotation);
             GameObject.Find("recruit-button-1/cost-text").GetComponent<TextMeshPro>().text = FandomForge.determineCostOfCard(FandomForge.currentRecruitingHand()[0]).ToString();
+            card1.transform.localScale = recruitScale;
         }
 
         if (FandomForge.currentRecruitingHand()[1] != null)
@@ -184,6 +186,7 @@ public class RecruitingScript : MonoBehaviour
                         new Vector3(-2f, 2.2f, transform.position.z),
                         transform.rotation);
             GameObject.Find("recruit-button-2/cost-text").GetComponent<TextMeshPro>().text = FandomForge.determineCostOfCard(FandomForge.currentRecruitingHand()[1]).ToString();
+            card2.transform.localScale = recruitScale;
         }
 
         if (FandomForge.currentRecruitingHand()[2] != null)
@@ -194,6 +197,7 @@ public class RecruitingScript : MonoBehaviour
                         new Vector3(1.2f, 2.2f, transform.position.z),
                         transform.rotation);
             GameObject.Find("recruit-button-3/cost-text").GetComponent<TextMeshPro>().text = FandomForge.determineCostOfCard(FandomForge.currentRecruitingHand()[2]).ToString();
+            card3.transform.localScale = recruitScale;
         }
     }
 

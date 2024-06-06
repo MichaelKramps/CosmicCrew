@@ -14,12 +14,12 @@ public class FandomForgePlayer
     {
         faceOffDeck = new List<CrewCard> {
             CardFinder.getCrewCardFromId(4),
-            CardFinder.getCrewCardFromId(7),
-            CardFinder.getCrewCardFromId(9),
-            CardFinder.getCrewCardFromId(8),
+            CardFinder.getCrewCardFromId(17),
+            CardFinder.getCrewCardFromId(19),
+            CardFinder.getCrewCardFromId(18),
             CardFinder.getCrewCardFromId(4),
             CardFinder.getCrewCardFromId(0),
-            CardFinder.getCrewCardFromId(14),
+            CardFinder.getCrewCardFromId(16),
         };
 
         unspentRecruitingTokens = 30;
@@ -36,6 +36,11 @@ public class FandomForgePlayer
     public void payoutDividends()
     {
         this.unspentRecruitingTokens += tokensGenerated;
+    }
+
+    public void increaseDividends(int amountToIncrease)
+    {
+        this.tokensGenerated += amountToIncrease;
     }
 
     public void invest()

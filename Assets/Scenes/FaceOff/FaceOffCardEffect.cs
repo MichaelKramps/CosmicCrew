@@ -69,6 +69,12 @@ public class FaceOffCardEffect
             case FaceOffCardEffectEffect.REDUCE_COST:
                 reduceCost();
                 break;
+            case FaceOffCardEffectEffect.GAIN_RECRUITING_TOKENS:
+                gainRecruitingTokens();
+                break;
+            case FaceOffCardEffectEffect.DRAW_CARDS:
+                drawCards();
+                break;
             case FaceOffCardEffectEffect.CYCLE:
                 cycle();
                 break;
@@ -109,6 +115,17 @@ public class FaceOffCardEffect
                 FandomForge.setOneTimeRecruitingCostReduction(this.effectAmount);
                 break;
         }
+    }
+
+    private void gainRecruitingTokens()
+    {
+        FandomForge.increaseDividends(this.effectAmount);
+    }
+
+    private void drawCards()
+    {
+        this.effectOwner.getCardOwner().drawXCardsIntoHand(this.effectAmount);
+        this.effectOwner.getCardOwner().repositionCards();
     }
 
     private void refresh()

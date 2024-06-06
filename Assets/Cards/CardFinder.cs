@@ -22,10 +22,10 @@ public class CardFinder
             { 13, "points-leader" },
             { 14, "newbie-cyclist" },
             { 15, "ex-pro-biker" },
-            //{ 16, "low-gear-guy" },
-            //{ 17, "boom-box-player" },
-            //{ 18, "no-hands-gal" },
-            //{ 19, "squeaky-gears" },
+            { 16, "low-gear-guy" },
+            { 17, "boom-box-player" },
+            { 18, "no-hands-gal" },
+            { 19, "squeaky-gears" },
             //{ 20, "safety-fanatic" },
             //{ 21, "electric-bike-user" },
             //{ 22, "bike-repair-kit" },
@@ -155,6 +155,43 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_RECRUIT_THIS_CARD,
                     FaceOffCardEffectEffect.REFRESH,
                     FaceOffCardEffectTarget.NONE)
+                }
+            },
+            { "low-gear-guy", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
+                    FaceOffCardEffectEffect.CYCLE,
+                    FaceOffCardEffectTarget.NONE)
+                    .withEffectAmount(5)
+                }
+            },
+            { "boom-box-player", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.RIGHTMOST_FANATIC)
+                    .withEffectAmount(1)
+                }
+            },
+            { "no-hands-gal", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.LEFTMOST_FANATIC)
+                    .withEffectAmount(1)
+                }
+            },
+            { "squeaky-gears", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_GIVE_THIS_TO_A_FANATIC,
+                    FaceOffCardEffectEffect.DRAW_CARDS,
+                    FaceOffCardEffectTarget.NONE)
+                    .withEffectAmount(1),
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_DISMISS_THIS_CARD,
+                    FaceOffCardEffectEffect.GAIN_RECRUITING_TOKENS,
+                    FaceOffCardEffectTarget.NONE)
+                    .withEffectAmount(1)
                 }
             },
         };

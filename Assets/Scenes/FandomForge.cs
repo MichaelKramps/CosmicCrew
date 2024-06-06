@@ -56,6 +56,11 @@ public static class FandomForge
         return false;
     }
 
+    public static void increaseDividends(int amountToIncrease)
+    {
+        FandomForge.player.increaseDividends(amountToIncrease);
+    }
+
     public static int determineCostOfCard(CrewCard card)
     {
         int rawCost = card.cost - FandomForge.oneTimeRecruitingCostReduction;

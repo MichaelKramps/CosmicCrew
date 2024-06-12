@@ -189,6 +189,16 @@ public class FaceOffCard
         return this.crewCard.cardName;
     }
 
+    public int getCardBaseSway()
+    {
+        return this.crewCard.power;
+    }
+
+    public CardType getCardType()
+    {
+        return this.crewCard.cardType;
+    }
+
     public void addSwayCounters(int numberSwayCounters)
     {
         this.powerCounters += numberSwayCounters;

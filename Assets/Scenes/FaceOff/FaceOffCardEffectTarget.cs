@@ -8,4 +8,6 @@ public enum FaceOffCardEffectTarget
     LEFTMOST_FANATIC,
     RIGHTMOST_FANATIC,
     RECRUITING_HAND,
+    DISCARD,
+    DECK,
 }

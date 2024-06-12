@@ -27,8 +27,8 @@ public class CardFinder
             { 18, "no-hands-gal" },
             { 19, "squeaky-gears" },
             { 20, "safety-fanatic" },
-            //{ 21, "electric-bike-user" },
-            //{ 22, "bike-repair-kit" },
+            { 21, "electric-bike-user" },
+            { 22, "bike-repair-kit" },
             //{ 23, "state-of-the-art-bike" },
             //{ 24, "bodacious-bibs" },
             //{ 25, "hair-protecting-helmet" },
@@ -200,6 +200,29 @@ public class CardFinder
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.SELF)
                     .withVariableEffectAmount(VariableEffectAmount.NUMBER_CARDS_IN_DISCARD)
+                }
+            },
+            { "electric-bike-user", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.SELF)
+                    .withVariableEffectAmount(VariableEffectAmount.SWAY_OF_TOP_CARD_IN_DECK),
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
+                    FaceOffCardEffectEffect.CYCLE,
+                    FaceOffCardEffectTarget.NONE)
+                    .withConstantEffectAmount(1)
+                }
+            },
+            { "bike-repair-kit", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_GIVE_THIS_TO_A_FANATIC,
+                    FaceOffCardEffectEffect.MOVE_CARDS,
+                    FaceOffCardEffectTarget.DISCARD)
+                    .withSecondTarget(FaceOffCardEffectTarget.DECK)
+                    .withFandomFilter(FandomType.CYCLING)
+                    .withCardTypeFilter(CardType.GEAR)
                 }
             },
         };

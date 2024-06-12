@@ -8,4 +8,5 @@ public enum FaceOffCardEffectEffect
     GAIN_RECRUITING_TOKENS,
     REFRESH,
     PLAY_CARD_FROM_CYCLE,
+    MOVE_CARDS,
 }

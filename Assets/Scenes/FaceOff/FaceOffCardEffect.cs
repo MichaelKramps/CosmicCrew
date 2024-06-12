@@ -8,10 +8,12 @@ public class FaceOffCardEffect
     FaceOffCardEffectTiming timing;
     FaceOffCardEffectEffect effect;
     FaceOffCardEffectTarget target;
+    FaceOffCardEffectTarget secondTarget = FaceOffCardEffectTarget.NONE;
     FaceOffCard effectOwner;
     int constantEffectAmount = 0;
     VariableEffectAmount variableEffectAmount = VariableEffectAmount.NONE;
     FandomType fandomTypeFilter = FandomType.NONE;
+    CardType cardTypeFilter = CardType.NONE;
     //FaceOffCardEffectTargetFilter targetFilter;
 
     private System.Random random = new System.Random();
@@ -31,7 +33,8 @@ public class FaceOffCardEffect
         FaceOffCardEffect selfClone = new FaceOffCardEffect(timing, effect, target)
             .withFandomFilter(fandomTypeFilter)
             .withConstantEffectAmount(constantEffectAmount)
-            .withVariableEffectAmount(variableEffectAmount);
+            .withVariableEffectAmount(variableEffectAmount)
+            .withSecondTarget(secondTarget);
         
         return selfClone;
     }
@@ -60,6 +63,18 @@ public class FaceOffCardEffect
         return this;
     }
 
+    public FaceOffCardEffect withCardTypeFilter(CardType cardType)
+    {
+        this.cardTypeFilter = cardType;
+        return this;
+    }
+
+    public FaceOffCardEffect withSecondTarget(FaceOffCardEffectTarget target)
+    {
+        this.secondTarget = target;
+        return this;
+    }
+
     public bool timingIs(FaceOffCardEffectTiming timing)
     {
         return this.timing == timing;
@@ -75,6 +90,9 @@ public class FaceOffCardEffect
                     return this.effectOwner.getCardOwner().deckSize();
                 case VariableEffectAmount.NUMBER_CARDS_IN_DISCARD:
                     return this.effectOwner.getCardOwner().discardSize();
+                case VariableEffectAmount.SWAY_OF_TOP_CARD_IN_DECK:
+                    FaceOffCard topCard = this.effectOwner.getCardOwner().getDeck()[0];
+                    return topCard.getCardBaseSway();
                 default:
                     return 1;
             }
@@ -111,6 +129,9 @@ public class FaceOffCardEffect
             case FaceOffCardEffectEffect.PLAY_CARD_FROM_CYCLE:
                 playCardFromCycle();
                 break;
+            case FaceOffCardEffectEffect.MOVE_CARDS:
+                moveCards();
+                break;
         }
     }
 
@@ -131,7 +152,9 @@ public class FaceOffCardEffect
             }
         }
 
-        return passesFandomTypeFilter;
+        bool passesCardTypeFilter = this.cardTypeFilter == CardType.NONE ? true : card.getCardType() == this.cardTypeFilter;
+
+        return passesFandomTypeFilter && passesCardTypeFilter;
     }
 
     private void reduceCost()
@@ -216,5 +239,52 @@ public class FaceOffCardEffect
     private void playCardFromCycle()
     {
         this.effectOwner.getCardOwner().playCardFromCycle(this.effectOwner);
+    }
+
+    private void moveCards()
+    {
+        switch (this.target)
+        {
+            case FaceOffCardEffectTarget.DECK:
+                for (int index = this.effectOwner.getCardOwner().getDeck().Count - 1; index > -1; index--)
+                {
+                    FaceOffCard card = this.effectOwner.getCardOwner().getDeck()[index];
+                    if (qualifiesForEffect(card))
+                    {
+                        this.effectOwner.getCardOwner().getDeck().RemoveAt(index);
+                        this.moveCardToDestination(card);
+                    }
+                }
+                break;
+            case FaceOffCardEffectTarget.DISCARD:
+                for (int index = this.effectOwner.getCardOwner().getDiscard().Count - 1; index > -1; index--)
+                {
+                    FaceOffCard card = this.effectOwner.getCardOwner().getDiscard()[index];
+                    Debug.Log("looking at " + card.getCardName());
+                    if (qualifiesForEffect(card))
+                    {
+                        Debug.Log("removing " + card.getCardName());
+                        this.effectOwner.getCardOwner().getDiscard().RemoveAt(index);
+                        this.moveCardToDestination(card);
+                    }
+                }
+                break;
+        }
+    }
+
+    private void moveCardToDestination(FaceOffCard card)
+    {
+        Debug.Log(this.secondTarget);
+        switch (this.secondTarget)
+        {
+            case FaceOffCardEffectTarget.DECK:
+                Debug.Log("putting " + card.getCardName() + " in deck");
+                this.effectOwner.getCardOwner().getDeck().Add(card);
+                break;
+            case FaceOffCardEffectTarget.DISCARD:
+                this.effectOwner.getCardOwner().getDiscard().Add(card);
+                break;
+        }
+        this.effectOwner.getCardOwner().repositionCards();
     }
 }

@@ -9,7 +9,8 @@ public class FaceOffCardEffect
     FaceOffCardEffectEffect effect;
     FaceOffCardEffectTarget target;
     FaceOffCard effectOwner;
-    int effectAmount = 0;
+    int constantEffectAmount = 0;
+    VariableEffectAmount variableEffectAmount = VariableEffectAmount.NONE;
     FandomType fandomTypeFilter = FandomType.NONE;
     //FaceOffCardEffectTargetFilter targetFilter;
 
@@ -29,7 +30,8 @@ public class FaceOffCardEffect
     {
         FaceOffCardEffect selfClone = new FaceOffCardEffect(timing, effect, target)
             .withFandomFilter(fandomTypeFilter)
-            .withEffectAmount(effectAmount);
+            .withConstantEffectAmount(constantEffectAmount)
+            .withVariableEffectAmount(variableEffectAmount);
         
         return selfClone;
     }
@@ -40,9 +42,15 @@ public class FaceOffCardEffect
         return this;
     }
 
-    public FaceOffCardEffect withEffectAmount(int amount)
+    public FaceOffCardEffect withConstantEffectAmount(int amount)
     {
-        this.effectAmount = amount;
+        this.constantEffectAmount = amount;
+        return this;
+    }
+
+    public FaceOffCardEffect withVariableEffectAmount(VariableEffectAmount variableEffectAmount)
+    {
+        this.variableEffectAmount = variableEffectAmount;
         return this;
     }
 
@@ -55,6 +63,25 @@ public class FaceOffCardEffect
     public bool timingIs(FaceOffCardEffectTiming timing)
     {
         return this.timing == timing;
+    }
+
+    private int determineEffectAmount()
+    {
+        if (this.variableEffectAmount != VariableEffectAmount.NONE)
+        {
+            switch (this.variableEffectAmount)
+            {
+                case VariableEffectAmount.NUMBER_CARDS_IN_DECK:
+                    return this.effectOwner.getCardOwner().deckSize();
+                case VariableEffectAmount.NUMBER_CARDS_IN_DISCARD:
+                    return this.effectOwner.getCardOwner().discardSize();
+                default:
+                    return 1;
+            }
+        } else
+        {
+            return this.constantEffectAmount;
+        }
     }
 
     //should be called when there is no player (outside of Face-Off)
@@ -112,19 +139,19 @@ public class FaceOffCardEffect
         switch (this.target)
         {
             case FaceOffCardEffectTarget.RECRUITING_HAND:
-                FandomForge.setOneTimeRecruitingCostReduction(this.effectAmount);
+                FandomForge.setOneTimeRecruitingCostReduction(this.determineEffectAmount());
                 break;
         }
     }
 
     private void gainRecruitingTokens()
     {
-        FandomForge.increaseDividends(this.effectAmount);
+        FandomForge.increaseDividends(this.determineEffectAmount());
     }
 
     private void drawCards()
     {
-        this.effectOwner.getCardOwner().drawXCardsIntoHand(this.effectAmount);
+        this.effectOwner.getCardOwner().drawXCardsIntoHand(this.determineEffectAmount());
         this.effectOwner.getCardOwner().repositionCards();
     }
 
@@ -138,14 +165,14 @@ public class FaceOffCardEffect
         switch (this.target)
         {
             case FaceOffCardEffectTarget.SELF:
-                this.effectOwner.addSwayCounters(this.effectAmount);
+                this.effectOwner.addSwayCounters(this.determineEffectAmount());
                 break;
             case FaceOffCardEffectTarget.ENTIRE_TEAM:
                 foreach(FaceOffCard teamMember in effectOwner.getCardOwner().getTeam())
                 {
                     if (qualifiesForEffect(teamMember))
                     {
-                        teamMember.addSwayCounters(this.effectAmount);
+                        teamMember.addSwayCounters(this.determineEffectAmount());
                     }
                 }
                 break;
@@ -153,7 +180,7 @@ public class FaceOffCardEffect
                 if (effectOwner.getCardOwner().getTeam().Count > 0)
                 {
                     FaceOffCard randomFanatic = effectOwner.getCardOwner().getTeam()[random.Next(effectOwner.getCardOwner().getTeam().Count)];
-                    randomFanatic.addSwayCounters(this.effectAmount);
+                    randomFanatic.addSwayCounters(this.determineEffectAmount());
                 }
                 break;
             case FaceOffCardEffectTarget.LEFTMOST_FANATIC:
@@ -161,7 +188,7 @@ public class FaceOffCardEffect
                 {
                     if (qualifiesForEffect(teamMember))
                     {
-                        teamMember.addSwayCounters(this.effectAmount);
+                        teamMember.addSwayCounters(this.determineEffectAmount());
                         break;
                     }
                 }
@@ -173,7 +200,7 @@ public class FaceOffCardEffect
                     FaceOffCard teamMember = effectOwner.getCardOwner().getTeam()[index];
                     if (qualifiesForEffect(teamMember))
                     {
-                        teamMember.addSwayCounters(this.effectAmount);
+                        teamMember.addSwayCounters(this.determineEffectAmount());
                         break;
                     }
                 }
@@ -183,7 +210,7 @@ public class FaceOffCardEffect
 
     private void cycle()
     {
-        this.effectOwner.getCardOwner().cycleXCards(this.effectAmount);
+        this.effectOwner.getCardOwner().cycleXCards(this.determineEffectAmount());
     }
 
     private void playCardFromCycle()

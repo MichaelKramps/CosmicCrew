@@ -67,6 +67,11 @@ public class FaceOffPlayer
         return this.deck.Count;
     }
 
+    public int discardSize()
+    {
+        return this.discard.Count;
+    }
+
     public int maxHandSize()
     {
         return this.startingHandSize;

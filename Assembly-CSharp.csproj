@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Animations/AnimationHelper.cs" />
+    <Compile Include="Assets/Scenes/VariableEffectAmount.cs" />
     <Compile Include="Assets/Scenes/Recruiting/RecruitingScript.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" />
     <Compile Include="Assets/Scenes/FaceOff/DuelResult.cs" />

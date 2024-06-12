@@ -26,7 +26,7 @@ public class CardFinder
             { 17, "boom-box-player" },
             { 18, "no-hands-gal" },
             { 19, "squeaky-gears" },
-            //{ 20, "safety-fanatic" },
+            { 20, "safety-fanatic" },
             //{ 21, "electric-bike-user" },
             //{ 22, "bike-repair-kit" },
             //{ 23, "state-of-the-art-bike" },
@@ -44,7 +44,7 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_DISMISS_THIS_CARD,
                     FaceOffCardEffectEffect.REDUCE_COST,
                     FaceOffCardEffectTarget.RECRUITING_HAND)
-                    .withEffectAmount(99)
+                    .withConstantEffectAmount(99)
                 }
             },
             { "rainbow-jersey", new List<FaceOffCardEffect>{
@@ -52,7 +52,7 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_GIVE_THIS_TO_A_FANATIC,
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.ENTIRE_TEAM)
-                    .withEffectAmount(2)
+                    .withConstantEffectAmount(2)
                     .withFandomFilter(FandomType.CYCLING)
                 }
             },
@@ -61,7 +61,7 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD,
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.SELF)
-                    .withEffectAmount(1)
+                    .withConstantEffectAmount(1)
                 }
             },
             { "lady-cyclist", new List<FaceOffCardEffect>{
@@ -69,7 +69,7 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_GEAR_IS_ATTACHED_TO_THIS_CARD,
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.SELF)
-                    .withEffectAmount(2)
+                    .withConstantEffectAmount(2)
                 }
             },
             { "expensive-wheels", new List<FaceOffCardEffect>{
@@ -77,7 +77,7 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD,
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.ENTIRE_TEAM)
-                    .withEffectAmount(1)
+                    .withConstantEffectAmount(1)
                 }
             },
             { "well-fitted-seat", new List<FaceOffCardEffect>{
@@ -85,7 +85,7 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD,
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.RANDOM_FANATIC)
-                    .withEffectAmount(2)
+                    .withConstantEffectAmount(2)
                 }
             },
             { "gc-rider", new List<FaceOffCardEffect>{
@@ -100,12 +100,12 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.SELF)
-                    .withEffectAmount(3),
+                    .withConstantEffectAmount(3),
                 new FaceOffCardEffect(
                     FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
                     FaceOffCardEffectEffect.CYCLE,
                     FaceOffCardEffectTarget.NONE)
-                    .withEffectAmount(3)
+                    .withConstantEffectAmount(3)
                 }
             },
             { "weight-loss-seeker", new List<FaceOffCardEffect>{
@@ -113,7 +113,7 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
                     FaceOffCardEffectEffect.CYCLE,
                     FaceOffCardEffectTarget.NONE)
-                    .withEffectAmount(1)
+                    .withConstantEffectAmount(1)
                 }
             },
             { "domestique", new List<FaceOffCardEffect>{
@@ -121,12 +121,12 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_OPPONENT_DRAWS_A_CARD,
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.LEFTMOST_FANATIC)
-                    .withEffectAmount(1),
+                    .withConstantEffectAmount(1),
                 new FaceOffCardEffect(
                     FaceOffCardEffectTiming.WHEN_OPPONENT_DRAWS_A_CARD,
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.RIGHTMOST_FANATIC)
-                    .withEffectAmount(1)
+                    .withConstantEffectAmount(1)
                 }
             },
             { "points-leader", new List<FaceOffCardEffect>{
@@ -134,7 +134,7 @@ public class CardFinder
                     FaceOffCardEffectTiming.AFTER_EACH_DUEL,
                     FaceOffCardEffectEffect.CYCLE,
                     FaceOffCardEffectTarget.NONE)
-                    .withEffectAmount(1)
+                    .withConstantEffectAmount(1)
                 }
             },
             { "newbie-cyclist", new List<FaceOffCardEffect>{
@@ -142,12 +142,12 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.SELF)
-                    .withEffectAmount(1),
+                    .withConstantEffectAmount(1),
                 new FaceOffCardEffect(
                     FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
                     FaceOffCardEffectEffect.CYCLE,
                     FaceOffCardEffectTarget.NONE)
-                    .withEffectAmount(1)
+                    .withConstantEffectAmount(1)
                 }
             },
             { "ex-pro-biker", new List<FaceOffCardEffect>{
@@ -162,7 +162,7 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
                     FaceOffCardEffectEffect.CYCLE,
                     FaceOffCardEffectTarget.NONE)
-                    .withEffectAmount(5)
+                    .withConstantEffectAmount(5)
                 }
             },
             { "boom-box-player", new List<FaceOffCardEffect>{
@@ -170,7 +170,7 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD,
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.RIGHTMOST_FANATIC)
-                    .withEffectAmount(1)
+                    .withConstantEffectAmount(1)
                 }
             },
             { "no-hands-gal", new List<FaceOffCardEffect>{
@@ -178,7 +178,7 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_DRAW_A_CARD,
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.LEFTMOST_FANATIC)
-                    .withEffectAmount(1)
+                    .withConstantEffectAmount(1)
                 }
             },
             { "squeaky-gears", new List<FaceOffCardEffect>{
@@ -186,12 +186,20 @@ public class CardFinder
                     FaceOffCardEffectTiming.WHEN_YOU_GIVE_THIS_TO_A_FANATIC,
                     FaceOffCardEffectEffect.DRAW_CARDS,
                     FaceOffCardEffectTarget.NONE)
-                    .withEffectAmount(1),
+                    .withConstantEffectAmount(1),
                 new FaceOffCardEffect(
                     FaceOffCardEffectTiming.WHEN_YOU_DISMISS_THIS_CARD,
                     FaceOffCardEffectEffect.GAIN_RECRUITING_TOKENS,
                     FaceOffCardEffectTarget.NONE)
-                    .withEffectAmount(1)
+                    .withConstantEffectAmount(1)
+                }
+            },
+            { "safety-fanatic", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.SELF)
+                    .withVariableEffectAmount(VariableEffectAmount.NUMBER_CARDS_IN_DISCARD)
                 }
             },
         };

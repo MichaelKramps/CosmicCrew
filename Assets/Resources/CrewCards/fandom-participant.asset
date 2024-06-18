@@ -22,4 +22,4 @@ MonoBehaviour:
   cardId: 1
   cost: 2
   fandomType: 0
-  cardType: 0
+  cardType: 1

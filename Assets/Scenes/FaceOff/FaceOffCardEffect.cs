@@ -132,6 +132,9 @@ public class FaceOffCardEffect
             case FaceOffCardEffectEffect.MOVE_CARDS:
                 moveCards();
                 break;
+            case FaceOffCardEffectEffect.DISMISS:
+                dismiss();
+                break;
         }
     }
 
@@ -260,10 +263,8 @@ public class FaceOffCardEffect
                 for (int index = this.effectOwner.getCardOwner().getDiscard().Count - 1; index > -1; index--)
                 {
                     FaceOffCard card = this.effectOwner.getCardOwner().getDiscard()[index];
-                    Debug.Log("looking at " + card.getCardName());
                     if (qualifiesForEffect(card))
                     {
-                        Debug.Log("removing " + card.getCardName());
                         this.effectOwner.getCardOwner().getDiscard().RemoveAt(index);
                         this.moveCardToDestination(card);
                     }
@@ -274,11 +275,9 @@ public class FaceOffCardEffect
 
     private void moveCardToDestination(FaceOffCard card)
     {
-        Debug.Log(this.secondTarget);
         switch (this.secondTarget)
         {
             case FaceOffCardEffectTarget.DECK:
-                Debug.Log("putting " + card.getCardName() + " in deck");
                 this.effectOwner.getCardOwner().getDeck().Add(card);
                 break;
             case FaceOffCardEffectTarget.DISCARD:
@@ -286,5 +285,15 @@ public class FaceOffCardEffect
                 break;
         }
         this.effectOwner.getCardOwner().repositionCards();
+    }
+
+    private void dismiss()
+    {
+        switch (this.target)
+        {
+            case FaceOffCardEffectTarget.SELF:
+                this.effectOwner.getCardOwner().dismissCard(this.effectOwner);
+                break;
+        }
     }
 }

@@ -29,10 +29,10 @@ public class CardFinder
             { 20, "safety-fanatic" },
             { 21, "electric-bike-user" },
             { 22, "bike-repair-kit" },
-            //{ 23, "state-of-the-art-bike" },
-            //{ 24, "bodacious-bibs" },
-            //{ 25, "hair-protecting-helmet" },
-            //{ 26, "bike-collector" },
+            { 23, "state-of-the-art-bike" },
+            { 24, "bodacious-bibs" },
+            { 25, "hair-protecting-helmet" },
+            { 26, "bike-collector" },
             //{ 27, "unwanted-coach" },
             //{ 28, "modern-bohemian" },
             //{ 29, "sherlock-holmes" },
@@ -223,6 +223,37 @@ public class CardFinder
                     .withSecondTarget(FaceOffCardEffectTarget.DECK)
                     .withFandomFilter(FandomType.CYCLING)
                     .withCardTypeFilter(CardType.GEAR)
+                }
+            },
+            { "state-of-the-art-bike", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.RIGHTMOST_FANATIC)
+                    .withConstantEffectAmount(3)
+                }
+            },
+            { "bodacious-bibs", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_GIVE_THIS_TO_A_FANATIC,
+                    FaceOffCardEffectEffect.CYCLE,
+                    FaceOffCardEffectTarget.NONE)
+                    .withConstantEffectAmount(6)
+                }
+            },
+            { "hair-protecting-helmet", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD,
+                    FaceOffCardEffectEffect.DISMISS,
+                    FaceOffCardEffectTarget.SELF)
+                }
+            },
+            { "bike-collector", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.SELF)
+                    .withVariableEffectAmount(VariableEffectAmount.NUMBER_CARDS_IN_DECK)
                 }
             },
         };

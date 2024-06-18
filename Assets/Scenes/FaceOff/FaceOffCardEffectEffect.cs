@@ -9,4 +9,5 @@ public enum FaceOffCardEffectEffect
     REFRESH,
     PLAY_CARD_FROM_CYCLE,
     MOVE_CARDS,
+    DISMISS
 }

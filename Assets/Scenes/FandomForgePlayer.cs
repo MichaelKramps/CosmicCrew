@@ -16,12 +16,10 @@ public class FandomForgePlayer
             CardFinder.getCrewCardFromId(14),
             CardFinder.getCrewCardFromId(0),
             CardFinder.getCrewCardFromId(19),
-            CardFinder.getCrewCardFromId(22),
+            CardFinder.getCrewCardFromId(24),
             CardFinder.getCrewCardFromId(21),
             CardFinder.getCrewCardFromId(2),
-            CardFinder.getCrewCardFromId(22),
-            CardFinder.getCrewCardFromId(14),
-            CardFinder.getCrewCardFromId(14),
+            CardFinder.getCrewCardFromId(26)
         };
 
         unspentRecruitingTokens = 30;

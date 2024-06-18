@@ -106,8 +106,12 @@ public class FaceOffPlayer
         this.handleOpposingTeamEffectsFor(FaceOffCardEffectTiming.WHEN_OPPONENT_DRAWS_A_CARD);
         cardDrawn.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD);
 
-        this.deck.Remove(cardDrawn);
-        return cardDrawn;
+        if (this.deck.Contains(cardDrawn))
+        {
+            this.deck.Remove(cardDrawn);
+            return cardDrawn;
+        }
+        return null;
     }
 
     public void putCardInHand(FaceOffCard card)
@@ -134,7 +138,10 @@ public class FaceOffPlayer
             if (this.deck.Count > 0)
             {
                 FaceOffCard drawnCard = drawACard();
-                putCardInHand(drawnCard);
+                if (drawnCard != null)
+                {
+                    putCardInHand(drawnCard);
+                }
             }
         }
     }
@@ -311,52 +318,73 @@ public class FaceOffPlayer
 
     public void handleDuelResult(FaceOffCard postDuelCard)
     {
-        switch (postDuelCard.getDuelResult())
+        if (postDuelCard.getDuelResult() == DuelResult.Won)
         {
-            case DuelResult.Won:
-                handleDuelWin(postDuelCard);
-                break;
-            case DuelResult.Lost:
-            case DuelResult.Tied:
-                handleDuelLoss(postDuelCard);
-                break;
-            default:
-                break;
+            this.drawXCardsIntoHand(1);
         }
 
-        postDuelCard.setDuelResult(DuelResult.None);
-    }
-
-    public void handleDuelWin(FaceOffCard postDuelCard)
-    {
-        //remove card from team
         this.team.Remove(postDuelCard);
-
-        //draw a card from deck before putting cards in
-        this.drawXCardsIntoHand(1);
-
-        //put card on bottom of deck
         this.deck.Add(postDuelCard);
-
-        //put attached gear on bottom of deck
-        foreach(FaceOffCard gearCard in postDuelCard.getAttachedGear())
+        foreach (FaceOffCard gearCard in postDuelCard.getAttachedGear())
         {
             this.deck.Add(gearCard);
         }
+
         postDuelCard.resetCard();
+        postDuelCard.setDuelResult(DuelResult.None);
     }
 
-    public void handleDuelLoss(FaceOffCard postDuelCard)
-    {
-        //put card on bottom of discard
-        this.team.Remove(postDuelCard);
-        this.discard.Add(postDuelCard);
+    //public void handleDuelWin(FaceOffCard postDuelCard)
+    //{
+    //    //remove card from team
+    //    this.team.Remove(postDuelCard);
 
-        //put attached gear on bottom of discard
-        foreach (FaceOffCard gearCard in postDuelCard.getAttachedGear())
+    //    //draw a card from deck first
+    //    this.drawXCardsIntoHand(1);
+
+    //    //put card on bottom of deck
+    //    this.deck.Add(postDuelCard);
+
+    //    //put attached gear on bottom of deck
+    //    foreach(FaceOffCard gearCard in postDuelCard.getAttachedGear())
+    //    {
+    //        this.deck.Add(gearCard);
+    //    }
+    //    postDuelCard.resetCard();
+    //}
+
+    //public void handleDuelLoss(FaceOffCard postDuelCard)
+    //{
+    //    //put card on bottom of discard
+    //    this.team.Remove(postDuelCard);
+    //    this.discard.Add(postDuelCard);
+
+    //    //put attached gear on bottom of discard
+    //    foreach (FaceOffCard gearCard in postDuelCard.getAttachedGear())
+    //    {
+    //        this.discard.Add(gearCard);
+    //    }
+    //    postDuelCard.resetCard();
+    //}
+
+    public void dismissCard(FaceOffCard cardToDismiss)
+    {
+        if (this.deck.Contains(cardToDismiss))
         {
-            this.discard.Add(gearCard);
+            this.deck.Remove(cardToDismiss);
         }
-        postDuelCard.resetCard();
+
+        if (this.discard.Contains(cardToDismiss))
+        {
+            this.deck.Remove(cardToDismiss);
+        }
+
+        if (this.hand.Contains(cardToDismiss))
+        {
+            this.hand.Remove(cardToDismiss);
+        }
+
+        //set card to null so it can't be used
+        cardToDismiss = null;
     }
 }

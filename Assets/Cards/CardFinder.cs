@@ -33,7 +33,7 @@ public class CardFinder
             { 24, "bodacious-bibs" },
             { 25, "hair-protecting-helmet" },
             { 26, "bike-collector" },
-            //{ 27, "unwanted-coach" },
+            { 27, "unwanted-coach" },
             //{ 28, "modern-bohemian" },
             //{ 29, "sherlock-holmes" },
         };
@@ -245,7 +245,11 @@ public class CardFinder
                 new FaceOffCardEffect(
                     FaceOffCardEffectTiming.WHEN_YOU_DRAW_THIS_CARD,
                     FaceOffCardEffectEffect.DISMISS,
-                    FaceOffCardEffectTarget.SELF)
+                    FaceOffCardEffectTarget.SELF),
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_YOU_RECRUIT_THIS_CARD,
+                    FaceOffCardEffectEffect.DISMISS,
+                    FaceOffCardEffectTarget.NONE)
                 }
             },
             { "bike-collector", new List<FaceOffCardEffect>{
@@ -254,6 +258,14 @@ public class CardFinder
                     FaceOffCardEffectEffect.SWAY_COUNTERS,
                     FaceOffCardEffectTarget.SELF)
                     .withVariableEffectAmount(VariableEffectAmount.NUMBER_CARDS_IN_DECK)
+                }
+            },
+            { "unwanted-coach", new List<FaceOffCardEffect>{
+                new FaceOffCardEffect(
+                    FaceOffCardEffectTiming.WHEN_ONE_OF_YOUR_FANATICS_WINS_A_DUEL,
+                    FaceOffCardEffectEffect.SWAY_COUNTERS,
+                    FaceOffCardEffectTarget.SELF)
+                    .withConstantEffectAmount(1)
                 }
             },
         };

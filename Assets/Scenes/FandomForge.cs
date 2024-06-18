@@ -12,6 +12,7 @@ public static class FandomForge
     public static int currentLevel;
 
     private static int oneTimeRecruitingCostReduction = 0;
+    private static int oneTimeDismissCostReduction = 0;
 
     public static void resetForge()
     {
@@ -136,10 +137,16 @@ public static class FandomForge
         return false;
     }
 
+    public static void freeDismiss()
+    {
+        FandomForge.oneTimeDismissCostReduction = 99999;
+    }
+
     public static bool dismissCard(CrewCard cardToDismiss)
     {
-        int dismissCost = 3;
+        int dismissCost = 3 - FandomForge.oneTimeDismissCostReduction <= 0 ? 0 : 3 - FandomForge.oneTimeDismissCostReduction;
         player.pay(dismissCost);
+        FandomForge.oneTimeDismissCostReduction = 0;
         return player.dismissCard(cardToDismiss);
     }
 

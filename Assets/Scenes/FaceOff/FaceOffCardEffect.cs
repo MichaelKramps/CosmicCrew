@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class FaceOffCardEffect
 {
@@ -293,6 +294,12 @@ public class FaceOffCardEffect
         {
             case FaceOffCardEffectTarget.SELF:
                 this.effectOwner.getCardOwner().dismissCard(this.effectOwner);
+                break;
+            case FaceOffCardEffectTarget.NONE:
+                //we are in the recruiting phase
+                FandomForge.currentRecruitingAction = CurrentRecruitingAction.Dismiss;
+                FandomForge.freeDismiss();
+                SceneManager.LoadScene("Cards In Deck");
                 break;
         }
     }

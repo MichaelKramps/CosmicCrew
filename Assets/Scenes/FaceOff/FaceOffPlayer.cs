@@ -321,6 +321,7 @@ public class FaceOffPlayer
         if (postDuelCard.getDuelResult() == DuelResult.Won)
         {
             this.drawXCardsIntoHand(1);
+            this.handleTeamEffectsFor(FaceOffCardEffectTiming.WHEN_ONE_OF_YOUR_FANATICS_WINS_A_DUEL);
         }
 
         this.team.Remove(postDuelCard);
@@ -383,8 +384,5 @@ public class FaceOffPlayer
         {
             this.hand.Remove(cardToDismiss);
         }
-
-        //set card to null so it can't be used
-        cardToDismiss = null;
     }
 }

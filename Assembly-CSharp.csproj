@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets/Animations/AnimationHelper.cs" />
     <Compile Include="Assets/Scenes/VariableEffectAmount.cs" />
+    <Compile Include="Assets/Scenes/EnemyDeckGenerator.cs" />
     <Compile Include="Assets/Scenes/Recruiting/RecruitingScript.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" />
     <Compile Include="Assets/Scenes/FaceOff/DuelResult.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_ExampleScript_01.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets/Scenes/Clash/ClashAnimationType.cs" />
+    <Compile Include="Assets/Scenes/FandomDeck.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeB.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/DropdownSample.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexColorCycler.cs" />
@@ -90,7 +92,6 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ChatController.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ObjectSpin.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_PhoneNumberValidator.cs" />
-    <Compile Include="Assets/Scenes/EnemyGenerator.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
     <Compile Include="Assets/Scenes/FaceOff/FaceOffCardEffect.cs" />
     <Compile Include="Assets/Scenes/FaceOff/FaceOffStatus.cs" />

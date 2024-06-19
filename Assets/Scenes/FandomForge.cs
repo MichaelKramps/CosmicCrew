@@ -6,7 +6,7 @@ public static class FandomForge
 {
     private static DraftMachine draftMachine = new DraftMachine();
     private static FandomForgePlayer player = new FandomForgePlayer();
-    private static EnemyGenerator enemyGenerator = new EnemyGenerator();
+    private static EnemyDeckGenerator enemyGenerator = new EnemyDeckGenerator();
     public static CurrentRecruitingAction currentRecruitingAction;
     public static CrewCard selectedCrewCard;
     public static int currentLevel;
@@ -19,7 +19,7 @@ public static class FandomForge
         //reset stuff
         FandomForge.draftMachine = new DraftMachine();
         FandomForge.player = new FandomForgePlayer();
-        FandomForge.enemyGenerator = new EnemyGenerator();
+        FandomForge.enemyGenerator = new EnemyDeckGenerator();
         FandomForge.currentRecruitingAction = CurrentRecruitingAction.Recruiting;
         FandomForge.selectedCrewCard = null;
         FandomForge.currentLevel = 0;
@@ -30,7 +30,7 @@ public static class FandomForge
         return FandomForge.player;
     }
 
-    public static EnemyGenerator getEnemyGenerator()
+    public static EnemyDeckGenerator getEnemyGenerator()
     {
         return FandomForge.enemyGenerator;
     }

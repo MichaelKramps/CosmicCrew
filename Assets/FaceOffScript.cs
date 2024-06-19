@@ -19,7 +19,7 @@ public class FaceOffScript : MonoBehaviour
     {
         faceOffGenerator = new FaceOffGenerator(
             setupDeck(FandomForge.getPlayer().getPlayerDeck(), FaceOffPlayerPosition.Bottom),
-            setupDeck(FandomForge.getEnemyGenerator().generateEnemyFaceOffDeck(FandomForge.currentLevel), FaceOffPlayerPosition.Top));
+            setupDeck(FandomForge.getEnemyGenerator().generateEnemyFaceOffDeck(FandomForge.currentLevel).getDeck(), FaceOffPlayerPosition.Top));
         //deal top 6 cards of face off deck
         faceOffGenerator.addCardOwners();
         faceOffGenerator.shuffleDecks();

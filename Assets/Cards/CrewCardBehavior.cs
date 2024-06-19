@@ -71,7 +71,6 @@ public class CrewCardBehavior : MonoBehaviour
         this.removeMoveCardAnimationsFromQueue();
         this.animationQueue.Insert(0, moveAnimation);
         FaceOffGlobalInformation.objectAnimating(gameObject.GetInstanceID());
-        printAnimationQueue();
     }
 
     private void animateSwayCounters()

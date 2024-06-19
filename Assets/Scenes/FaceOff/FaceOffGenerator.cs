@@ -97,32 +97,14 @@ public class FaceOffGenerator
         return this.player.getHand().Count;
     }
 
-    public bool playerHasPlayableCardsInHand(FaceOffPlayer player)
-    {
-        bool hasPlayableCardInHand = false;
-        bool hasFanaticInTeam = player.getTeam().Count > 0;
-        foreach(FaceOffCard card in player.getHand())
-        {
-            if (card.isFanatic())
-            {
-                return player.getTeam().Count < 6;
-            }
-            if (card.isGear() && hasFanaticInTeam)
-            {
-                hasPlayableCardInHand = true;
-            }
-        }
-        return hasPlayableCardInHand;
-    }
-
     public bool playerHasPlayableCardsInHand()
     {
-        return this.playerHasPlayableCardsInHand(this.player);
+        return this.player.hasPlayableCardInHand();
     }
 
     public bool enemyHasPlayableCardsInHand()
     {
-        return this.playerHasPlayableCardsInHand(this.enemy);
+        return this.enemy.hasPlayableCardInHand();
     }
 
     public int enemyNumberCardsInHand()

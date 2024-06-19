@@ -173,7 +173,44 @@ public class FaceOffPlayer
 
     public void playRandomCardFromHand()
     {
-        this.playCardFromHand(this.hand[random.Next(this.hand.Count)]);
+        if (this.hasPlayableCardInHand())
+        {
+            FaceOffCard selectedCard = this.hand[random.Next(this.hand.Count)];
+            if (selectedCard.getCardType() == CardType.FANATIC)
+            {
+                this.playCardFromHand(selectedCard);
+            } else
+            {
+                //card is gear
+                if (this.getTeam().Count > 0)
+                {
+                    //can attach gear
+                    this.attachGearCardToRandomFanatic(selectedCard);
+                } else
+                {
+                    playRandomCardFromHand();
+                }
+            }
+        }
+        this.repositionCards();
+    }
+
+    public bool hasPlayableCardInHand()
+    {
+        bool hasPlayableCardInHand = false;
+        bool hasFanaticInTeam = this.getTeam().Count > 0;
+        foreach (FaceOffCard card in this.getHand())
+        {
+            if (card.isFanatic())
+            {
+                return this.getTeam().Count < 6;
+            }
+            if (card.isGear() && hasFanaticInTeam)
+            {
+                hasPlayableCardInHand = true;
+            }
+        }
+        return hasPlayableCardInHand;
     }
 
     public void playCardFromHand(FaceOffCard cardToPlay)
@@ -182,8 +219,20 @@ public class FaceOffPlayer
         {
             this.team.Add(cardToPlay);
             this.hand.Remove(cardToPlay);
+
             this.repositionTeam();
             this.repositionHand();
+
+            cardToPlay.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD);
+        }
+    }
+
+    public void attachGearCardToRandomFanatic(FaceOffCard gearCard)
+    {
+        if (this.getTeam().Count > 0)
+        {
+            FaceOffCard selectedFanatic = this.team[random.Next(this.team.Count)];
+            attachGearToFanatic(gearCard, selectedFanatic);
         }
     }
 
@@ -193,13 +242,7 @@ public class FaceOffPlayer
         if (indexOfCardToPlay > -1 && this.team.Count < 6)
         {
             FaceOffCard playedCard = this.hand[indexOfCardToPlay];
-            this.team.Add(playedCard);
-            this.hand.RemoveAt(indexOfCardToPlay);
-
-            this.repositionTeam();
-            this.repositionHand();
-
-            playedCard.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_PLAY_THIS_CARD);
+            playCardFromHand(playedCard);
         }
     }
 
@@ -213,20 +256,25 @@ public class FaceOffPlayer
         }
     }
 
+    public void attachGearToFanatic(FaceOffCard gear, FaceOffCard fanatic)
+    {
+        fanatic.attachGear(gear);
+        this.hand.Remove(gear);
+
+        fanatic.activateEffectsFor(FaceOffCardEffectTiming.WHEN_GEAR_IS_ATTACHED_TO_THIS_CARD);
+        gear.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_GIVE_THIS_TO_A_FANATIC);
+
+        this.repositionTeam();
+        this.repositionHand();
+    }
+
     public void selectFanaticForGearAttachment(GameObject fanaticSelected)
     {
         int indexOfFanaticSelected = this.findIndexOfGameObjectInTeam(fanaticSelected);
         if (indexOfFanaticSelected > -1)
         {
             FaceOffCard fanaticCardSelected = this.team[indexOfFanaticSelected];
-            fanaticCardSelected.attachGear(this.selectedGearCard);
-            this.hand.Remove(this.selectedGearCard);
-
-            fanaticCardSelected.activateEffectsFor(FaceOffCardEffectTiming.WHEN_GEAR_IS_ATTACHED_TO_THIS_CARD);
-            this.selectedGearCard.activateEffectsFor(FaceOffCardEffectTiming.WHEN_YOU_GIVE_THIS_TO_A_FANATIC);
-
-            this.repositionTeam();
-            this.repositionHand();
+            attachGearToFanatic(this.selectedGearCard, fanaticCardSelected);
         }
     }
 

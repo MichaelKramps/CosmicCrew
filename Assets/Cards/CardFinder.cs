@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CardFinder
 {
+    private static System.Random random = new System.Random();
+
     private static Dictionary<int, String> cardDictionary = new Dictionary<int, string>
         {
             { 0, "fandom-lurker" },
@@ -273,6 +276,11 @@ public class CardFinder
     public static CrewCard getCrewCardFromId(int id)
     {
         return CardFinder.getCrewCardFromName(cardDictionary[id]);
+    }
+
+    public static CrewCard getRandomCrewCard()
+    {
+        return CardFinder.getCrewCardFromId(random.Next(cardDictionary.Count));
     }
 
     public static CrewCard getCrewCardFromName(string cardName)
